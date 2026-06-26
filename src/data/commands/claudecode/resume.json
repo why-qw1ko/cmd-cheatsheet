@@ -1,0 +1,17 @@
+{
+  "name": "/resume",
+  "aliases": ["/continue"],
+  "domain": "claudecode",
+  "category": "session",
+  "tags": ["session", "restore", "history"],
+  "description": "恢复之前的对话会话。可以选择恢复指定的历史会话，继续之前的上下文工作。",
+  "syntax": "/resume [session_id]",
+  "platform": "slash",
+  "scenarios": [
+    "早上继续昨天的工作",
+    "切换回之前的任务上下文",
+    "中断后需要找回之前的对话"
+  ],
+  "related": ["/clear", "/compact", "/exit"],
+  "example": "/resume refactor-auth"
+}

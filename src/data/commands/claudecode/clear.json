@@ -1,0 +1,17 @@
+{
+  "name": "/clear",
+  "aliases": ["/reset", "/new"],
+  "domain": "claudecode",
+  "category": "session",
+  "tags": ["context", "memory", "reset"],
+  "description": "清空当前对话历史，重置上下文窗口，CLI 进程不退出。旧会话仍可通过 /resume 找回。",
+  "syntax": "/clear [session_name]",
+  "platform": "slash",
+  "scenarios": [
+    "切换到不相关的新任务时",
+    "Claude 开始答非所问、上下文被污染时",
+    "同一件事纠正 Claude 两次以上，不如重开"
+  ],
+  "related": ["/compact", "/exit", "/resume"],
+  "example": "/clear refactor-auth"
+}

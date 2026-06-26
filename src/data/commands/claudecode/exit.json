@@ -1,0 +1,17 @@
+{
+  "name": "/exit",
+  "aliases": ["/quit", "/q"],
+  "domain": "claudecode",
+  "category": "session",
+  "tags": ["exit", "quit", "close"],
+  "description": "退出 Claude Code CLI 进程。当前会话会被保存，下次可通过 /resume 恢复。",
+  "syntax": "/exit",
+  "platform": "slash",
+  "scenarios": [
+    "工作完成，结束会话",
+    "需要释放终端去做其他事",
+    "想换个模型或配置重新启动"
+  ],
+  "related": ["/clear", "/resume"],
+  "example": "/exit"
+}

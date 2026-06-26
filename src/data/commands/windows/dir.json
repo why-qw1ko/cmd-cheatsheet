@@ -1,0 +1,28 @@
+{
+  "name": "dir",
+  "aliases": ["ls"],
+  "domain": "windows",
+  "category": "file",
+  "tags": ["directory", "listing", "files"],
+  "description": "列出目录中的文件和子目录。CMD 经典命令，PowerShell 中 Get-ChildItem 是其现代替代。",
+  "variants": [
+    {
+      "name": "CMD",
+      "syntax": "dir [路径] [选项]",
+      "example": "dir /s /b C:\\Users"
+    },
+    {
+      "name": "PowerShell",
+      "syntax": "Get-ChildItem [-Path] 路径 [-Recurse] [-Force]",
+      "example": "Get-ChildItem -Path C:\\Users -Recurse -Force | Where-Object { $_.Length -gt 1MB }"
+    }
+  ],
+  "scenarios": [
+    "查看当前目录文件列表",
+    "递归列出所有文件（含子目录）",
+    "筛选特定类型的文件",
+    "查看文件大小和修改时间"
+  ],
+  "related": ["Get-ChildItem", "ipconfig"],
+  "since": "DOS 1.0"
+}

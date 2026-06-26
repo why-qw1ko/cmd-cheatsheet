@@ -1,0 +1,18 @@
+{
+  "name": "chmod",
+  "aliases": [],
+  "domain": "linux",
+  "category": "system",
+  "tags": ["permission", "access", "security", "file"],
+  "description": "更改文件或目录的访问权限。支持符号模式（u/g/o/a +/- r/w/x）和八进制模式（如 755、644）两种表示法。",
+  "syntax": "chmod [选项] 模式 文件...",
+  "scenarios": [
+    "给脚本加执行权限（chmod +x script.sh）",
+    "设置目录权限为 owner 可读写执行、其他人只读（chmod 755 dir）",
+    "递归修改目录权限（chmod -R 644 ./public）",
+    "仅 owner 可读写的私密文件（chmod 600 ~/.ssh/id_rsa）"
+  ],
+  "related": ["ls", "ssh"],
+  "example": "chmod -R u+w,go-w ./dist",
+  "since": "Unix V1"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "/doctor",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "config",
+  "tags": ["debug", "health", "diagnose", "check"],
+  "description": "诊断 Claude Code 的运行环境和配置问题。检查 API 连接、认证状态、编辑器集成等是否正常。",
+  "syntax": "/doctor",
+  "platform": "slash",
+  "scenarios": [
+    "Claude Code 行为异常，需要排查原因",
+    "API 调用失败，检查连接状态",
+    "编辑器插件不工作，诊断集成问题"
+  ],
+  "related": ["/config", "/help"],
+  "example": "/doctor"
+}

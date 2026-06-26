@@ -1,0 +1,17 @@
+{
+  "name": "/help",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "session",
+  "tags": ["help", "reference", "info"],
+  "description": "显示所有可用的 slash 命令列表和简要说明。快速查阅内置功能的入口。",
+  "syntax": "/help [command]",
+  "platform": "slash",
+  "scenarios": [
+    "忘记了某个命令的名称或用法",
+    "想看看有哪些可用功能",
+    "新接触 Claude Code 需要快速了解"
+  ],
+  "related": ["/config", "/cost"],
+  "example": "/help /compact"
+}

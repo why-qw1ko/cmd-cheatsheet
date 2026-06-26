@@ -1,0 +1,18 @@
+{
+  "name": "tar",
+  "aliases": [],
+  "domain": "linux",
+  "category": "file",
+  "tags": ["archive", "compress", "backup", "extract"],
+  "description": "打包和解压归档文件。支持 gzip、bzip2、xz 等压缩格式，是 Linux 下最常用的打包工具。",
+  "syntax": "tar [选项] [文件...]",
+  "scenarios": [
+    "解压 .tar.gz 文件（tar xzf archive.tar.gz）",
+    "创建压缩归档（tar czf backup.tar.gz ./project）",
+    "查看归档内容（tar tzf archive.tar.gz）",
+    "解压到指定目录（tar xzf archive.tar.gz -C /target/dir）"
+  ],
+  "related": ["find", "ls"],
+  "example": "tar czf backup-$(date +%F).tar.gz --exclude='node_modules' ./src",
+  "since": "Unix V7"
+}

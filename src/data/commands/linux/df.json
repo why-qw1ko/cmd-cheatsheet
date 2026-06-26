@@ -1,0 +1,18 @@
+{
+  "name": "df",
+  "aliases": ["du"],
+  "domain": "linux",
+  "category": "system",
+  "tags": ["disk", "space", "filesystem", "storage"],
+  "description": "显示文件系统的磁盘空间使用情况。默认显示所有已挂载文件系统的总空间、已用、可用和挂载点。",
+  "syntax": "df [选项] [文件...]",
+  "scenarios": [
+    "快速查看磁盘剩余空间（df -h）",
+    "检查某个挂载点的使用率（df -h /home）",
+    "以 MB 为单位显示（df -m）",
+    "查看 inode 使用情况（df -i）"
+  ],
+  "related": ["top", "ls"],
+  "example": "df -hT | grep -v tmpfs",
+  "since": "Unix V1"
+}

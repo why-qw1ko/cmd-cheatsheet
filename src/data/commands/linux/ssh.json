@@ -1,0 +1,18 @@
+{
+  "name": "ssh",
+  "aliases": [],
+  "domain": "linux",
+  "category": "network",
+  "tags": ["remote", "login", "secure", "shell", "tunnel"],
+  "description": "安全远程登录客户端。通过加密通道连接远程服务器执行命令，支持端口转发、密钥认证、代理跳转。",
+  "syntax": "ssh [选项] [user@]hostname [命令]",
+  "scenarios": [
+    "登录远程服务器（ssh user@192.168.1.100）",
+    "远程执行命令后退出（ssh server 'df -h'）",
+    "通过跳板机连接（ssh -J jump-host user@target）",
+    "端口转发做隧道（ssh -L 8080:localhost:80 remote）"
+  ],
+  "related": ["chmod", "curl"],
+  "example": "ssh -i ~/.ssh/mykey -p 2222 admin@server 'uptime && free -h'",
+  "since": "1995"
+}

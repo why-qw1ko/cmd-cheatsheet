@@ -1,0 +1,19 @@
+{
+  "name": "Get-Process",
+  "aliases": ["gps", "ps"],
+  "domain": "windows",
+  "category": "process",
+  "tags": ["process", "powershell", "object", "pipeline"],
+  "description": "PowerShell 原生的进程管理命令。返回 .NET 对象而非纯文本，可管道传递给其他 cmdlet 做进一步筛选和操作。",
+  "syntax": "Get-Process [[-Name] 名称] [-Id PID]",
+  "platform": "powershell",
+  "scenarios": [
+    "用管道筛选和格式化进程信息",
+    "按内存/CPU 排序找出资源大户",
+    "监控特定进程的实时资源变化",
+    "配合 Stop-Process 结束进程"
+  ],
+  "related": ["tasklist", "netstat"],
+  "example": "Get-Process -Name 'code' | Select-Object Id, CPU, WorkingSet64 | Format-Table -AutoSize",
+  "since": "PowerShell 1.0"
+}

@@ -1,0 +1,6 @@
+{
+  "label": "Windows",
+  "icon": "🪟",
+  "order": 3,
+  "categories": ["file", "network", "system", "process", "package"]
+}

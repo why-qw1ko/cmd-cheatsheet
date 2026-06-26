@@ -1,0 +1,17 @@
+{
+  "name": "/cost",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "config",
+  "tags": ["token", "usage", "cost", "billing"],
+  "description": "显示当前会话的 token 使用量和费用统计。包括输入/输出 token 数、缓存命中率和累计花费。",
+  "syntax": "/cost",
+  "platform": "slash",
+  "scenarios": [
+    "想知道自己这次对话花了多少钱",
+    "判断是否需要 /compact 压缩上下文",
+    "对比不同模型的 token 消耗"
+  ],
+  "related": ["/compact", "/config"],
+  "example": "/cost"
+}

@@ -1,0 +1,18 @@
+{
+  "name": "cat",
+  "aliases": [],
+  "domain": "linux",
+  "category": "text",
+  "tags": ["file", "output", "concatenate", "read"],
+  "description": "连接文件并输出到标准输出。最常用于查看文件内容，也可用于合并多个文件或创建新文件。",
+  "syntax": "cat [选项] [文件...]",
+  "scenarios": [
+    "快速查看小文件内容（cat config.json）",
+    "给文件加行号显示（cat -n script.sh）",
+    "合并多个文件（cat part1.txt part2.txt > whole.txt）",
+    "配合管道查看命令输出（docker logs container | cat）"
+  ],
+  "related": ["sed", "awk", "grep"],
+  "example": "cat -n /etc/hosts",
+  "since": "Unix V1"
+}

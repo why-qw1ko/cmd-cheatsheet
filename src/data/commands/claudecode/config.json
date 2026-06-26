@@ -1,0 +1,17 @@
+{
+  "name": "/config",
+  "aliases": ["/settings"],
+  "domain": "claudecode",
+  "category": "config",
+  "tags": ["config", "settings", "model", "preferences"],
+  "description": "查看或修改 Claude Code 的运行配置，包括模型选择、主题、编辑器集成等设置。",
+  "syntax": "/config [key] [value]",
+  "platform": "slash",
+  "scenarios": [
+    "切换使用的模型（如 Sonnet vs Opus）",
+    "配置编辑器集成（VS Code / Vim）",
+    "查看当前所有配置项"
+  ],
+  "related": ["/help", "/cost", "/doctor"],
+  "example": "/config model sonnet"
+}

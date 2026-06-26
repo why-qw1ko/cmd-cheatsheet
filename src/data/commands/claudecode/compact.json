@@ -1,0 +1,17 @@
+{
+  "name": "/compact",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "session",
+  "tags": ["context", "compress", "token", "memory"],
+  "description": "压缩当前对话上下文，保留关键信息但释放 token 空间。对话不丢失，只是折叠摘要。适合长对话中途不想完全重开的场景。",
+  "syntax": "/compact [focus]",
+  "platform": "slash",
+  "scenarios": [
+    "长对话中 token 快用完但不想丢上下文",
+    "对话历史太长导致响应变慢时",
+    "想聚焦到某个主题，压缩其他无关内容"
+  ],
+  "related": ["/clear", "/cost", "/resume"],
+  "example": "/compact focus on the auth module changes"
+}

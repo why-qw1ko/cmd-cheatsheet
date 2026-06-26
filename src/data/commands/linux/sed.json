@@ -1,0 +1,18 @@
+{
+  "name": "sed",
+  "aliases": [],
+  "domain": "linux",
+  "category": "text",
+  "tags": ["stream", "editor", "replace", "substitute", "transform"],
+  "description": "流编辑器，逐行读入输入并按指令进行文本替换、删除、插入等操作。常用于自动化文本处理和批量修改配置文件。",
+  "syntax": "sed [选项] '命令' [文件...]",
+  "scenarios": [
+    "全局替换文本（sed 's/old/new/g' file）",
+    "直接修改原文件（sed -i 's/debug/INFO/' config.yml）",
+    "删除空行（sed '/^$/d' file）",
+    "提取指定行范围（sed -n '10,20p' file）"
+  ],
+  "related": ["awk", "grep", "cat"],
+  "example": "sed -i.bak 's/localhost/production.db/g; s/3306/5432/g' config.yaml",
+  "since": "Unix V7"
+}

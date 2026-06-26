@@ -1,0 +1,6 @@
+{
+  "label": "Claude Code",
+  "icon": "🤖",
+  "order": 2,
+  "categories": ["session", "config", "review", "cli"]
+}

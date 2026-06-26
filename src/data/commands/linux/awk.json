@@ -1,0 +1,18 @@
+{
+  "name": "awk",
+  "aliases": ["gawk", "mawk"],
+  "domain": "linux",
+  "category": "text",
+  "tags": ["text", "processing", "pattern", "columns", "scripting"],
+  "description": "强大的文本处理语言。按行扫描输入，按列（字段）处理数据，内置变量和函数，适合结构化文本的提取和转换。",
+  "syntax": "awk 'pattern { action }' [文件...]",
+  "scenarios": [
+    "提取日志中特定列（awk '{print $1, $4}' access.log）",
+    "按条件筛选行（awk '$3 > 100' data.csv）",
+    "计算列的总和（awk '{sum+=$2} END {print sum}' nums.txt）",
+    "格式化输出（awk '{printf \"%-20s %s\\n\", $1, $3}' file）"
+  ],
+  "related": ["grep", "sed"],
+  "example": "awk -F',' '{if($3>90) print $1, $3}' students.csv",
+  "since": "1977"
+}

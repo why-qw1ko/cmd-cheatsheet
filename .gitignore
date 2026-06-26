@@ -1,0 +1,19 @@
+# build output
+dist/
+# generated types
+.astro/
+# dependencies
+node_modules/
+# editor
+.vscode/
+# OS
+.DS_Store
+Thumbs.db
+-e 
+# Deploy keys
+.deploy_key
+.deploy_key.pub
+-e 
+# Deploy keys
+.deploy_key
+.deploy_key.pub

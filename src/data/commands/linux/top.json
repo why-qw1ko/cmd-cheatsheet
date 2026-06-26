@@ -1,0 +1,18 @@
+{
+  "name": "top",
+  "aliases": ["htop"],
+  "domain": "linux",
+  "category": "process",
+  "tags": ["monitor", "process", "cpu", "memory", "realtime"],
+  "description": "实时显示系统进程和资源使用情况。默认按 CPU 占用排序，可交互式管理进程。htop 是其增强替代品。",
+  "syntax": "top [选项]",
+  "scenarios": [
+    "查看哪个进程占 CPU 最高",
+    "监控系统整体负载和内存使用",
+    "实时观察进程状态变化",
+    "找到需要 kill 的进程 PID"
+  ],
+  "related": ["df", "ssh"],
+  "example": "top -bn1 | head -20",
+  "since": "BSD"
+}

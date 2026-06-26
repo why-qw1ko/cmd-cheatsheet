@@ -1,0 +1,28 @@
+{
+  "name": "tasklist",
+  "aliases": ["Get-Process"],
+  "domain": "windows",
+  "category": "process",
+  "tags": ["process", "task", "memory", "monitor"],
+  "description": "显示当前运行的所有进程及其资源占用。CMD 下用 tasklist，PowerShell 下用 Get-Process。",
+  "variants": [
+    {
+      "name": "CMD",
+      "syntax": "tasklist [/FI filter] [/M module]",
+      "example": "tasklist /FI \"IMAGENAME eq chrome.exe\" /FI \"MEMUSAGE gt 100000\""
+    },
+    {
+      "name": "PowerShell",
+      "syntax": "Get-Process [-Name 名称] | Sort-Object 属性",
+      "example": "Get-Process | Sort-Object WorkingSet -Descending | Select-Object -First 10"
+    }
+  ],
+  "scenarios": [
+    "查找占用内存最多的进程",
+    "确认某个程序是否在运行",
+    "排查系统变慢的原因",
+    "获取进程 PID 以便结束它"
+  ],
+  "related": ["Get-Process", "netstat", "sfc"],
+  "since": "Windows XP"
+}

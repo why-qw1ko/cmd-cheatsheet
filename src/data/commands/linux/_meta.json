@@ -1,0 +1,6 @@
+{
+  "label": "Linux",
+  "icon": "🐧",
+  "order": 1,
+  "categories": ["file", "text", "system", "network", "process"]
+}

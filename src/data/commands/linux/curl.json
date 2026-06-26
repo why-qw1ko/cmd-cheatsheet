@@ -1,0 +1,18 @@
+{
+  "name": "curl",
+  "aliases": [],
+  "domain": "linux",
+  "category": "network",
+  "tags": ["http", "api", "download", "transfer", "request"],
+  "description": "命令行 HTTP 客户端，支持 HTTP/HTTPS/FTP/SCP 等数十种协议。常用于 API 调试、文件下载、自动化测试。",
+  "syntax": "curl [选项] [URL...]",
+  "scenarios": [
+    "测试 REST API（curl -X POST -d '{}' https://api.example.com）",
+    "下载文件（curl -O https://example.com/file.zip）",
+    "查看响应头（curl -I https://example.com）",
+    "带认证调用 API（curl -H 'Authorization: Bearer token' url）"
+  ],
+  "related": ["ssh", "grep"],
+  "example": "curl -s -X GET 'https://api.github.com/users/octocat' | jq .",
+  "since": "1998"
+}

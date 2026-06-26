@@ -1,0 +1,36 @@
+---
+interface Props {
+  text: string;
+  label?: string;
+}
+const { text, label = '复制' } = Astro.props;
+---
+
+<button class="copy-btn" data-copy={text} aria-label="复制命令">
+  <span class="copy-icon">📋</span>
+  <span class="copy-text">{label}</span>
+</button>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-copy');
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.classList.add('copied');
+        const textEl = btn.querySelector('.copy-text');
+        const iconEl = btn.querySelector('.copy-icon');
+        if (textEl) textEl.textContent = '已复制 ✓';
+        if (iconEl) iconEl.textContent = '✅';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          if (textEl) textEl.textContent = '复制';
+          if (iconEl) iconEl.textContent = '📋';
+        }, 2000);
+      } catch (e) {
+        console.error('Copy failed:', e);
+      }
+    });
+  });
+</script>

@@ -1,0 +1,18 @@
+{
+  "name": "claude (CLI)",
+  "aliases": ["claude-cli"],
+  "domain": "claudecode",
+  "category": "cli",
+  "tags": ["cli", "command-line", "pipe", "automation", "script"],
+  "description": "Claude Code 的命令行接口模式。支持非交互式调用，可管道输入输出，适合脚本集成和自动化工作流。",
+  "syntax": "claude [选项] [提示]",
+  "scenarios": [
+    "管道处理文本（echo 'code' | claude 'review this'）",
+    "在 CI/CD 中自动审查代码",
+    "快速提问不进入交互模式（claude -p 'how to ...'）",
+    "配合 git hook 做自动 code review"
+  ],
+  "related": ["/review", "/config", "/doctor"],
+  "example": "cat src/main.py | claude -p 'find bugs and suggest fixes'",
+  "since": "v0.1.0"
+}

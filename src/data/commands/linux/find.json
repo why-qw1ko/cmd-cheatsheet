@@ -1,0 +1,18 @@
+{
+  "name": "find",
+  "aliases": [],
+  "domain": "linux",
+  "category": "file",
+  "tags": ["search", "files", "recursive", "filter"],
+  "description": "在目录树中递归搜索文件和目录。支持按名称、类型、大小、时间、权限等多种条件筛选，并可对匹配结果执行操作。",
+  "syntax": "find [起始目录] [条件] [操作]",
+  "scenarios": [
+    "按文件名查找（find . -name '*.log'）",
+    "找大文件清理磁盘（find / -size +100M）",
+    "找最近修改的文件（find . -mtime -7）",
+    "删除超过30天的临时文件（find /tmp -mtime +30 -delete）"
+  ],
+  "related": ["ls", "grep", "awk"],
+  "example": "find . -name '*.js' -mtime -3 -exec grep -l 'TODO' {} +",
+  "since": "Unix V5"
+}

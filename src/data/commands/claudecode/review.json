@@ -1,0 +1,17 @@
+{
+  "name": "/review",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "review",
+  "tags": ["code", "review", "pr", "diff", "quality"],
+  "description": "让 Claude 审查当前分支的代码变更或指定 PR。自动读取 git diff，给出代码质量、潜在 bug 和改进建议。",
+  "syntax": "/review [pr_number | branch]",
+  "platform": "slash",
+  "scenarios": [
+    "提交 PR 前想先让 Claude 检查一遍",
+    "审查同事的 PR 代码",
+    "快速了解某个分支改了什么"
+  ],
+  "related": ["/help", "claude (CLI)"],
+  "example": "/review 42"
+}
