@@ -270,7 +270,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     letters.forEach(letter => {
       html += `<div class="nav-letter" data-letter="${letter}">${letter}</div>`;
       groups[letter].forEach(cmd => {
-        html += `<a class="floating-nav-link" href="#cmd-${cmd.name}" data-target="${cmd.name}"><span>${escapeHtml(cmd.name)}</span></a>`;
+        html += `<a class="floating-nav-link" href="#cmd-${cmd.name}" data-target="${cmd.name}" data-letter="${letter}"><span>${escapeHtml(cmd.name)}</span></a>`;
       });
     });
     navList.innerHTML = html;
@@ -279,6 +279,9 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     if (indexEl) {
       indexEl.innerHTML = letters.map(l => `<button class="letter-btn" data-letter="${l}">${l}</button>`).join('');
     }
+    // Reset letter filter
+    const activeBtn = indexEl?.querySelector('.letter-btn.active');
+    if (activeBtn) activeBtn.classList.remove('active');
   }
 
   // Initial render
@@ -583,51 +586,6 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     const icon = document.querySelector('.toggle-icon');
     if (icon) (icon as HTMLElement).style.transform = allExpanded ? 'rotate(180deg)' : '';
   });
-
-  // Letter index click
-  document.getElementById('nav-letter-index')?.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest('.letter-btn') as HTMLElement;
-    if (!btn) return;
-    const letter = btn.dataset.letter;
-    const firstLink = document.querySelector(`.nav-letter[data-letter="${letter}"]`) as HTMLElement;
-    if (firstLink) firstLink.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  });
-
-  // Scroll spy - real time highlight
-  function setupScrollSpy() {
-    const items = document.querySelectorAll('.accordion-item');
-    const links = document.querySelectorAll('.floating-nav-link');
-    const letters = document.querySelectorAll('.nav-letter');
-    if (!items.length || !links.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          const id = entry.target.id.replace('cmd-', '');
-          links.forEach(l => l.classList.remove('active'));
-          const active = document.querySelector(`.floating-nav-link[data-target="${id}"]`);
-          if (active) {
-            active.classList.add('active');
-            // Scroll nav to show active item
-            const navList = document.getElementById('nav-list');
-            if (navList) {
-              const linkRect = active.getBoundingClientRect();
-              const navRect = navList.getBoundingClientRect();
-              if (linkRect.top < navRect.top || linkRect.bottom > navRect.bottom) {
-                active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-              }
-            }
-          }
-          break;
-        }
-      }
-    }, { rootMargin: '-72px 0px -65% 0px', threshold: 0 });
-
-    items.forEach(item => observer.observe(item));
-  }
-
-  // Re-setup on domain change
-  document.addEventListener('domain-changed', () => requestAnimationFrame(setupScrollSpy));
 
   // Header copy button (inside accordion header)
   document.getElementById('accordion-container')?.addEventListener('click', (e) => {
