@@ -53,22 +53,33 @@ const { commands } = Astro.props;
     const allLinks = document.querySelectorAll('.floating-nav-link');
 
     if (activeLetter === letter) {
-      // Deselect -> show all
+      // Deselect -> show all, re-enable scroll spy
       activeLetter = null;
       btn.classList.remove('active');
-      allLinks.forEach(l => (l as HTMLElement).style.display = '');
+      allLinks.forEach(l => {
+        const el = l as HTMLElement;
+        el.style.display = '';
+        el.classList.remove('active');
+      });
+      // Disconnect and re-observe
+      if (scrollSpyObserver) scrollSpyObserver.disconnect();
+      requestAnimationFrame(setupScrollSpy);
     } else {
-      // Filter to this letter
+      // Filter to this letter, disable scroll spy
       activeLetter = letter;
+      if (scrollSpyObserver) scrollSpyObserver.disconnect();
       document.querySelectorAll('.letter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       allLinks.forEach(l => {
         const el = l as HTMLElement;
-        el.style.display = el.dataset.letter === letter ? '' : 'none';
+        const match = el.dataset.letter === letter;
+        el.style.display = match ? '' : 'none';
+        el.classList.remove('active');
       });
+      // Auto-select first visible
+      const firstVisible = document.querySelector(`.floating-nav-link[data-letter="${letter}"]`);
+      if (firstVisible) firstVisible.classList.add('active');
     }
-    // Re-run scroll spy after filter
-    requestAnimationFrame(setupScrollSpy);
   });
 
   // Scroll spy

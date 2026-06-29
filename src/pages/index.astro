@@ -287,6 +287,8 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
   // Initial render
   const container = document.getElementById('accordion-container');
   if (container) container.innerHTML = renderAccordion(allCommands['linux'] || [], 'linux');
+  renderNav(allCommands['linux'] || []);
+  loadExpandMemory('linux');
 
   // Domain switch
   function switchDomain(domain: string) {
