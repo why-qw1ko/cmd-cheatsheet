@@ -29,7 +29,7 @@ const { commands } = Astro.props;
     const header = el.querySelector('.accordion-header');
     if (header) {
       const rect = header.getBoundingClientRect();
-      const y = window.scrollY + rect.top - 72;
+      const y = window.scrollY + rect.top - 82;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   }

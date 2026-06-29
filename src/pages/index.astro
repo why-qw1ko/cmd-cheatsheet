@@ -415,7 +415,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
       const header = el.querySelector('.accordion-header');
       if (header) {
         const rect = header.getBoundingClientRect();
-        window.scrollTo({ top: window.scrollY + rect.top - 72, behavior: 'smooth' });
+        window.scrollTo({ top: window.scrollY + rect.top - 82, behavior: 'smooth' });
       }
     }
   });
@@ -516,7 +516,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
       if (el) {
         if (!el.classList.contains('open')) el.classList.add('open');
         const h = el.querySelector('.accordion-header');
-        if (h) { const r = h.getBoundingClientRect(); window.scrollTo({ top: window.scrollY + r.top - 72, behavior: 'smooth' }); }
+        if (h) { const r = h.getBoundingClientRect(); window.scrollTo({ top: window.scrollY + r.top - 82, behavior: 'smooth' }); }
       }
     }, 50);
   }
@@ -551,7 +551,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
       if (el) {
         if (!el.classList.contains('open')) el.classList.add('open');
         const h = el.querySelector('.accordion-header');
-        if (h) { const r = h.getBoundingClientRect(); window.scrollTo({ top: window.scrollY + r.top - 72, behavior: 'smooth' }); }
+        if (h) { const r = h.getBoundingClientRect(); window.scrollTo({ top: window.scrollY + r.top - 82, behavior: 'smooth' }); }
       }
     }, 50);
   });
