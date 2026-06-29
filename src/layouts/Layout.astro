@@ -368,29 +368,29 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     max-width: 1000px;
   }
 
-  .header-actions {
-    display: flex;
-    gap: 6px;
-  }
-
-  .action-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 6px 12px;
+  .toggle-all-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
     border: 1px solid var(--border);
-    border-radius: 8px;
     background: var(--bg-card);
     cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--text-muted);
-    transition: all 0.15s;
+    transition: all 0.2s;
+    flex-shrink: 0;
   }
 
-  .action-btn:hover {
-    border-color: var(--accent-light);
+  .toggle-all-btn:hover {
+    border-color: var(--accent);
     color: var(--accent);
+    background: var(--tag-bg);
+  }
+
+  .toggle-icon {
+    transition: transform 0.3s ease;
   }
 
   /* Danger badges */
@@ -484,9 +484,13 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     padding-bottom: 20px;
     border-bottom: 1px solid var(--border);
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     gap: 16px;
+  }
+
+  .main-header-left {
+    min-width: 0;
   }
 
   .main-title {
@@ -814,9 +818,9 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
   /* ==================== Floating Nav ==================== */
   .floating-nav {
     position: fixed;
-    right: 32px;
+    right: 20px;
     top: 20%;
-    width: 200px;
+    width: 190px;
     background: transparent;
     border: none;
     z-index: 90;
@@ -828,10 +832,10 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-muted);
-    padding: 0 0 10px;
+    padding: 0 0 8px;
     letter-spacing: 0.04em;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   .floating-nav-list {
@@ -847,17 +851,17 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 5px 10px;
-    border-radius: 6px;
+    padding: 4px 8px 4px 12px;
+    border-radius: 0;
     text-decoration: none;
     color: var(--text-muted);
     font-size: 16px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
-    transition: color 0.15s, background 0.15s;
+    transition: color 0.15s, background 0.15s, border-color 0.15s;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.6;
+    line-height: 1.7;
     border-left: 2px solid transparent;
   }
 
@@ -870,11 +874,7 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     color: var(--accent);
     font-weight: 600;
     border-left-color: var(--accent);
-    background: transparent;
-  }
-
-  .floating-nav-dot {
-    display: none;
+    background: rgba(99, 102, 241, 0.06);
   }
 
   /* ==================== Footer ==================== */
@@ -1206,16 +1206,12 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
 
     .main-header {
       flex-direction: column;
+      align-items: flex-start;
       gap: 12px;
     }
 
-    .header-actions {
-      width: 100%;
-    }
-
-    .action-btn {
-      flex: 1;
-      justify-content: center;
+    .toggle-all-btn {
+      align-self: flex-end;
     }
 
     .floating-nav {
