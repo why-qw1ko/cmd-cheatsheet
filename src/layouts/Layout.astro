@@ -27,16 +27,16 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
 
   :root {
     --sidebar-w: 220px;
-    --accent: #6d28d9;
-    --accent-light: #8b5cf6;
+    --accent: #6366f1;
+    --accent-light: #818cf8;
     --bg: #f8fafc;
     --bg-card: #ffffff;
     --bg-code: #f1f5f9;
     --border: #e2e8f0;
     --text: #1e293b;
     --text-muted: #64748b;
-    --tag-bg: #ede9fe;
-    --tag-text: #6d28d9;
+    --tag-bg: #eef2ff;
+    --tag-text: #4f46e5;
     --header-h: 56px;
   }
 
@@ -47,8 +47,8 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     --border: #334155;
     --text: #f1f5f9;
     --text-muted: #94a3b8;
-    --tag-bg: #3b0764;
-    --tag-text: #c4b5fd;
+    --tag-bg: #1e1b4b;
+    --tag-text: #a5b4fc;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -495,12 +495,32 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     font-size: 0.7rem;
     padding: 2px 8px;
     border-radius: 9999px;
-    background: var(--tag-bg);
-    color: var(--tag-text);
     font-weight: 600;
     white-space: nowrap;
     flex-shrink: 0;
   }
+
+  .cat-file { background: #fff7ed; color: #c2410c; }
+  .cat-text { background: #f3f4f6; color: #4b5563; }
+  .cat-system { background: #eff6ff; color: #1d4ed8; }
+  .cat-network { background: #f0fdf4; color: #15803d; }
+  .cat-process { background: #fef2f2; color: #b91c1c; }
+  .cat-session { background: #f5f3ff; color: #6d28d9; }
+  .cat-config { background: #f0fdfa; color: #0f766e; }
+  .cat-review { background: #fdf2f8; color: #be185d; }
+  .cat-cli { background: #eef2ff; color: #4338ca; }
+  .cat-package { background: #fffbeb; color: #b45309; }
+
+  [data-theme="dark"] .cat-file { background: #431407; color: #fb923c; }
+  [data-theme="dark"] .cat-text { background: #1f2937; color: #9ca3af; }
+  [data-theme="dark"] .cat-system { background: #172554; color: #60a5fa; }
+  [data-theme="dark"] .cat-network { background: #052e16; color: #4ade80; }
+  [data-theme="dark"] .cat-process { background: #450a0a; color: #f87171; }
+  [data-theme="dark"] .cat-session { background: #2e1065; color: #a78bfa; }
+  [data-theme="dark"] .cat-config { background: #042f2e; color: #2dd4bf; }
+  [data-theme="dark"] .cat-review { background: #500724; color: #f472b6; }
+  [data-theme="dark"] .cat-cli { background: #1e1b4b; color: #a5b4fc; }
+  [data-theme="dark"] .cat-package { background: #451a03; color: #fbbf24; }
 
   .accordion-alias {
     font-size: 0.75rem;
@@ -539,13 +559,28 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     padding: 4px 24px 28px;
   }
 
+  /* Skeleton loading */
+  @keyframes skeleton-pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 0.3; }
+    100% { opacity: 0.6; }
+  }
+
+  .skeleton-item {
+    height: 52px;
+    background: var(--bg-code);
+    border-radius: 10px;
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+    margin-bottom: 6px;
+  }
+
   .cmd-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; margin-bottom: 12px; }
   .cmd-tag {
     font-size: 0.7rem;
     padding: 2px 8px;
     border-radius: 9999px;
-    background: var(--tag-bg);
-    color: var(--tag-text);
+    background: var(--bg-code);
+    color: var(--text-muted);
   }
 
   .cmd-desc {
@@ -725,6 +760,42 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
 
   .floating-nav-dot {
     display: none;
+  }
+
+  /* ==================== Footer ==================== */
+  .site-footer {
+    margin-left: var(--sidebar-w);
+    margin-right: 280px;
+    padding: 24px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 16px;
+  }
+
+  .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-links a:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 1024px) {
+    .site-footer { margin-right: 0; }
+  }
+
+  @media (max-width: 768px) {
+    .site-footer { margin-left: 0; margin-right: 0; padding: 20px 16px; flex-direction: column; gap: 8px; }
   }
 
   /* ==================== Back to Top ==================== */

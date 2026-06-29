@@ -21,11 +21,11 @@ const windowsCmds = loadCommands(windowsModules);
 
 const domains = [
   { id: 'linux', label: 'Linux', desc: '系统命令', count: linuxCmds.length,
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C9.5 2 8 3.5 8 5.5c0 .8.3 1.5.7 2.1C7.3 8.3 6 9.5 6 12c0 2 .8 3.5 1.8 4.7C6.8 17.7 6 19 6 20.5c0 .8.4 1.5 1.2 1.5h9.6c.8 0 1.2-.7 1.2-1.5 0-1.5-.8-2.8-1.8-3.8C17.2 15.5 18 14 18 12c0-2.5-1.3-3.7-2.7-4.4.4-.6.7-1.3.7-2.1C16 3.5 14.5 2 12 2z"/><circle cx="10" cy="9" r="1" fill="currentColor"/><circle cx="14" cy="9" r="1" fill="currentColor"/><path d="M10 14s.5 1 2 1 2-1 2-1"/></svg>` },
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>` },
   { id: 'claudecode', label: 'Claude Code', desc: 'AI 编程助手', count: claudeCmds.length,
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8" stroke-linecap="round"/></svg>` },
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>` },
   { id: 'windows', label: 'Windows', desc: '系统命令', count: windowsCmds.length,
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h8V4H3v8zm0 8h8v-8H3v8zm10 0h8V12h-8v8zm0-16v8h8V4h-8z" stroke-linejoin="round"/></svg>` },
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="3" x2="12" y2="12"/></svg>` },
 ];
 
 const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claudeCmds, windows: windowsCmds };
@@ -133,6 +133,16 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     <CommandNav commands={linuxCmds} />
   </div>
 
+  {/* Footer */}
+  <footer class="site-footer">
+    <span>© 2026 Cmd Cheatsheet · 命令速查站</span>
+    <div class="footer-links">
+      <a href="https://github.com/why-qw1ko/cmd-cheatsheet" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/why-qw1ko/cmd-cheatsheet/releases" target="_blank" rel="noopener">更新日志</a>
+      <a href="https://github.com/why-qw1ko/cmd-cheatsheet/issues" target="_blank" rel="noopener">反馈</a>
+    </div>
+  </footer>
+
   <script id="domain-data" type="application/json" set:html={JSON.stringify(allCommands)} />
 </Layout>
 
@@ -156,13 +166,18 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     process: '进程', session: '会话', config: '配置', review: '审查',
     cli: 'CLI', package: '包管理',
   };
+  const categoryClass: Record<string, string> = {
+    file: 'cat-file', text: 'cat-text', system: 'cat-system', network: 'cat-network',
+    process: 'cat-process', session: 'cat-session', config: 'cat-config', review: 'cat-review',
+    cli: 'cat-cli', package: 'cat-package',
+  };
   const domainLabels: Record<string, string> = {
     linux: 'Linux', claudecode: 'Claude Code', windows: 'Windows',
   };
   const domainIcons: Record<string, string> = {
-    linux: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C9.5 2 8 3.5 8 5.5c0 .8.3 1.5.7 2.1C7.3 8.3 6 9.5 6 12c0 2 .8 3.5 1.8 4.7C6.8 17.7 6 19 6 20.5c0 .8.4 1.5 1.2 1.5h9.6c.8 0 1.2-.7 1.2-1.5 0-1.5-.8-2.8-1.8-3.8C17.2 15.5 18 14 18 12c0-2.5-1.3-3.7-2.7-4.4.4-.6.7-1.3.7-2.1C16 3.5 14.5 2 12 2z"/><circle cx="10" cy="9" r="1" fill="currentColor"/><circle cx="14" cy="9" r="1" fill="currentColor"/><path d="M10 14s.5 1 2 1 2-1 2-1"/></svg>`,
-    claudecode: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8" stroke-linecap="round"/></svg>`,
-    windows: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h8V4H3v8zm0 8h8v-8H3v8zm10 0h8V12h-8v8zm0-16v8h8V4h-8z" stroke-linejoin="round"/></svg>`,
+    linux: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`,
+    claudecode: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>`,
+    windows: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="3" x2="12" y2="12"/></svg>`,
   };
 
   const dataEl = document.getElementById('domain-data');
@@ -197,7 +212,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
             <button class="header-copy-btn" data-copy="${escapeHtml(cmd.name)}" title="复制命令名">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             </button>
-            <span class="accordion-cat">${escapeHtml(cat)}</span>
+            <span class="accordion-cat ${categoryClass[cmd.category] || ""}">${escapeHtml(cat)}</span>
             ${aliasStr}
           </div>
           <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -239,8 +254,16 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     if (subtitle) subtitle.textContent = `共 ${commands.length} 条命令 · 点击展开查看详情`;
     if (mobileTitle) mobileTitle.textContent = domainLabels[domain] || domain;
 
-    if (container) container.innerHTML = renderAccordion(commands, domain);
-    renderNav(commands);
+    if (container) {
+      // Show skeleton briefly
+      container.innerHTML = Array(8).fill('<div class="skeleton-item"></div>').join('');
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          container.innerHTML = renderAccordion(commands, domain);
+          renderNav(commands);
+        }, 150);
+      });
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.dispatchEvent(new CustomEvent('domain-changed'));
     document.dispatchEvent(new CustomEvent('domain-switched'));  
