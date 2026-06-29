@@ -35,22 +35,33 @@ const { domains } = Astro.props;
   <div class="sidebar-divider" />
 
   <div class="sidebar-footer">
-    <button class="sidebar-btn" id="theme-toggle">
-      <span class="sidebar-icon theme-icon-light">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <button class="sidebar-avatar-btn" id="sidebar-avatar-btn">
+      <div class="sidebar-avatar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <div class="sidebar-avatar-info">
+        <span class="sidebar-avatar-name">Cmd Cheatsheet</span>
+        <span class="sidebar-avatar-desc">命令速查工具</span>
+      </div>
+    </button>
+    <button class="sidebar-btn" id="theme-toggle" style="margin-top:6px">
+      <span class="sidebar-icon theme-icon-light" style="width:28px;height:28px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
           <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
           <line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" />
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
         </svg>
       </span>
-      <span class="sidebar-icon theme-icon-dark">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <span class="sidebar-icon theme-icon-dark" style="width:28px;height:28px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
         </svg>
       </span>
       <span class="sidebar-btn-text">
-        <span class="sidebar-btn-label">切换主题</span>
+        <span class="sidebar-btn-label" style="font-size:0.8rem">切换主题</span>
       </span>
     </button>
   </div>
@@ -65,4 +76,88 @@ const { domains } = Astro.props;
     root.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
   });
+
+  // Avatar click -> toast
+  document.getElementById('sidebar-avatar-btn')?.addEventListener('click', () => {
+    const existing = document.querySelector('.dev-toast');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.className = 'dev-toast';
+    toast.textContent = '🚧 功能开发中，敬请期待';
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add('show'));
+    setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 2000);
+  });
 </script>
+
+<style>
+  .sidebar-avatar-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s;
+    text-align: left;
+  }
+
+  .sidebar-avatar-btn:hover {
+    background: var(--bg-code);
+  }
+
+  .sidebar-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .sidebar-avatar-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .sidebar-avatar-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .sidebar-avatar-desc {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+  }
+
+  .dev-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+  }
+
+  .dev-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+</style>

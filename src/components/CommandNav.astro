@@ -32,10 +32,12 @@ const { commands } = Astro.props;
     const target = link.getAttribute('data-target');
     const el = document.getElementById(`cmd-${target}`);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       // Expand if collapsed
-      if (!el.classList.contains('open')) {
-        el.classList.add('open');
+      if (!el.classList.contains('open')) el.classList.add('open');
+      // Scroll to the command header, not the expanded body
+      const header = el.querySelector('.accordion-header');
+      if (header) {
+        header.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
   });
