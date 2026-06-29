@@ -11,139 +11,22 @@ interface Props {
 const { commands } = Astro.props;
 ---
 
-<nav class="command-nav" id="command-nav">
-  <div class="nav-title">
-    <span>命令导航</span>
-    <button class="nav-close-btn" id="nav-close-btn" aria-label="关闭导航">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-  <div class="nav-list" id="nav-list">
+<nav class="floating-nav" id="floating-nav">
+  <div class="floating-nav-title">命令导航</div>
+  <div class="floating-nav-list" id="nav-list">
     {commands.map((cmd) => (
-      <a class="nav-link" href={`#cmd-${cmd.name}`} data-target={cmd.name}>
-        <span class="nav-dot" />
-        <span class="nav-text">{cmd.name}</span>
+      <a class="floating-nav-link" href={`#cmd-${cmd.name}`} data-target={cmd.name}>
+        <span class="floating-nav-dot" />
+        <span>{cmd.name}</span>
       </a>
     ))}
   </div>
 </nav>
 
-<style>
-  .command-nav {
-    width: var(--anchor-w);
-    min-width: var(--anchor-w);
-    height: 100vh;
-    position: fixed;
-    right: 0;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    padding: 20px 12px;
-    border-left: 1px solid var(--border);
-    background: var(--bg-card);
-    z-index: 90;
-  }
-
-  .nav-title {
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    padding: 0 8px 12px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 8px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .nav-close-btn {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    border: none;
-    background: transparent;
-    border-radius: 6px;
-    cursor: pointer;
-    color: var(--text-muted);
-    transition: background 0.15s;
-  }
-
-  .nav-close-btn:hover {
-    background: var(--bg-code);
-  }
-
-  @media (max-width: 768px) {
-    .nav-close-btn {
-      display: flex;
-    }
-  }
-
-  .nav-list {
-    flex: 1;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    padding-right: 4px;
-  }
-
-  .nav-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 8px;
-    border-radius: 6px;
-    text-decoration: none;
-    color: var(--text-muted);
-    font-size: 0.82rem;
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
-    transition: all 0.15s;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .nav-link:hover {
-    background: var(--bg-code);
-    color: var(--text);
-  }
-
-  .nav-link.active {
-    color: var(--accent);
-    background: var(--tag-bg);
-    font-weight: 600;
-  }
-
-  .nav-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--border);
-    flex-shrink: 0;
-    transition: all 0.2s;
-  }
-
-  .nav-link.active .nav-dot {
-    background: var(--accent);
-    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.2);
-  }
-</style>
-
 <script>
-  // Close button (mobile)
-  document.getElementById('nav-close-btn')?.addEventListener('click', () => {
-    document.getElementById('command-nav')?.classList.remove('open');
-    document.getElementById('mobile-overlay')?.classList.remove('visible');
-  });
-
   // Click to scroll
   document.getElementById('nav-list')?.addEventListener('click', (e) => {
-    const link = (e.target as HTMLElement).closest('.nav-link') as HTMLAnchorElement;
+    const link = (e.target as HTMLElement).closest('.floating-nav-link') as HTMLAnchorElement;
     if (!link) return;
     e.preventDefault();
     const target = link.getAttribute('data-target');
@@ -151,9 +34,8 @@ const { commands } = Astro.props;
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       // Expand if collapsed
-      const header = el.querySelector('.accordion-header');
-      if (header?.getAttribute('aria-expanded') === 'false') {
-        header.setAttribute('aria-expanded', 'true');
+      if (!el.classList.contains('open')) {
+        el.classList.add('open');
       }
     }
   });
@@ -161,32 +43,30 @@ const { commands } = Astro.props;
   // Scroll spy
   function setupScrollSpy() {
     const items = document.querySelectorAll('.accordion-item');
-    const links = document.querySelectorAll('.nav-link');
+    const links = document.querySelectorAll('.floating-nav-link');
     if (!items.length || !links.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             const id = entry.target.id.replace('cmd-', '');
-            links.forEach((l) => l.classList.remove('active'));
-            const active = document.querySelector(`.nav-link[data-target="${id}"]`);
+            links.forEach(l => l.classList.remove('active'));
+            const active = document.querySelector(`.floating-nav-link[data-target="${id}"]`);
             if (active) {
               active.classList.add('active');
               active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
+            break;
           }
-        });
+        }
       },
       { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
     );
 
-    items.forEach((item) => observer.observe(item));
+    items.forEach(item => observer.observe(item));
   }
 
   setupScrollSpy();
-  // Re-setup on domain switch
-  document.addEventListener('domain-changed', () => {
-    requestAnimationFrame(setupScrollSpy);
-  });
+  document.addEventListener('domain-changed', () => requestAnimationFrame(setupScrollSpy));
 </script>

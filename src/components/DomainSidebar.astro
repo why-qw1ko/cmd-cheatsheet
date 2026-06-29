@@ -4,6 +4,7 @@ interface Domain {
   label: string;
   icon: string;
   count: number;
+  desc: string;
 }
 
 interface Props {
@@ -14,149 +15,50 @@ const { domains } = Astro.props;
 ---
 
 <aside class="domain-sidebar" id="domain-sidebar">
-  <div class="sidebar-logo">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="4 17 10 11 4 5" />
-      <line x1="12" y1="19" x2="20" y2="19" />
-    </svg>
-  </div>
-
+  <div class="sidebar-section-title">分类导航</div>
   <nav class="sidebar-nav">
     {domains.map((d) => (
       <button
         class:list={['sidebar-btn', { active: d.id === 'linux' }]}
         data-domain={d.id}
         title={d.label}
-        aria-label={d.label}
       >
         <span class="sidebar-icon" set:html={d.icon} />
-        <span class="sidebar-label">{d.label}</span>
+        <span class="sidebar-btn-text">
+          <span class="sidebar-btn-label">{d.label}</span>
+          <span class="sidebar-btn-count">{d.count} 条命令</span>
+        </span>
       </button>
     ))}
   </nav>
 
+  <div class="sidebar-divider" />
+
   <div class="sidebar-footer">
-    <button class="sidebar-btn theme-toggle" id="theme-toggle" title="切换主题" aria-label="切换主题">
+    <button class="sidebar-btn" id="theme-toggle">
       <span class="sidebar-icon theme-icon-light">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="5" />
-          <line x1="12" y1="1" x2="12" y2="3" />
-          <line x1="12" y1="21" x2="12" y2="23" />
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-          <line x1="1" y1="12" x2="3" y2="12" />
-          <line x1="21" y1="12" x2="23" y2="12" />
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
         </svg>
       </span>
       <span class="sidebar-icon theme-icon-dark">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
         </svg>
+      </span>
+      <span class="sidebar-btn-text">
+        <span class="sidebar-btn-label">切换主题</span>
       </span>
     </button>
   </div>
 </aside>
 
-<style>
-  .domain-sidebar {
-    width: var(--sidebar-w);
-    min-width: var(--sidebar-w);
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 16px 0;
-    background: var(--bg-card);
-    border-right: 1px solid var(--border);
-    z-index: 100;
-  }
-
-  .sidebar-logo {
-    margin-bottom: 24px;
-    color: var(--accent);
-    opacity: 0.8;
-  }
-
-  .sidebar-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    flex: 1;
-  }
-
-  .sidebar-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    padding: 10px 8px;
-    border: none;
-    background: transparent;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.2s;
-    color: var(--text-muted);
-    width: 56px;
-  }
-
-  .sidebar-btn:hover {
-    background: var(--bg-code);
-    color: var(--text);
-  }
-
-  .sidebar-btn.active {
-    background: var(--tag-bg);
-    color: var(--accent);
-  }
-
-  .sidebar-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-  }
-
-  .sidebar-icon svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .sidebar-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-  }
-
-  .sidebar-footer {
-    margin-top: auto;
-    padding-top: 8px;
-    border-top: 1px solid var(--border);
-  }
-
-  .theme-toggle .theme-icon-dark { display: none; }
-  [data-theme="dark"] .theme-toggle .theme-icon-light { display: none; }
-  [data-theme="dark"] .theme-toggle .theme-icon-dark { display: flex; }
-</style>
-
 <script>
-  // Theme toggle
   const themeBtn = document.getElementById('theme-toggle');
   const root = document.documentElement;
-
-  // Init theme
-  const saved = localStorage.getItem('theme');
-  if (saved) root.setAttribute('data-theme', saved);
-  else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    root.setAttribute('data-theme', 'dark');
-  }
-
   themeBtn?.addEventListener('click', () => {
     const current = root.getAttribute('data-theme');
     const next = current === 'dark' ? 'light' : 'dark';

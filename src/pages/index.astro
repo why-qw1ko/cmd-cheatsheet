@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import DomainSidebar from '../components/DomainSidebar.astro';
-import CommandAccordion from '../components/CommandAccordion.astro';
 import CommandNav from '../components/CommandNav.astro';
 
 // Import all command data
@@ -21,106 +20,88 @@ const claudeCmds = loadCommands(claudeModules);
 const windowsCmds = loadCommands(windowsModules);
 
 const domains = [
-  {
-    id: 'linux',
-    label: 'Linux',
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C9.5 2 8 3.5 8 5.5c0 .8.3 1.5.7 2.1C7.3 8.3 6 9.5 6 12c0 2 .8 3.5 1.8 4.7C6.8 17.7 6 19 6 20.5c0 .8.4 1.5 1.2 1.5h9.6c.8 0 1.2-.7 1.2-1.5 0-1.5-.8-2.8-1.8-3.8C17.2 15.5 18 14 18 12c0-2.5-1.3-3.7-2.7-4.4.4-.6.7-1.3.7-2.1C16 3.5 14.5 2 12 2z"/><circle cx="10" cy="9" r="1" fill="currentColor"/><circle cx="14" cy="9" r="1" fill="currentColor"/><path d="M10 14s.5 1 2 1 2-1 2-1"/></svg>`,
-    count: linuxCmds.length,
-  },
-  {
-    id: 'claudecode',
-    label: 'Claude',
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8" stroke-linecap="round"/></svg>`,
-    count: claudeCmds.length,
-  },
-  {
-    id: 'windows',
-    label: 'Windows',
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h8V4H3v8zm0 8h8v-8H3v8zm10 0h8V12h-8v8zm0-16v8h8V4h-8z" stroke-linejoin="round"/></svg>`,
-    count: windowsCmds.length,
-  },
+  { id: 'linux', label: 'Linux', desc: '系统命令', count: linuxCmds.length,
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C9.5 2 8 3.5 8 5.5c0 .8.3 1.5.7 2.1C7.3 8.3 6 9.5 6 12c0 2 .8 3.5 1.8 4.7C6.8 17.7 6 19 6 20.5c0 .8.4 1.5 1.2 1.5h9.6c.8 0 1.2-.7 1.2-1.5 0-1.5-.8-2.8-1.8-3.8C17.2 15.5 18 14 18 12c0-2.5-1.3-3.7-2.7-4.4.4-.6.7-1.3.7-2.1C16 3.5 14.5 2 12 2z"/><circle cx="10" cy="9" r="1" fill="currentColor"/><circle cx="14" cy="9" r="1" fill="currentColor"/><path d="M10 14s.5 1 2 1 2-1 2-1"/></svg>` },
+  { id: 'claudecode', label: 'Claude Code', desc: 'AI 编程助手', count: claudeCmds.length,
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8" stroke-linecap="round"/></svg>` },
+  { id: 'windows', label: 'Windows', desc: '系统命令', count: windowsCmds.length,
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h8V4H3v8zm0 8h8v-8H3v8zm10 0h8V12h-8v8zm0-16v8h8V4h-8z" stroke-linejoin="round"/></svg>` },
 ];
 
-// Serialize for client-side switching
-const allCommands: Record<string, any[]> = {
-  linux: linuxCmds,
-  claudecode: claudeCmds,
-  windows: windowsCmds,
-};
+const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claudeCmds, windows: windowsCmds };
 ---
 
 <Layout title="Cmd Cheatsheet — 命令速查站" description="Linux · Claude Code · Windows 常用命令速查">
-  <DomainSidebar domains={domains} />
-
-  <main class="main-area" id="main-area">
-    <div class="main-header">
-      <h1 class="main-title" id="main-title">
-        <span class="title-icon" id="title-icon" set:html={domains[0].icon} />
-        <span id="title-text">Linux</span>
-      </h1>
-      <p class="main-subtitle" id="main-subtitle">共 {linuxCmds.length} 条命令 · 点击展开查看详情</p>
+  {/* ===== Header ===== */}
+  <header class="site-header">
+    <div class="header-left">
+      <a href="/cmd-cheatsheet/" class="header-logo">
+        <span class="header-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 17 10 11 4 5" /><line x1="12" y1="19" x2="20" y2="19" />
+          </svg>
+        </span>
+        <span class="header-logo-text">Cmd Cheatsheet</span>
+      </a>
     </div>
 
-    <div id="accordion-container">
-      <CommandAccordion commands={linuxCmds} domain="linux" />
+    <div class="header-search">
+      <button class="header-search-btn" id="search-trigger">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span>搜索命令…</span>
+        <span class="header-search-kbd">Ctrl K</span>
+      </button>
     </div>
-  </main>
 
-  <CommandNav commands={linuxCmds} />
+    <div class="header-right">
+      <a class="header-github-link" href="https://github.com/why-qw1ko/cmd-cheatsheet" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        <span>GitHub</span>
+      </a>
+      <button class="header-btn" id="theme-toggle-header" title="切换主题">
+        <span class="theme-icon-light">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </span>
+        <span class="theme-icon-dark">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </span>
+      </button>
+    </div>
+  </header>
 
-  {/* Hidden data for client-side domain switching */}
+  {/* ===== Mobile top bar ===== */}
+  <div class="mobile-topbar" id="mobile-topbar">
+    <button class="mobile-btn" id="mobile-menu-btn" aria-label="菜单">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <span class="mobile-topbar-title" id="mobile-topbar-title">Cmd Cheatsheet</span>
+    <button class="mobile-btn" id="mobile-theme-btn" aria-label="主题">
+      <span class="theme-icon-light"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg></span>
+      <span class="theme-icon-dark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+    </button>
+  </div>
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+
+  {/* ===== Body ===== */}
+  <div class="body-layout">
+    <DomainSidebar domains={domains} />
+
+    <main class="main-area" id="main-area">
+      <div class="main-header">
+        <h1 class="main-title" id="main-title">
+          <span class="title-icon" id="title-icon" set:html={domains[0].icon} />
+          <span id="title-text">Linux</span>
+        </h1>
+        <p class="main-subtitle" id="main-subtitle">共 {linuxCmds.length} 条命令 · 点击展开查看详情</p>
+      </div>
+      <div id="accordion-container"></div>
+    </main>
+
+    <CommandNav commands={linuxCmds} />
+  </div>
+
   <script id="domain-data" type="application/json" set:html={JSON.stringify(allCommands)} />
 </Layout>
-
-<style>
-  .main-area {
-    flex: 1;
-    margin-left: var(--sidebar-w);
-    margin-right: var(--anchor-w);
-    padding: 32px 40px 80px;
-    max-width: 880px;
-  }
-
-  .main-header {
-    margin-bottom: 28px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .main-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 1.75rem;
-    font-weight: 800;
-    margin-bottom: 6px;
-  }
-
-  .title-icon {
-    display: flex;
-    align-items: center;
-    width: 36px;
-    height: 36px;
-    color: var(--accent);
-  }
-
-  .title-icon :global(svg) {
-    width: 32px;
-    height: 32px;
-  }
-
-  .main-subtitle {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    padding-left: 48px;
-  }
-
-  @media (max-width: 768px) {
-    .main-subtitle {
-      padding-left: 0;
-    }
-  }
-</style>
 
 <script>
   interface Command {
@@ -134,7 +115,6 @@ const allCommands: Record<string, any[]> = {
     scenarios?: string[];
     related?: string[];
     example?: string;
-    since?: string;
     variants?: { name: string; syntax: string; example?: string }[];
   }
 
@@ -143,65 +123,52 @@ const allCommands: Record<string, any[]> = {
     process: '进程', session: '会话', config: '配置', review: '审查',
     cli: 'CLI', package: '包管理',
   };
-
   const domainLabels: Record<string, string> = {
-    linux: 'Linux', claudecode: 'Claude', windows: 'Windows',
+    linux: 'Linux', claudecode: 'Claude Code', windows: 'Windows',
   };
-
   const domainIcons: Record<string, string> = {
     linux: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C9.5 2 8 3.5 8 5.5c0 .8.3 1.5.7 2.1C7.3 8.3 6 9.5 6 12c0 2 .8 3.5 1.8 4.7C6.8 17.7 6 19 6 20.5c0 .8.4 1.5 1.2 1.5h9.6c.8 0 1.2-.7 1.2-1.5 0-1.5-.8-2.8-1.8-3.8C17.2 15.5 18 14 18 12c0-2.5-1.3-3.7-2.7-4.4.4-.6.7-1.3.7-2.1C16 3.5 14.5 2 12 2z"/><circle cx="10" cy="9" r="1" fill="currentColor"/><circle cx="14" cy="9" r="1" fill="currentColor"/><path d="M10 14s.5 1 2 1 2-1 2-1"/></svg>`,
     claudecode: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8" stroke-linecap="round"/></svg>`,
     windows: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h8V4H3v8zm0 8h8v-8H3v8zm10 0h8V12h-8v8zm0-16v8h8V4h-8z" stroke-linejoin="round"/></svg>`,
   };
 
-  // Load data from embedded JSON
   const dataEl = document.getElementById('domain-data');
   const allCommands: Record<string, Command[]> = dataEl ? JSON.parse(dataEl.textContent || '{}') : {};
+
+  function escapeHtml(str: string): string {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
 
   function renderAccordion(commands: Command[], domain: string): string {
     return `<div class="accordion-list" id="accordion-list">${commands.map((cmd, i) => {
       const cat = categoryLabels[cmd.category] || cmd.category;
-      const aliasStr = cmd.aliases && cmd.aliases.length > 0
-        ? `<span class="accordion-alias">${cmd.aliases.join(', ')}</span>` : '';
-      const tagsHtml = cmd.tags && cmd.tags.length > 0
-        ? `<div class="cmd-tags">${cmd.tags.map(t => `<span class="cmd-tag">#${t}</span>`).join('')}</div>` : '';
+      const aliasStr = cmd.aliases?.length ? `<span class="accordion-alias">${escapeHtml(cmd.aliases.join(', '))}</span>` : '';
+      const tagsHtml = cmd.tags?.length ? `<div class="cmd-tags">${cmd.tags.map(t => `<span class="cmd-tag">#${escapeHtml(t)}</span>`).join('')}</div>` : '';
 
       let syntaxHtml = '';
-      if (cmd.variants && cmd.variants.length > 0) {
-        const tabs = cmd.variants.map((v, vi) =>
-          `<button class="variant-tab${vi === 0 ? ' active' : ''}" data-tab="${cmd.name}-v-${vi}">${v.name}</button>`
-        ).join('');
-        const panels = cmd.variants.map((v, vi) =>
-          `<div class="variant-panel${vi === 0 ? ' active' : ''}" data-panel="${cmd.name}-v-${vi}">
-            <div class="cmd-syntax-block"><div><div class="cmd-label">语法</div><code>${v.syntax}</code></div><button class="copy-btn" data-copy="${v.syntax}"><span class="copy-icon">📋</span><span class="copy-text">复制</span></button></div>
-            ${v.example ? `<div class="cmd-example-block"><div class="cmd-label">示例</div><code>${v.example}</code></div>` : ''}
-          </div>`
-        ).join('');
+      if (cmd.variants?.length) {
+        const tabs = cmd.variants.map((v, vi) => `<button class="variant-tab${vi === 0 ? ' active' : ''}" data-tab="${cmd.name}-v-${vi}">${escapeHtml(v.name)}</button>`).join('');
+        const panels = cmd.variants.map((v, vi) => `<div class="variant-panel${vi === 0 ? ' active' : ''}" data-panel="${cmd.name}-v-${vi}"><div class="cmd-syntax-block"><div><div class="cmd-label">语法</div><code>${escapeHtml(v.syntax)}</code></div><button class="copy-btn" data-copy="${escapeHtml(v.syntax)}">📋 复制</button></div>${v.example ? `<div class="cmd-example-block"><div class="cmd-label">示例</div><code>${escapeHtml(v.example)}</code></div>` : ''}</div>`).join('');
         syntaxHtml = `<div class="variant-tabs" role="tablist">${tabs}</div>${panels}`;
       } else {
-        const syn = cmd.syntax ? `<div class="cmd-syntax-block"><div><div class="cmd-label">语法</div><code>${cmd.syntax}</code></div><button class="copy-btn" data-copy="${cmd.syntax}"><span class="copy-icon">📋</span><span class="copy-text">复制</span></button></div>` : '';
-        const ex = cmd.example ? `<div class="cmd-example-block"><div class="cmd-label">示例</div><code>${cmd.example}</code></div>` : '';
-        syntaxHtml = syn + ex;
+        syntaxHtml = (cmd.syntax ? `<div class="cmd-syntax-block"><div><div class="cmd-label">语法</div><code>${escapeHtml(cmd.syntax)}</code></div><button class="copy-btn" data-copy="${escapeHtml(cmd.syntax)}">📋 复制</button></div>` : '') + (cmd.example ? `<div class="cmd-example-block"><div class="cmd-label">示例</div><code>${escapeHtml(cmd.example)}</code></div>` : '');
       }
 
-      const scenariosHtml = cmd.scenarios && cmd.scenarios.length > 0
-        ? `<div class="cmd-scenarios"><div class="cmd-label">🎯 使用场景</div><ul>${cmd.scenarios.map(s => `<li>${s}</li>`).join('')}</ul></div>` : '';
-
-      const relatedHtml = cmd.related && cmd.related.length > 0
-        ? `<div class="cmd-related"><span class="cmd-label">相关：</span>${cmd.related.map(r => `<span class="cmd-alias">${r}</span>`).join('')}</div>` : '';
+      const scenariosHtml = cmd.scenarios?.length ? `<div class="cmd-scenarios"><div class="cmd-label">🎯 使用场景</div><ul>${cmd.scenarios.map(s => `<li>${escapeHtml(s)}</li>`).join('')}</ul></div>` : '';
+      const relatedHtml = cmd.related?.length ? `<div class="cmd-related"><span class="cmd-label">相关：</span>${cmd.related.map(r => `<span class="cmd-alias-tag">${escapeHtml(r)}</span>`).join('')}</div>` : '';
 
       return `<div class="accordion-item" id="cmd-${cmd.name}" data-index="${i}">
-        <button class="accordion-header" aria-expanded="false">
+        <button class="accordion-header">
           <div class="accordion-title">
-            <span class="accordion-name">${cmd.name}</span>
-            <span class="accordion-cat">${cat}</span>
+            <span class="accordion-name">${escapeHtml(cmd.name)}</span>
+            <span class="accordion-cat">${escapeHtml(cat)}</span>
             ${aliasStr}
           </div>
           <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="accordion-body"><div class="accordion-content">
-          ${tagsHtml}<p class="cmd-desc">${cmd.description}</p>${syntaxHtml}${scenariosHtml}${relatedHtml}
-        </div></div>
+        <div class="accordion-body"><div class="accordion-content"><div class="accordion-content-inner">
+          ${tagsHtml}<p class="cmd-desc">${escapeHtml(cmd.description)}</p>${syntaxHtml}${scenariosHtml}${relatedHtml}
+        </div></div></div>
       </div>`;
     }).join('')}</div>`;
   }
@@ -210,20 +177,23 @@ const allCommands: Record<string, any[]> = {
     const navList = document.getElementById('nav-list');
     if (!navList) return;
     navList.innerHTML = commands.map(cmd =>
-      `<a class="nav-link" href="#cmd-${cmd.name}" data-target="${cmd.name}"><span class="nav-dot"></span><span class="nav-text">${cmd.name}</span></a>`
+      `<a class="floating-nav-link" href="#cmd-${cmd.name}" data-target="${cmd.name}"><span class="floating-nav-dot"></span><span>${escapeHtml(cmd.name)}</span></a>`
     ).join('');
   }
 
+  // Initial render
+  const container = document.getElementById('accordion-container');
+  if (container) container.innerHTML = renderAccordion(allCommands['linux'] || [], 'linux');
+
+  // Domain switch
   function switchDomain(domain: string) {
     const commands = allCommands[domain];
     if (!commands) return;
 
-    // Update sidebar active state
-    document.querySelectorAll('.sidebar-btn').forEach(btn => {
+    document.querySelectorAll('.sidebar-btn[data-domain]').forEach(btn => {
       btn.classList.toggle('active', (btn as HTMLElement).dataset.domain === domain);
     });
 
-    // Update header
     const titleIcon = document.getElementById('title-icon');
     const titleText = document.getElementById('title-text');
     const subtitle = document.getElementById('main-subtitle');
@@ -233,27 +203,37 @@ const allCommands: Record<string, any[]> = {
     if (subtitle) subtitle.textContent = `共 ${commands.length} 条命令 · 点击展开查看详情`;
     if (mobileTitle) mobileTitle.textContent = domainLabels[domain] || domain;
 
-    // Re-render accordion
-    const container = document.getElementById('accordion-container');
     if (container) container.innerHTML = renderAccordion(commands, domain);
-
-    // Re-render nav
     renderNav(commands);
-
-    // Dispatch events
     document.dispatchEvent(new CustomEvent('domain-changed'));
     document.dispatchEvent(new CustomEvent('domain-switched'));
   }
 
-  // Sidebar click handler
+  // Sidebar click
   document.getElementById('domain-sidebar')?.addEventListener('click', (e) => {
     const btn = (e.target as HTMLElement).closest('.sidebar-btn[data-domain]') as HTMLElement;
-    if (!btn) return;
-    const domain = btn.dataset.domain;
-    if (domain) switchDomain(domain);
+    if (btn?.dataset.domain) switchDomain(btn.dataset.domain);
   });
 
-  // Accordion toggle + copy (event delegation on container)
+  // Header theme toggle
+  document.getElementById('theme-toggle-header')?.addEventListener('click', () => {
+    const root = document.documentElement;
+    const current = root.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+
+  // Mobile theme toggle
+  document.getElementById('mobile-theme-btn')?.addEventListener('click', () => {
+    const root = document.documentElement;
+    const current = root.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+
+  // Accordion + copy (event delegation on container)
   document.getElementById('accordion-container')?.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
 
@@ -264,16 +244,8 @@ const allCommands: Record<string, any[]> = {
       const text = copyBtn.getAttribute('data-copy');
       if (text) {
         navigator.clipboard.writeText(text).then(() => {
-          copyBtn.classList.add('copied');
-          const t = copyBtn.querySelector('.copy-text');
-          const ic = copyBtn.querySelector('.copy-icon');
-          if (t) t.textContent = '已复制 ✓';
-          if (ic) ic.textContent = '✅';
-          setTimeout(() => {
-            copyBtn.classList.remove('copied');
-            if (t) t.textContent = '复制';
-            if (ic) ic.textContent = '📋';
-          }, 2000);
+          copyBtn.textContent = '✅ 已复制';
+          setTimeout(() => { copyBtn.textContent = '📋 复制'; }, 2000);
         });
       }
       return;
@@ -294,57 +266,62 @@ const allCommands: Record<string, any[]> = {
       return;
     }
 
-    // Accordion header
+    // Accordion toggle
     const header = target.closest('.accordion-header');
     if (header) {
-      const expanded = header.getAttribute('aria-expanded') === 'true';
-      header.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      const item = header.closest('.accordion-item');
+      if (item) item.classList.toggle('open');
     }
   });
 
-  // Nav click handler (event delegation)
-  document.getElementById('command-nav')?.addEventListener('click', (e) => {
-    const link = (e.target as HTMLElement).closest('.nav-link') as HTMLAnchorElement;
+  // Nav click (event delegation)
+  document.getElementById('floating-nav')?.addEventListener('click', (e) => {
+    const link = (e.target as HTMLElement).closest('.floating-nav-link') as HTMLAnchorElement;
     if (!link) return;
     e.preventDefault();
     const targetName = link.dataset.target;
     const el = document.getElementById(`cmd-${targetName}`);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      const header = el.querySelector('.accordion-header');
-      if (header?.getAttribute('aria-expanded') === 'false') {
-        header.setAttribute('aria-expanded', 'true');
-      }
+      if (!el.classList.contains('open')) el.classList.add('open');
     }
   });
 
   // Scroll spy
   function setupScrollSpy() {
     const items = document.querySelectorAll('.accordion-item');
-    const links = document.querySelectorAll('.nav-link');
+    const links = document.querySelectorAll('.floating-nav-link');
     if (!items.length || !links.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            const id = entry.target.id.replace('cmd-', '');
-            links.forEach(l => l.classList.remove('active'));
-            const active = document.querySelector(`.nav-link[data-target="${id}"]`);
-            if (active) {
-              active.classList.add('active');
-              active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-            break;
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          const id = entry.target.id.replace('cmd-', '');
+          links.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.floating-nav-link[data-target="${id}"]`);
+          if (active) {
+            active.classList.add('active');
+            active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           }
+          break;
         }
-      },
-      { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
-    );
-
+      }
+    }, { rootMargin: '-80px 0px -60% 0px', threshold: 0 });
     items.forEach(item => observer.observe(item));
   }
-
   setupScrollSpy();
   document.addEventListener('domain-changed', () => requestAnimationFrame(setupScrollSpy));
+
+  // Search trigger
+  document.getElementById('search-trigger')?.addEventListener('click', () => {
+    // Future: open search modal
+    alert('搜索功能开发中…');
+  });
+
+  // Ctrl+K shortcut
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      // Future: open search modal
+    }
+  });
 </script>
