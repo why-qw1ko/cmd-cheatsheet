@@ -362,10 +362,10 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
   .main-area {
     flex: 1;
     margin-left: var(--sidebar-w);
-    margin-right: 260px;
-    padding: 32px 40px 80px;
+    margin-right: 280px;
+    padding: 32px 48px 80px;
     min-width: 0;
-    max-width: 920px;
+    max-width: 1000px;
   }
 
   .main-header {
@@ -664,88 +664,67 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
   /* ==================== Floating Nav ==================== */
   .floating-nav {
     position: fixed;
-    right: 28px;
-    top: calc(var(--header-h) + 28px);
+    right: 32px;
+    top: 20%;
     width: 200px;
-    max-height: 400px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+    background: transparent;
+    border: none;
     z-index: 90;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    transition: opacity 0.2s, transform 0.2s;
-  }
-
-  .floating-nav.hidden {
-    opacity: 0;
-    transform: translateY(8px);
-    pointer-events: none;
   }
 
   .floating-nav-title {
-    font-size: 0.78rem;
-    font-weight: 700;
+    font-size: 0.75rem;
+    font-weight: 600;
     color: var(--text-muted);
-    padding: 14px 16px 10px;
+    padding: 0 0 10px;
+    letter-spacing: 0.04em;
     border-bottom: 1px solid var(--border);
-    flex-shrink: 0;
-    letter-spacing: 0.02em;
+    margin-bottom: 6px;
   }
 
   .floating-nav-list {
     overflow-y: auto;
-    padding: 8px 10px;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    max-height: 340px;
+    gap: 0;
+    max-height: 60vh;
   }
 
   .floating-nav-link {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 8px 12px;
-    border-radius: 8px;
+    padding: 5px 10px;
+    border-radius: 6px;
     text-decoration: none;
     color: var(--text-muted);
-    font-size: 0.88rem;
-    font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
-    transition: all 0.15s;
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
+    transition: color 0.15s, background 0.15s;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.4;
+    line-height: 1.6;
+    border-left: 2px solid transparent;
   }
 
   .floating-nav-link:hover {
-    background: var(--bg-code);
     color: var(--text);
+    background: var(--bg-code);
   }
 
   .floating-nav-link.active {
     color: var(--accent);
-    background: var(--tag-bg);
-    font-weight: 700;
+    font-weight: 600;
+    border-left-color: var(--accent);
+    background: transparent;
   }
 
   .floating-nav-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--border);
-    flex-shrink: 0;
-    transition: all 0.2s;
-  }
-
-  .floating-nav-link.active .floating-nav-dot {
-    background: var(--accent);
-    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.2);
-    width: 8px;
-    height: 8px;
+    display: none;
   }
 
   /* ==================== Back to Top ==================== */
