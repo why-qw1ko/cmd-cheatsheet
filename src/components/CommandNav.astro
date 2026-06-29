@@ -46,6 +46,8 @@ const { commands } = Astro.props;
 
   // Letter index click -> filter nav list
   let activeLetter: string | null = null;
+  let scrollSpyObserver: IntersectionObserver | null = null;
+
   document.getElementById('nav-letter-index')?.addEventListener('click', (e) => {
     const btn = (e.target as HTMLElement).closest('.letter-btn') as HTMLElement;
     if (!btn) return;
@@ -53,7 +55,6 @@ const { commands } = Astro.props;
     const allLinks = document.querySelectorAll('.floating-nav-link');
 
     if (activeLetter === letter) {
-      // Deselect -> show all, re-enable scroll spy
       activeLetter = null;
       btn.classList.remove('active');
       allLinks.forEach(l => {
@@ -61,13 +62,12 @@ const { commands } = Astro.props;
         el.style.display = '';
         el.classList.remove('active');
       });
-      // Disconnect and re-observe
-      if (scrollSpyObserver) scrollSpyObserver.disconnect();
-      requestAnimationFrame(setupScrollSpy);
+      // Re-enable scroll spy
+      requestAnimationFrame(initScrollSpy);
     } else {
-      // Filter to this letter, disable scroll spy
       activeLetter = letter;
-      if (scrollSpyObserver) scrollSpyObserver.disconnect();
+      // Disable scroll spy
+      if (scrollSpyObserver) { scrollSpyObserver.disconnect(); scrollSpyObserver = null; }
       document.querySelectorAll('.letter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       allLinks.forEach(l => {
@@ -76,24 +76,21 @@ const { commands } = Astro.props;
         el.style.display = match ? '' : 'none';
         el.classList.remove('active');
       });
-      // Auto-select first visible
       const firstVisible = document.querySelector(`.floating-nav-link[data-letter="${letter}"]`);
       if (firstVisible) firstVisible.classList.add('active');
     }
   });
 
-  // Scroll spy
-  let scrollSpyObserver: IntersectionObserver | null = null;
-
-  function setupScrollSpy() {
+  // Scroll spy - called externally after accordion renders
+  function initScrollSpy() {
     const items = document.querySelectorAll('.accordion-item');
     const links = document.querySelectorAll('.floating-nav-link') as NodeListOf<HTMLElement>;
     if (!items.length || !links.length) return;
 
-    // Disconnect old observer
     if (scrollSpyObserver) scrollSpyObserver.disconnect();
 
     scrollSpyObserver = new IntersectionObserver((entries) => {
+      if (activeLetter) return; // Don't update during letter filter
       for (const entry of entries) {
         if (entry.isIntersecting) {
           const id = entry.target.id.replace('cmd-', '');
@@ -116,11 +113,22 @@ const { commands } = Astro.props;
     }, { rootMargin: '-72px 0px -65% 0px', threshold: 0 });
 
     items.forEach(item => scrollSpyObserver!.observe(item));
+
+    // Highlight the first visible item
+    const firstItem = items[0];
+    if (firstItem) {
+      const id = firstItem.id.replace('cmd-', '');
+      links.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.floating-nav-link[data-target="${id}"]`);
+      if (active) active.classList.add('active');
+    }
   }
 
-  setupScrollSpy();
+  // Expose initScrollSpy globally so index.astro can call it
+  (window as any).initScrollSpy = initScrollSpy;
+
   document.addEventListener('domain-changed', () => {
     activeLetter = null;
-    requestAnimationFrame(setupScrollSpy);
+    requestAnimationFrame(() => initScrollSpy());
   });
 </script>

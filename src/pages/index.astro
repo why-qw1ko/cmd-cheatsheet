@@ -289,6 +289,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
   if (container) container.innerHTML = renderAccordion(allCommands['linux'] || [], 'linux');
   renderNav(allCommands['linux'] || []);
   loadExpandMemory('linux');
+  requestAnimationFrame(() => { if ((window as any).initScrollSpy) (window as any).initScrollSpy(); });
 
   // Domain switch
   function switchDomain(domain: string) {
@@ -316,6 +317,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
         setTimeout(() => {
           container.innerHTML = renderAccordion(commands, domain);
           renderNav(commands);
+          requestAnimationFrame(() => { if ((window as any).initScrollSpy) (window as any).initScrollSpy(); });
         }, 150);
       });
     }
