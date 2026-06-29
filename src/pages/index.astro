@@ -1,0 +1,350 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DomainSidebar from '../components/DomainSidebar.astro';
+import CommandAccordion from '../components/CommandAccordion.astro';
+import CommandNav from '../components/CommandNav.astro';
+
+// Import all command data
+const linuxModules = import.meta.glob('../data/commands/linux/*.json', { eager: true });
+const claudeModules = import.meta.glob('../data/commands/claudecode/*.json', { eager: true });
+const windowsModules = import.meta.glob('../data/commands/windows/*.json', { eager: true });
+
+function loadCommands(mods: Record<string, any>) {
+  return Object.entries(mods)
+    .filter(([path]) => !path.includes('_meta.json'))
+    .map(([, mod]) => (mod as any).default || mod)
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+const linuxCmds = loadCommands(linuxModules);
+const claudeCmds = loadCommands(claudeModules);
+const windowsCmds = loadCommands(windowsModules);
+
+const domains = [
+  {
+    id: 'linux',
+    label: 'Linux',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C9.5 2 8 3.5 8 5.5c0 .8.3 1.5.7 2.1C7.3 8.3 6 9.5 6 12c0 2 .8 3.5 1.8 4.7C6.8 17.7 6 19 6 20.5c0 .8.4 1.5 1.2 1.5h9.6c.8 0 1.2-.7 1.2-1.5 0-1.5-.8-2.8-1.8-3.8C17.2 15.5 18 14 18 12c0-2.5-1.3-3.7-2.7-4.4.4-.6.7-1.3.7-2.1C16 3.5 14.5 2 12 2z"/><circle cx="10" cy="9" r="1" fill="currentColor"/><circle cx="14" cy="9" r="1" fill="currentColor"/><path d="M10 14s.5 1 2 1 2-1 2-1"/></svg>`,
+    count: linuxCmds.length,
+  },
+  {
+    id: 'claudecode',
+    label: 'Claude',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8" stroke-linecap="round"/></svg>`,
+    count: claudeCmds.length,
+  },
+  {
+    id: 'windows',
+    label: 'Windows',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h8V4H3v8zm0 8h8v-8H3v8zm10 0h8V12h-8v8zm0-16v8h8V4h-8z" stroke-linejoin="round"/></svg>`,
+    count: windowsCmds.length,
+  },
+];
+
+// Serialize for client-side switching
+const allCommands: Record<string, any[]> = {
+  linux: linuxCmds,
+  claudecode: claudeCmds,
+  windows: windowsCmds,
+};
+---
+
+<Layout title="Cmd Cheatsheet — 命令速查站" description="Linux · Claude Code · Windows 常用命令速查">
+  <DomainSidebar domains={domains} />
+
+  <main class="main-area" id="main-area">
+    <div class="main-header">
+      <h1 class="main-title" id="main-title">
+        <span class="title-icon" id="title-icon" set:html={domains[0].icon} />
+        <span id="title-text">Linux</span>
+      </h1>
+      <p class="main-subtitle" id="main-subtitle">共 {linuxCmds.length} 条命令 · 点击展开查看详情</p>
+    </div>
+
+    <div id="accordion-container">
+      <CommandAccordion commands={linuxCmds} domain="linux" />
+    </div>
+  </main>
+
+  <CommandNav commands={linuxCmds} />
+
+  {/* Hidden data for client-side domain switching */}
+  <script id="domain-data" type="application/json" set:html={JSON.stringify(allCommands)} />
+</Layout>
+
+<style>
+  .main-area {
+    flex: 1;
+    margin-left: var(--sidebar-w);
+    margin-right: var(--anchor-w);
+    padding: 32px 40px 80px;
+    max-width: 880px;
+  }
+
+  .main-header {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .main-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  .title-icon {
+    display: flex;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    color: var(--accent);
+  }
+
+  .title-icon :global(svg) {
+    width: 32px;
+    height: 32px;
+  }
+
+  .main-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    padding-left: 48px;
+  }
+
+  @media (max-width: 768px) {
+    .main-subtitle {
+      padding-left: 0;
+    }
+  }
+</style>
+
+<script>
+  interface Command {
+    name: string;
+    aliases?: string[];
+    domain: string;
+    category: string;
+    tags?: string[];
+    description: string;
+    syntax?: string;
+    scenarios?: string[];
+    related?: string[];
+    example?: string;
+    since?: string;
+    variants?: { name: string; syntax: string; example?: string }[];
+  }
+
+  const categoryLabels: Record<string, string> = {
+    file: '文件', text: '文本', system: '系统', network: '网络',
+    process: '进程', session: '会话', config: '配置', review: '审查',
+    cli: 'CLI', package: '包管理',
+  };
+
+  const domainLabels: Record<string, string> = {
+    linux: 'Linux', claudecode: 'Claude', windows: 'Windows',
+  };
+
+  const domainIcons: Record<string, string> = {
+    linux: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C9.5 2 8 3.5 8 5.5c0 .8.3 1.5.7 2.1C7.3 8.3 6 9.5 6 12c0 2 .8 3.5 1.8 4.7C6.8 17.7 6 19 6 20.5c0 .8.4 1.5 1.2 1.5h9.6c.8 0 1.2-.7 1.2-1.5 0-1.5-.8-2.8-1.8-3.8C17.2 15.5 18 14 18 12c0-2.5-1.3-3.7-2.7-4.4.4-.6.7-1.3.7-2.1C16 3.5 14.5 2 12 2z"/><circle cx="10" cy="9" r="1" fill="currentColor"/><circle cx="14" cy="9" r="1" fill="currentColor"/><path d="M10 14s.5 1 2 1 2-1 2-1"/></svg>`,
+    claudecode: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8" stroke-linecap="round"/></svg>`,
+    windows: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h8V4H3v8zm0 8h8v-8H3v8zm10 0h8V12h-8v8zm0-16v8h8V4h-8z" stroke-linejoin="round"/></svg>`,
+  };
+
+  // Load data from embedded JSON
+  const dataEl = document.getElementById('domain-data');
+  const allCommands: Record<string, Command[]> = dataEl ? JSON.parse(dataEl.textContent || '{}') : {};
+
+  function renderAccordion(commands: Command[], domain: string): string {
+    return `<div class="accordion-list" id="accordion-list">${commands.map((cmd, i) => {
+      const cat = categoryLabels[cmd.category] || cmd.category;
+      const aliasStr = cmd.aliases && cmd.aliases.length > 0
+        ? `<span class="accordion-alias">${cmd.aliases.join(', ')}</span>` : '';
+      const tagsHtml = cmd.tags && cmd.tags.length > 0
+        ? `<div class="cmd-tags">${cmd.tags.map(t => `<span class="cmd-tag">#${t}</span>`).join('')}</div>` : '';
+
+      let syntaxHtml = '';
+      if (cmd.variants && cmd.variants.length > 0) {
+        const tabs = cmd.variants.map((v, vi) =>
+          `<button class="variant-tab${vi === 0 ? ' active' : ''}" data-tab="${cmd.name}-v-${vi}">${v.name}</button>`
+        ).join('');
+        const panels = cmd.variants.map((v, vi) =>
+          `<div class="variant-panel${vi === 0 ? ' active' : ''}" data-panel="${cmd.name}-v-${vi}">
+            <div class="cmd-syntax-block"><div><div class="cmd-label">语法</div><code>${v.syntax}</code></div><button class="copy-btn" data-copy="${v.syntax}"><span class="copy-icon">📋</span><span class="copy-text">复制</span></button></div>
+            ${v.example ? `<div class="cmd-example-block"><div class="cmd-label">示例</div><code>${v.example}</code></div>` : ''}
+          </div>`
+        ).join('');
+        syntaxHtml = `<div class="variant-tabs" role="tablist">${tabs}</div>${panels}`;
+      } else {
+        const syn = cmd.syntax ? `<div class="cmd-syntax-block"><div><div class="cmd-label">语法</div><code>${cmd.syntax}</code></div><button class="copy-btn" data-copy="${cmd.syntax}"><span class="copy-icon">📋</span><span class="copy-text">复制</span></button></div>` : '';
+        const ex = cmd.example ? `<div class="cmd-example-block"><div class="cmd-label">示例</div><code>${cmd.example}</code></div>` : '';
+        syntaxHtml = syn + ex;
+      }
+
+      const scenariosHtml = cmd.scenarios && cmd.scenarios.length > 0
+        ? `<div class="cmd-scenarios"><div class="cmd-label">🎯 使用场景</div><ul>${cmd.scenarios.map(s => `<li>${s}</li>`).join('')}</ul></div>` : '';
+
+      const relatedHtml = cmd.related && cmd.related.length > 0
+        ? `<div class="cmd-related"><span class="cmd-label">相关：</span>${cmd.related.map(r => `<span class="cmd-alias">${r}</span>`).join('')}</div>` : '';
+
+      return `<div class="accordion-item" id="cmd-${cmd.name}" data-index="${i}">
+        <button class="accordion-header" aria-expanded="false">
+          <div class="accordion-title">
+            <span class="accordion-name">${cmd.name}</span>
+            <span class="accordion-cat">${cat}</span>
+            ${aliasStr}
+          </div>
+          <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-body"><div class="accordion-content">
+          ${tagsHtml}<p class="cmd-desc">${cmd.description}</p>${syntaxHtml}${scenariosHtml}${relatedHtml}
+        </div></div>
+      </div>`;
+    }).join('')}</div>`;
+  }
+
+  function renderNav(commands: Command[]) {
+    const navList = document.getElementById('nav-list');
+    if (!navList) return;
+    navList.innerHTML = commands.map(cmd =>
+      `<a class="nav-link" href="#cmd-${cmd.name}" data-target="${cmd.name}"><span class="nav-dot"></span><span class="nav-text">${cmd.name}</span></a>`
+    ).join('');
+  }
+
+  function switchDomain(domain: string) {
+    const commands = allCommands[domain];
+    if (!commands) return;
+
+    // Update sidebar active state
+    document.querySelectorAll('.sidebar-btn').forEach(btn => {
+      btn.classList.toggle('active', (btn as HTMLElement).dataset.domain === domain);
+    });
+
+    // Update header
+    const titleIcon = document.getElementById('title-icon');
+    const titleText = document.getElementById('title-text');
+    const subtitle = document.getElementById('main-subtitle');
+    const mobileTitle = document.getElementById('mobile-topbar-title');
+    if (titleIcon) titleIcon.innerHTML = domainIcons[domain] || '';
+    if (titleText) titleText.textContent = domainLabels[domain] || domain;
+    if (subtitle) subtitle.textContent = `共 ${commands.length} 条命令 · 点击展开查看详情`;
+    if (mobileTitle) mobileTitle.textContent = domainLabels[domain] || domain;
+
+    // Re-render accordion
+    const container = document.getElementById('accordion-container');
+    if (container) container.innerHTML = renderAccordion(commands, domain);
+
+    // Re-render nav
+    renderNav(commands);
+
+    // Dispatch events
+    document.dispatchEvent(new CustomEvent('domain-changed'));
+    document.dispatchEvent(new CustomEvent('domain-switched'));
+  }
+
+  // Sidebar click handler
+  document.getElementById('domain-sidebar')?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('.sidebar-btn[data-domain]') as HTMLElement;
+    if (!btn) return;
+    const domain = btn.dataset.domain;
+    if (domain) switchDomain(domain);
+  });
+
+  // Accordion toggle + copy (event delegation on container)
+  document.getElementById('accordion-container')?.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+
+    // Copy button
+    const copyBtn = target.closest('.copy-btn');
+    if (copyBtn) {
+      e.stopPropagation();
+      const text = copyBtn.getAttribute('data-copy');
+      if (text) {
+        navigator.clipboard.writeText(text).then(() => {
+          copyBtn.classList.add('copied');
+          const t = copyBtn.querySelector('.copy-text');
+          const ic = copyBtn.querySelector('.copy-icon');
+          if (t) t.textContent = '已复制 ✓';
+          if (ic) ic.textContent = '✅';
+          setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            if (t) t.textContent = '复制';
+            if (ic) ic.textContent = '📋';
+          }, 2000);
+        });
+      }
+      return;
+    }
+
+    // Variant tab
+    const variantTab = target.closest('.variant-tab');
+    if (variantTab) {
+      e.stopPropagation();
+      const tabId = (variantTab as HTMLElement).dataset.tab;
+      if (!tabId) return;
+      const item = (variantTab as HTMLElement).closest('.accordion-item');
+      if (!item) return;
+      item.querySelectorAll('.variant-tab').forEach(t => t.classList.remove('active'));
+      item.querySelectorAll('.variant-panel').forEach(p => p.classList.remove('active'));
+      variantTab.classList.add('active');
+      item.querySelector(`[data-panel="${tabId}"]`)?.classList.add('active');
+      return;
+    }
+
+    // Accordion header
+    const header = target.closest('.accordion-header');
+    if (header) {
+      const expanded = header.getAttribute('aria-expanded') === 'true';
+      header.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+    }
+  });
+
+  // Nav click handler (event delegation)
+  document.getElementById('command-nav')?.addEventListener('click', (e) => {
+    const link = (e.target as HTMLElement).closest('.nav-link') as HTMLAnchorElement;
+    if (!link) return;
+    e.preventDefault();
+    const targetName = link.dataset.target;
+    const el = document.getElementById(`cmd-${targetName}`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const header = el.querySelector('.accordion-header');
+      if (header?.getAttribute('aria-expanded') === 'false') {
+        header.setAttribute('aria-expanded', 'true');
+      }
+    }
+  });
+
+  // Scroll spy
+  function setupScrollSpy() {
+    const items = document.querySelectorAll('.accordion-item');
+    const links = document.querySelectorAll('.nav-link');
+    if (!items.length || !links.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const id = entry.target.id.replace('cmd-', '');
+            links.forEach(l => l.classList.remove('active'));
+            const active = document.querySelector(`.nav-link[data-target="${id}"]`);
+            if (active) {
+              active.classList.add('active');
+              active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            break;
+          }
+        }
+      },
+      { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
+    );
+
+    items.forEach(item => observer.observe(item));
+  }
+
+  setupScrollSpy();
+  document.addEventListener('domain-changed', () => requestAnimationFrame(setupScrollSpy));
+</script>

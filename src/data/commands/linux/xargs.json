@@ -1,0 +1,18 @@
+{
+  "name": "xargs",
+  "aliases": [],
+  "domain": "linux",
+  "category": "text",
+  "tags": ["pipe", "build", "command", "batch", "execute"],
+  "description": "从标准输入构建并执行命令。将输入转换为命令参数，常与 find、grep 等配合做批量操作。",
+  "syntax": "xargs [选项] [命令 [初始参数...]]",
+  "scenarios": [
+    "批量删除文件（find . -name '*.tmp' | xargs rm）",
+    "批量搜索（find . -name '*.py' | xargs grep 'TODO'）",
+    "限制每次参数数量（cat urls.txt | xargs -n 1 curl -O）",
+    "处理含空格文件名（find . -print0 | xargs -0 rm）"
+  ],
+  "related": ["find", "grep", "rm"],
+  "example": "find . -name '*.log' -mtime +30 | xargs rm -f",
+  "since": "1981"
+}

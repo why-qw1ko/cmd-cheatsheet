@@ -1,0 +1,18 @@
+{
+  "name": "wget",
+  "aliases": [],
+  "domain": "linux",
+  "category": "network",
+  "tags": ["download", "http", "fetch", "mirror"],
+  "description": "非交互式网络下载工具。支持 HTTP/HTTPS/FTP，可断点续传、递归下载整站、限速下载。",
+  "syntax": "wget [选项] [URL...]",
+  "scenarios": [
+    "下载文件（wget https://example.com/file.zip）",
+    "断点续传（wget -c https://example.com/large.iso）",
+    "后台下载（wget -b https://example.com/file.tar.gz）",
+    "镜像整站（wget -m -p https://example.com）"
+  ],
+  "related": ["curl", "scp"],
+  "example": "wget -c -q --show-progress https://releases.example.com/app.tar.gz",
+  "since": "1996"
+}

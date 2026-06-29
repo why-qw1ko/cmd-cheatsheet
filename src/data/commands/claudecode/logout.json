@@ -1,0 +1,15 @@
+{
+  "name": "/logout",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "session",
+  "tags": ["auth", "logout", "session"],
+  "description": "退出当前账号认证。清除本地保存的认证信息。",
+  "syntax": "/logout",
+  "scenarios": [
+    "切换到其他账号前退出当前认证",
+    "安全考虑需要清除本地凭证"
+  ],
+  "related": ["/login", "/config"],
+  "example": "/logout"
+}

@@ -1,0 +1,18 @@
+{
+  "name": "rm",
+  "aliases": ["del"],
+  "domain": "linux",
+  "category": "file",
+  "tags": ["delete", "remove", "file", "directory"],
+  "description": "删除文件或目录。默认不删除目录，需 -r 递归删除。配合 -i 可逐个确认，-f 强制删除不提示。",
+  "syntax": "rm [选项] 文件...",
+  "scenarios": [
+    "删除单个文件（rm file.txt）",
+    "递归删除目录及内容（rm -rf ./build）",
+    "删除前逐一确认（rm -i *.log）",
+    "安全删除：先 trash 再确认（trash-put file）"
+  ],
+  "related": ["find", "ls", "chmod"],
+  "example": "rm -rf ./node_modules ./dist",
+  "since": "Unix V1"
+}

@@ -1,0 +1,18 @@
+{
+  "name": "kill",
+  "aliases": ["pkill", "killall"],
+  "domain": "linux",
+  "category": "process",
+  "tags": ["process", "signal", "terminate", "stop"],
+  "description": "向进程发送信号。默认发送 SIGTERM(15) 优雅终止，-9 发送 SIGKILL 强制杀死。pkill 可按名称匹配。",
+  "syntax": "kill [信号] PID...",
+  "scenarios": [
+    "优雅终止进程（kill 1234）",
+    "强制杀死进程（kill -9 1234）",
+    "按名称杀进程（pkill -f 'node server'）",
+    "重启进程（kill -HUP 1234）"
+  ],
+  "related": ["ps", "top", "pgrep"],
+  "example": "kill -9 $(pgrep -f 'chrome')",
+  "since": "Unix V1"
+}

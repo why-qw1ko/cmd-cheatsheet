@@ -1,0 +1,18 @@
+{
+  "name": "wc",
+  "aliases": [],
+  "domain": "linux",
+  "category": "text",
+  "tags": ["count", "lines", "words", "characters", "statistics"],
+  "description": "统计文件的行数、单词数和字节数。-l 仅统计行数，-w 仅统计单词，-c 仅统计字节。",
+  "syntax": "wc [选项] [文件...]",
+  "scenarios": [
+    "统计文件行数（wc -l file.txt）",
+    "统计代码行数（find . -name '*.py' | xargs wc -l）",
+    "统计字数（wc -w essay.md）",
+    "配合管道统计输出行数（ps aux | wc -l）"
+  ],
+  "related": ["grep", "find", "sort"],
+  "example": "find src/ -name '*.ts' | xargs wc -l | tail -1",
+  "since": "Unix V1"
+}

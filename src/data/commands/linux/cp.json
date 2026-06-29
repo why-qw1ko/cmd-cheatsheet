@@ -1,0 +1,18 @@
+{
+  "name": "cp",
+  "aliases": ["copy"],
+  "domain": "linux",
+  "category": "file",
+  "tags": ["copy", "backup", "file", "directory"],
+  "description": "复制文件或目录。需 -r 递归复制目录，-a 保留所有属性（权限、时间戳、符号链接）。",
+  "syntax": "cp [选项] 源... 目标",
+  "scenarios": [
+    "复制文件（cp file.txt file.txt.bak）",
+    "递归复制目录（cp -r ./src ./backup/）",
+    "保留权限和时间戳复制（cp -a /etc/nginx ./nginx-backup/）",
+    "覆盖前提示（cp -i *.conf ./etc/）"
+  ],
+  "related": ["mv", "rsync", "tar"],
+  "example": "cp -a --parents ./src/config.yaml ./backup/",
+  "since": "Unix V1"
+}

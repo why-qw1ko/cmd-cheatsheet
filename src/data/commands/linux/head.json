@@ -1,0 +1,18 @@
+{
+  "name": "head",
+  "aliases": [],
+  "domain": "linux",
+  "category": "text",
+  "tags": ["file", "output", "lines", "preview"],
+  "description": "输出文件开头部分。默认显示前 10 行，-n 指定行数，-c 指定字节数。",
+  "syntax": "head [选项] [文件...]",
+  "scenarios": [
+    "查看文件前 10 行（head file.log）",
+    "查看前 N 行（head -n 20 config.yaml）",
+    "配合管道取前几行（ps aux | head -5）",
+    "查看 CSV 前几行确认格式（head -3 data.csv）"
+  ],
+  "related": ["tail", "cat", "less"],
+  "example": "head -n 50 /var/log/syslog",
+  "since": "Unix V1"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "move",
+  "aliases": ["Move-Item"],
+  "domain": "windows",
+  "category": "file",
+  "tags": ["move", "rename", "file"],
+  "description": "移动或重命名文件和目录。CMD 用 move，PowerShell 用 Move-Item。",
+  "variants": [
+    { "name": "CMD", "syntax": "move [/Y] 源 目标", "example": "move report.txt D:\\archive\\" },
+    { "name": "PowerShell", "syntax": "Move-Item [-Path] 源 [-Destination] 目标", "example": "Move-Item -Path .\\old.txt -Destination .\\new.txt" }
+  ],
+  "scenarios": [
+    "移动文件到其他目录",
+    "重命名文件",
+    "整理文件目录结构"
+  ],
+  "related": ["copy", "del", "dir"],
+  "since": "DOS 2.0"
+}

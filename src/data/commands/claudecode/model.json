@@ -1,0 +1,16 @@
+{
+  "name": "/model",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "config",
+  "tags": ["model", "switch", "sonnet", "opus"],
+  "description": "切换 Claude Code 使用的模型。可在 Sonnet（快速）和 Opus（深度推理）之间切换，也可指定其他可用模型。",
+  "syntax": "/model [model_name]",
+  "scenarios": [
+    "需要深度推理时切换到 Opus",
+    "日常编码用 Sonnet 更快更省",
+    "查看当前使用的模型"
+  ],
+  "related": ["/config", "/cost"],
+  "example": "/model claude-sonnet-4-20250514"
+}

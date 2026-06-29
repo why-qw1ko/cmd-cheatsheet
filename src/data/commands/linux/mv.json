@@ -1,0 +1,18 @@
+{
+  "name": "mv",
+  "aliases": ["move"],
+  "domain": "linux",
+  "category": "file",
+  "tags": ["move", "rename", "file"],
+  "description": "移动或重命名文件和目录。同一目录下 mv 等价于重命名，跨目录则是移动。",
+  "syntax": "mv [选项] 源... 目标",
+  "scenarios": [
+    "重命名文件（mv old.txt new.txt）",
+    "移动文件到目录（mv file.txt ./archive/）",
+    "批量移动（mv *.log ./logs/）",
+    "覆盖前提示确认（mv -i src dest）"
+  ],
+  "related": ["cp", "rm", "ls"],
+  "example": "mv -i report_{2024,2025}.md ./archive/",
+  "since": "Unix V1"
+}

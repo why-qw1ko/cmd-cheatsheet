@@ -1,0 +1,16 @@
+{
+  "name": "/init",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "session",
+  "tags": ["init", "setup", "project", "context"],
+  "description": "在当前项目根目录初始化 CLAUDE.md 文件。Claude Code 会自动读取此文件作为项目上下文，包含代码规范、架构说明等。",
+  "syntax": "/init",
+  "scenarios": [
+    "新项目首次使用 Claude Code",
+    "想让 Claude 了解项目结构和规范",
+    "重置或更新项目的 CLAUDE.md"
+  ],
+  "related": ["/help", "/config", "/memory"],
+  "example": "/init"
+}

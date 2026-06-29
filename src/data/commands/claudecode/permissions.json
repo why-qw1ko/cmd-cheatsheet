@@ -1,0 +1,16 @@
+{
+  "name": "/permissions",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "config",
+  "tags": ["permission", "allow", "deny", "security", "tool"],
+  "description": "查看和管理 Claude Code 的工具权限。控制哪些工具（如 exec、write）需要用户确认，哪些可以自动执行。",
+  "syntax": "/permissions [add|remove] [tool]",
+  "scenarios": [
+    "查看当前权限配置",
+    "允许某个工具自动执行",
+    "收紧安全策略，要求所有写操作确认"
+  ],
+  "related": ["/config", "/doctor"],
+  "example": "/permissions"
+}

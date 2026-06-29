@@ -1,0 +1,18 @@
+{
+  "name": "sort",
+  "aliases": [],
+  "domain": "linux",
+  "category": "text",
+  "tags": ["sort", "order", "arrange", "unique"],
+  "description": "对文本行排序。默认按字典序，-n 按数值，-r 反序，-u 去重，-k 指定排序列。",
+  "syntax": "sort [选项] [文件...]",
+  "scenarios": [
+    "按字母排序（sort names.txt）",
+    "按数值排序（sort -n scores.txt）",
+    "去重排序（sort -u list.txt）",
+    "按第二列数值排序（sort -t, -k2 -n data.csv）"
+  ],
+  "related": ["uniq", "wc", "awk"],
+  "example": "du -sh * | sort -rh | head -10",
+  "since": "Unix V1"
+}

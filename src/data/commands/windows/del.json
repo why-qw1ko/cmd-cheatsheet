@@ -1,0 +1,19 @@
+{
+  "name": "del",
+  "aliases": ["Remove-Item", "erase"],
+  "domain": "windows",
+  "category": "file",
+  "tags": ["delete", "remove", "file"],
+  "description": "删除文件。CMD 用 del，PowerShell 用 Remove-Item。注意：删除后不进回收站。",
+  "variants": [
+    { "name": "CMD", "syntax": "del [/P] [/F] 文件...", "example": "del /F /Q *.tmp" },
+    { "name": "PowerShell", "syntax": "Remove-Item [-Path] 路径 [-Force] [-Recurse]", "example": "Remove-Item -Path .\\*.log -Force" }
+  ],
+  "scenarios": [
+    "清理临时文件",
+    "批量删除特定类型文件",
+    "强制删除只读文件"
+  ],
+  "related": ["copy", "dir"],
+  "since": "DOS 1.0"
+}

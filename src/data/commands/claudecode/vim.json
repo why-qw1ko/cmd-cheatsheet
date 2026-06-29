@@ -1,0 +1,16 @@
+{
+  "name": "/vim",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "config",
+  "tags": ["editor", "vim", "mode", "input"],
+  "description": "切换输入模式为 Vim 风格。开启后在输入框中可使用 Vim 快捷键编辑文本。",
+  "syntax": "/vim [on|off]",
+  "scenarios": [
+    "Vim 用户想在 Claude Code 中使用熟悉的快捷键",
+    "快速编辑多行输入内容",
+    "切换回普通输入模式"
+  ],
+  "related": ["/config"],
+  "example": "/vim on"
+}

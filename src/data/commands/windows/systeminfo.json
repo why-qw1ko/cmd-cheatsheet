@@ -1,0 +1,19 @@
+{
+  "name": "systeminfo",
+  "aliases": ["Get-ComputerInfo"],
+  "domain": "windows",
+  "category": "system",
+  "tags": ["system", "info", "hardware", "os", "spec"],
+  "description": "显示详细的系统配置信息，包括操作系统版本、处理器、内存、网络适配器、补丁等。",
+  "variants": [
+    { "name": "CMD", "syntax": "systeminfo [/FO format]", "example": "systeminfo | findstr /C:\"Total Physical Memory\"" },
+    { "name": "PowerShell", "syntax": "Get-ComputerInfo | Select-Object 属性", "example": "Get-ComputerInfo | Select-Object CsName, WindowsVersion, TotalPhysicalMemory" }
+  ],
+  "scenarios": [
+    "查看系统配置概览",
+    "检查已安装的补丁",
+    "确认操作系统版本和架构"
+  ],
+  "related": ["tasklist", "sfc"],
+  "since": "Windows XP"
+}

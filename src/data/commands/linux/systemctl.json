@@ -1,0 +1,18 @@
+{
+  "name": "systemctl",
+  "aliases": ["service"],
+  "domain": "linux",
+  "category": "system",
+  "tags": ["service", "daemon", "systemd", "startup", "management"],
+  "description": "systemd 服务管理工具。控制服务的启动、停止、重启、状态查看和开机自启设置。",
+  "syntax": "systemctl [命令] [服务名]",
+  "scenarios": [
+    "查看服务状态（systemctl status nginx）",
+    "启动/停止/重启服务（systemctl restart mysql）",
+    "设置开机自启（systemctl enable docker）",
+    "查看所有运行中的服务（systemctl list-units --type=service --state=running）"
+  ],
+  "related": ["top", "ps", "journalctl"],
+  "example": "systemctl enable --now docker",
+  "since": "2010"
+}

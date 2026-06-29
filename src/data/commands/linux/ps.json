@@ -1,0 +1,18 @@
+{
+  "name": "ps",
+  "aliases": [],
+  "domain": "linux",
+  "category": "process",
+  "tags": ["process", "status", "monitor", "snapshot"],
+  "description": "显示当前进程快照。ps aux 显示所有用户的所有进程，ps -ef 显示完整格式。配合 grep 过滤特定进程。",
+  "syntax": "ps [选项]",
+  "scenarios": [
+    "查看所有进程（ps aux）",
+    "查找特定进程（ps aux | grep nginx）",
+    "查看进程树（ps -ef --forest）",
+    "查看某用户进程（ps -u www-data）"
+  ],
+  "related": ["top", "kill", "grep"],
+  "example": "ps aux --sort=-%mem | head -15",
+  "since": "Unix V1"
+}

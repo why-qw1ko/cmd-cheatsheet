@@ -1,0 +1,18 @@
+{
+  "name": "du",
+  "aliases": ["disk-usage"],
+  "domain": "linux",
+  "category": "system",
+  "tags": ["disk", "space", "size", "directory"],
+  "description": "估算文件和目录的磁盘使用量。-h 人类可读格式，-s 仅显示汇总，-d 控制递归深度。",
+  "syntax": "du [选项] [目录...]",
+  "scenarios": [
+    "查看当前目录下各子目录大小（du -sh */）",
+    "找出最大的目录（du -sh * | sort -rh | head）",
+    "查看目录总大小（du -sh ./project）",
+    "限制递归深度（du -h -d 1 /var）"
+  ],
+  "related": ["df", "ls", "sort"],
+  "example": "du -sh * | sort -rh | head -10",
+  "since": "Unix V1"
+}

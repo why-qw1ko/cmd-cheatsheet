@@ -1,0 +1,18 @@
+{
+  "name": "ping",
+  "aliases": [],
+  "domain": "linux",
+  "category": "network",
+  "tags": ["network", "icmp", "connectivity", "latency"],
+  "description": "测试网络连通性和延迟。发送 ICMP 回显请求，显示往返时间。Ctrl+C 停止。",
+  "syntax": "ping [选项] 目标",
+  "scenarios": [
+    "测试网络是否通（ping 8.8.8.8）",
+    "测试域名解析（ping google.com）",
+    "指定次数（ping -c 5 192.168.1.1）",
+    "测试 MTU（ping -s 1472 -M do target）"
+  ],
+  "related": ["curl", "traceroute", "ss"],
+  "example": "ping -c 4 -i 0.2 8.8.8.8",
+  "since": "1983"
+}

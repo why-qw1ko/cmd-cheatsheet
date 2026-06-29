@@ -1,0 +1,18 @@
+{
+  "name": "gzip",
+  "aliases": ["gunzip", "zcat"],
+  "domain": "linux",
+  "category": "file",
+  "tags": ["compress", "decompress", "gzip", "archive"],
+  "description": "GNU 压缩工具，用 LZ77 算法压缩文件。压缩后原文件被替换为 .gz 文件。gunzip 解压，zcat 直接查看。",
+  "syntax": "gzip [选项] [文件...]",
+  "scenarios": [
+    "压缩文件（gzip large.log）",
+    "解压文件（gunzip file.gz）",
+    "压缩但保留原文件（gzip -k data.txt）",
+    "查看压缩文件内容（zcat file.gz）"
+  ],
+  "related": ["tar", "bzip2", "xz"],
+  "example": "gzip -9 -k server.log",
+  "since": "1992"
+}

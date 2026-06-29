@@ -1,0 +1,18 @@
+{
+  "name": "echo",
+  "aliases": ["printf"],
+  "domain": "linux",
+  "category": "text",
+  "tags": ["output", "print", "string", "variable"],
+  "description": "输出文本到标准输出。常用于脚本中打印信息、写入文件、调试变量。printf 提供更精确的格式化。",
+  "syntax": "echo [选项] [字符串...]",
+  "scenarios": [
+    "打印环境变量（echo $PATH）",
+    "写入文件（echo 'hello' > file.txt）",
+    "追加内容（echo 'line2' >> file.txt）",
+    "调试脚本中变量的值（echo \"DEBUG: $var\"）"
+  ],
+  "related": ["cat", "sed", "awk"],
+  "example": "echo -e \"Hello\\nWorld\" | tee output.txt",
+  "since": "Unix V7"
+}

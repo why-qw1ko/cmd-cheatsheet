@@ -1,0 +1,18 @@
+{
+  "name": "mkdir",
+  "aliases": [],
+  "domain": "linux",
+  "category": "file",
+  "tags": ["directory", "create", "folder"],
+  "description": "创建目录。-p 选项可递归创建多层父目录，已存在时不报错。",
+  "syntax": "mkdir [选项] 目录...",
+  "scenarios": [
+    "创建单个目录（mkdir project）",
+    "递归创建多层目录（mkdir -p src/components/ui）",
+    "设置目录权限（mkdir -m 755 public）",
+    "批量创建（mkdir dir{1..10}）"
+  ],
+  "related": ["rm", "ls", "touch"],
+  "example": "mkdir -p ~/projects/myapp/{src,tests,docs}",
+  "since": "Unix V1"
+}

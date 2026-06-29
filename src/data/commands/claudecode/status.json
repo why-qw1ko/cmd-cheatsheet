@@ -1,0 +1,16 @@
+{
+  "name": "/status",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "config",
+  "tags": ["status", "info", "session", "debug"],
+  "description": "显示当前会话状态，包括模型、token 用量、会话时长、配置信息等。",
+  "syntax": "/status",
+  "scenarios": [
+    "查看当前会话的 token 消耗",
+    "确认正在使用的模型",
+    "排查会话问题时查看状态"
+  ],
+  "related": ["/cost", "/config", "/doctor"],
+  "example": "/status"
+}

@@ -1,0 +1,18 @@
+{
+  "name": "tail",
+  "aliases": [],
+  "domain": "linux",
+  "category": "text",
+  "tags": ["file", "output", "lines", "log", "follow"],
+  "description": "输出文件末尾部分。-f 选项可持续跟踪文件新增内容，是实时查看日志的利器。",
+  "syntax": "tail [选项] [文件...]",
+  "scenarios": [
+    "查看文件最后 20 行（tail -n 20 app.log）",
+    "实时跟踪日志输出（tail -f /var/log/syslog）",
+    "配合 grep 监控错误（tail -f app.log | grep ERROR）",
+    "查看多文件末尾（tail -n 5 file1 file2）"
+  ],
+  "related": ["head", "cat", "grep"],
+  "example": "tail -f -n 100 /var/log/nginx/access.log",
+  "since": "Unix V7"
+}

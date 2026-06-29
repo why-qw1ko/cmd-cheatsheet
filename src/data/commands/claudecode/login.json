@@ -1,0 +1,16 @@
+{
+  "name": "/login",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "session",
+  "tags": ["auth", "login", "api", "key"],
+  "description": "登录 Anthropic 账号或配置 API Key。首次使用或切换账号时需要执行。",
+  "syntax": "/login",
+  "scenarios": [
+    "首次使用 Claude Code 需要认证",
+    "API Key 过期需要重新登录",
+    "切换到其他 Anthropic 账号"
+  ],
+  "related": ["/logout", "/config", "/doctor"],
+  "example": "/login"
+}

@@ -1,0 +1,403 @@
+---
+interface Command {
+  name: string;
+  aliases?: string[];
+  domain: string;
+  category: string;
+  tags?: string[];
+  description: string;
+  syntax?: string;
+  scenarios?: string[];
+  related?: string[];
+  example?: string;
+  since?: string;
+  variants?: { name: string; syntax: string; example?: string }[];
+}
+
+interface Props {
+  commands: Command[];
+  domain: string;
+}
+
+const { commands, domain } = Astro.props;
+const categoryLabels: Record<string, string> = {
+  file: '文件', text: '文本', system: '系统', network: '网络',
+  process: '进程', session: '会话', config: '配置', review: '审查',
+  cli: 'CLI', package: '包管理',
+};
+---
+
+<div class="accordion-list" id="accordion-list">
+  {commands.map((cmd, i) => (
+    <div class="accordion-item" id={`cmd-${cmd.name}`} data-index={i}>
+      <button class="accordion-header" aria-expanded="false">
+        <div class="accordion-title">
+          <span class="accordion-name">{cmd.name}</span>
+          <span class="accordion-cat">{categoryLabels[cmd.category] || cmd.category}</span>
+          {cmd.aliases && cmd.aliases.length > 0 && (
+            <span class="accordion-alias">{cmd.aliases.join(', ')}</span>
+          )}
+        </div>
+        <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
+
+      <div class="accordion-body">
+        <div class="accordion-content">
+          {/* Tags */}
+          {cmd.tags && cmd.tags.length > 0 && (
+            <div class="cmd-tags">
+              {cmd.tags.map((t) => <span class="cmd-tag">#{t}</span>)}
+            </div>
+          )}
+
+          {/* Description */}
+          <p class="cmd-desc">{cmd.description}</p>
+
+          {/* Syntax / Variants */}
+          {cmd.variants && cmd.variants.length > 0 ? (
+            <div>
+              <div class="variant-tabs" role="tablist">
+                {cmd.variants.map((v, vi) => (
+                  <button class:list={['variant-tab', { active: vi === 0 }]} role="tab" data-tab={`${cmd.name}-v-${vi}`}>
+                    {v.name}
+                  </button>
+                ))}
+              </div>
+              {cmd.variants.map((v, vi) => (
+                <div class:list={['variant-panel', { active: vi === 0 }]} data-panel={`${cmd.name}-v-${vi}`}>
+                  <div class="cmd-syntax-block">
+                    <div>
+                      <div class="cmd-label">语法</div>
+                      <code>{v.syntax}</code>
+                    </div>
+                    <button class="copy-btn" data-copy={v.syntax}>
+                      <span class="copy-icon">📋</span>
+                      <span class="copy-text">复制</span>
+                    </button>
+                  </div>
+                  {v.example && (
+                    <div class="cmd-example-block">
+                      <div class="cmd-label">示例</div>
+                      <code>{v.example}</code>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div>
+              {cmd.syntax && (
+                <div class="cmd-syntax-block">
+                  <div>
+                    <div class="cmd-label">语法</div>
+                    <code>{cmd.syntax}</code>
+                  </div>
+                  <button class="copy-btn" data-copy={cmd.syntax}>
+                    <span class="copy-icon">📋</span>
+                    <span class="copy-text">复制</span>
+                  </button>
+                </div>
+              )}
+              {cmd.example && (
+                <div class="cmd-example-block">
+                  <div class="cmd-label">示例</div>
+                  <code>{cmd.example}</code>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Scenarios */}
+          {cmd.scenarios && cmd.scenarios.length > 0 && (
+            <div class="cmd-scenarios">
+              <div class="cmd-label">🎯 使用场景</div>
+              <ul>
+                {cmd.scenarios.map((s) => <li>{s}</li>)}
+              </ul>
+            </div>
+          )}
+
+          {/* Related */}
+          {cmd.related && cmd.related.length > 0 && (
+            <div class="cmd-related">
+              <span class="cmd-label">相关：</span>
+              {cmd.related.map((r) => <span class="cmd-alias">{r}</span>)}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .accordion-item {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+
+  .accordion-item:has(.accordion-header[aria-expanded="true"]) {
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .accordion-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.15s;
+    color: var(--text);
+  }
+
+  .accordion-header:hover {
+    background: var(--bg-code);
+  }
+
+  .accordion-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .accordion-name {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .accordion-cat {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .accordion-alias {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .accordion-chevron {
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+    color: var(--text-muted);
+  }
+
+  .accordion-header[aria-expanded="true"] .accordion-chevron {
+    transform: rotate(180deg);
+  }
+
+  .accordion-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+  }
+
+  .accordion-header[aria-expanded="true"] + .accordion-body {
+    grid-template-rows: 1fr;
+  }
+
+  .accordion-content {
+    overflow: hidden;
+    padding: 0 18px;
+  }
+
+  .accordion-header[aria-expanded="true"] ~ .accordion-body .accordion-content,
+  .accordion-item:has(.accordion-header[aria-expanded="true"]) .accordion-content {
+    padding: 0 18px 18px;
+  }
+
+  /* Inner styles */
+  .cmd-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .cmd-tag {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+  }
+
+  .cmd-desc {
+    line-height: 1.75;
+    margin-bottom: 14px;
+    font-size: 0.925rem;
+  }
+
+  .cmd-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.5;
+    margin-bottom: 4px;
+  }
+
+  .cmd-syntax-block {
+    background: var(--bg-code);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .cmd-syntax-block code,
+  .cmd-example-block code {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.85rem;
+    word-break: break-all;
+  }
+
+  .cmd-example-block {
+    background: var(--bg-code);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    color: var(--text);
+  }
+
+  .copy-btn:hover { border-color: var(--accent-light); color: var(--accent); }
+  .copy-btn.copied { border-color: #22c55e; color: #22c55e; }
+
+  .cmd-scenarios { margin-bottom: 12px; }
+  .cmd-scenarios ul { list-style: none; padding: 0; }
+  .cmd-scenarios li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 6px;
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+  .cmd-scenarios li::before {
+    content: '💡';
+    position: absolute;
+    left: 0;
+    font-size: 0.7rem;
+  }
+
+  .cmd-related {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .cmd-alias {
+    font-size: 0.78rem;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: var(--bg-code);
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+
+  /* Variant tabs */
+  .variant-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 10px;
+  }
+  .variant-tab {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    color: var(--text-muted);
+    transition: all 0.15s;
+  }
+  .variant-tab.active { border-bottom-color: var(--accent); color: var(--accent); }
+  .variant-panel { display: none; }
+  .variant-panel.active { display: block; }
+</style>
+
+<script>
+  // Accordion toggle (event delegation)
+  document.getElementById('accordion-list')?.addEventListener('click', (e) => {
+    const header = (e.target as HTMLElement).closest('.accordion-header');
+    if (!header) return;
+
+    // Copy button handling
+    const copyBtn = (e.target as HTMLElement).closest('.copy-btn');
+    if (copyBtn) {
+      const text = copyBtn.getAttribute('data-copy');
+      if (text) {
+        navigator.clipboard.writeText(text).then(() => {
+          copyBtn.classList.add('copied');
+          const t = copyBtn.querySelector('.copy-text');
+          const ic = copyBtn.querySelector('.copy-icon');
+          if (t) t.textContent = '已复制 ✓';
+          if (ic) ic.textContent = '✅';
+          setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            if (t) t.textContent = '复制';
+            if (ic) ic.textContent = '📋';
+          }, 2000);
+        });
+      }
+      return;
+    }
+
+    const expanded = header.getAttribute('aria-expanded') === 'true';
+    header.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+  });
+
+  // Variant tab switching
+  document.querySelectorAll('.variant-tab').forEach((tab) => {
+    tab.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const tabId = (tab as HTMLElement).getAttribute('data-tab');
+      if (!tabId) return;
+      const item = (tab as HTMLElement).closest('.accordion-item');
+      if (!item) return;
+      item.querySelectorAll('.variant-tab').forEach(t => t.classList.remove('active'));
+      item.querySelectorAll('.variant-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      item.querySelector(`[data-panel="${tabId}"]`)?.classList.add('active');
+    });
+  });
+</script>

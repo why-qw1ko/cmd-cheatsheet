@@ -1,0 +1,17 @@
+{
+  "name": "/memory",
+  "aliases": ["/remember"],
+  "domain": "claudecode",
+  "category": "session",
+  "tags": ["memory", "remember", "context", "persistent"],
+  "description": "管理 Claude Code 的持久化记忆。存储跨会话保留的项目知识、偏好和决策记录。",
+  "syntax": "/memory [add|list|clear]",
+  "scenarios": [
+    "记住项目的特殊构建步骤",
+    "保存编码风格偏好",
+    "查看当前存储的记忆内容",
+    "清理过时的记忆"
+  ],
+  "related": ["/init", "/clear", "/status"],
+  "example": "/memory add '本项目使用 pnpm 而非 npm'"
+}
