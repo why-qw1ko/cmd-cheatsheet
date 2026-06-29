@@ -1,49 +1,151 @@
-# Starlight Starter Kit: Basics
+# 🖥️ Cmd Cheatsheet
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+A modern command-line reference covering **Linux**, **Claude Code**, and **Windows** — **63 commands** in one place.
+
+🔗 **Live**: [https://why-qw1ko.github.io/cmd-cheatsheet](https://why-qw1ko.github.io/cmd-cheatsheet)
+
+---
+
+## ✨ Features
+
+- 🔍 **Global Search** — `Ctrl+K` fuzzy search across command names, descriptions, tags, and aliases
+- 📋 **One-Click Copy** — Copy syntax or command name instantly
+- 🌙 **Dark Mode** — Manual toggle + system preference detection
+- 📱 **Responsive** — Mobile, tablet, and desktop layouts
+- 🎯 **Command Nav** — Floating right-side navigation with A-Z index + scroll spy
+- ⚠️ **Danger Badges** — High-risk / mid-risk commands visually flagged
+- 💾 **Expand Memory** — localStorage persists expand/collapse state per domain
+- 🦴 **Skeleton Loading** — Smooth transition when switching categories
+
+---
+
+## 📦 Command Stats
+
+| Platform | Count | Examples |
+|----------|-------|---------|
+| 🐧 Linux | 29 | `ls` `grep` `find` `ssh` `curl` `systemctl` |
+| 🤖 Claude Code | 18 | `/clear` `/compact` `/review` `/model` `claude (CLI)` |
+| 🪟 Windows | 16 | `dir` `ipconfig` `netstat` `winget` `Get-Process` |
+
+---
+
+## 🛠️ Development
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) >= 18
+- npm
+
+### Getting Started
+
+```bash
+git clone https://github.com/why-qw1ko/cmd-cheatsheet.git
+cd cmd-cheatsheet
+npm install
+npm run dev
+```
+
+Open `http://localhost:4321/cmd-cheatsheet/`
+
+### Build
+
+```bash
+npm run build
+```
+
+Output goes to `dist/`.
+
+---
+
+## 📁 Project Structure
 
 ```
-npm create astro@latest -- --template starlight
+src/
+├── components/
+│   ├── DomainSidebar.astro   # Left sidebar (icons + names + counts)
+│   └── CommandNav.astro      # Floating right nav (A-Z index + scroll spy)
+├── data/commands/
+│   ├── linux/                # Linux command JSON files
+│   ├── claudecode/           # Claude Code command JSON files
+│   └── windows/              # Windows command JSON files
+├── layouts/
+│   └── Layout.astro          # Global layout + styles + search modal
+└── pages/
+    └── index.astro           # Page logic + rendering + interactions
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+## ➕ Adding Commands
 
-Inside of your Astro + Starlight project, you'll see the following folders and files:
+Create a JSON file in the appropriate directory:
 
+```json
+{
+  "name": "command-name",
+  "aliases": ["alias"],
+  "domain": "linux",
+  "category": "file",
+  "tags": ["tag1", "tag2"],
+  "description": "Command description",
+  "syntax": "command syntax",
+  "example": "example usage",
+  "scenarios": ["use case 1", "use case 2"],
+  "related": ["related-command"]
+}
 ```
-.
-├── public/
-├── src/
-│   ├── assets/
-│   ├── content/
-│   │   └── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
+
+**Categories**: `file` `text` `system` `network` `process` `session` `config` `review` `cli` `package`
+
+**Danger levels**: Add to `dangerMap` in `src/pages/index.astro`:
+
+```js
+const dangerMap = {
+  'rm': 'high',     // 🔴 High risk
+  'chmod': 'mid',   // 🟡 Medium risk
+};
 ```
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
+---
 
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
+## 🚀 Deployment
 
-Static assets, like favicons, can be placed in the `public/` directory.
+Auto-deploys to GitHub Pages via **GitHub Actions** on push to `main`.
 
-## 🧞 Commands
+1. Go to **Settings → Pages → Source**
+2. Select **GitHub Actions**
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 📄 Tech Stack
 
-## 👀 Want to learn more?
+| Tech | Purpose |
+|------|---------|
+| [Astro](https://astro.build/) v7 | Static site generation |
+| [Tailwind CSS](https://tailwindcss.com/) v4 | Utility-first CSS |
+| GitHub Actions | CI/CD |
+| GitHub Pages | Hosting |
 
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+---
+
+## 📝 License
+
+MIT License
+
+---
+
+## 🤝 Contributing
+
+1. Fork this repo
+2. Create a feature branch (`git checkout -b feature/xxx`)
+3. Commit changes (`git commit -m 'feat: xxx'`)
+4. Push (`git push origin feature/xxx`)
+5. Open a Pull Request
+
+---
+
+## 🙏 Acknowledgments
+
+- Icons from [Lucide](https://lucide.dev/)
+- Color palette inspired by [Tailwind CSS](https://tailwindcss.com/docs/colors)
+- Inspired by [Devhints](https://devhints.io/) and [OverAPI](https://overapi.com/)

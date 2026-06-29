@@ -1,6 +1,6 @@
 # 🖥️ Cmd Cheatsheet — 命令速查站
 
-一个简洁、美观的命令速查工具，支持 **Linux**、**Claude Code** 和 **Windows** 三大平台。
+一个现代化的命令速查工具，覆盖 **Linux**、**Claude Code**、**Windows** 三大平台，共 **63 条**常用命令。
 
 🔗 **在线访问**：[https://why-qw1ko.github.io/cmd-cheatsheet](https://why-qw1ko.github.io/cmd-cheatsheet)
 
@@ -8,14 +8,14 @@
 
 ## ✨ 功能特性
 
-- 🐧 **Linux** — 29 条核心命令（文件操作、文本处理、网络调试、系统管理…）
-- 🤖 **Claude Code** — 18 条命令（Slash 命令、CLI 参数、会话管理…）
-- 🪟 **Windows** — 16 条命令（CMD 经典 + PowerShell 现代语法对照）
-- 🔍 **全局搜索** — `Ctrl+K` 快速搜索命令名称、描述、标签
-- 📋 **一键复制** — 每条命令旁都有复制按钮
+- 🔍 **全局搜索** — `Ctrl+K` 快速搜索命令名、描述、标签、别名
+- 📋 **一键复制** — 命令语法、命令名均可一键复制
 - 🌙 **暗色模式** — 支持手动切换 + 跟随系统偏好
-- 📱 **响应式** — 完美适配手机、平板、桌面端
-- 🎯 **锚点导航** — 右侧浮动导航，快速跳转到任意命令
+- 📱 **响应式** — 适配手机、平板、桌面端
+- 🎯 **命令导航** — 右侧浮动导航，A-Z 字母索引 + 滚动联动高亮
+- ⚠️ **危险标识** — 高危/中危命令醒目标注
+- 💾 **展开记忆** — localStorage 保存每个分类的展开状态
+- 🦴 **骨架屏** — 切换分类时平滑过渡
 
 ---
 
@@ -23,7 +23,7 @@
 
 | 平台 | 命令数 | 示例 |
 |------|--------|------|
-| 🐧 Linux | 29 | `ls` `grep` `find` `ssh` `docker` `systemctl` |
+| 🐧 Linux | 29 | `ls` `grep` `find` `ssh` `curl` `systemctl` |
 | 🤖 Claude Code | 18 | `/clear` `/compact` `/review` `/model` `claude (CLI)` |
 | 🪟 Windows | 16 | `dir` `ipconfig` `netstat` `winget` `Get-Process` |
 
@@ -34,19 +34,14 @@
 ### 环境要求
 
 - [Node.js](https://nodejs.org/) >= 18
-- npm 或 pnpm
+- npm
 
 ### 启动
 
 ```bash
-# 克隆仓库
 git clone https://github.com/why-qw1ko/cmd-cheatsheet.git
 cd cmd-cheatsheet
-
-# 安装依赖
 npm install
-
-# 启动开发服务器
 npm run dev
 ```
 
@@ -58,7 +53,7 @@ npm run dev
 npm run build
 ```
 
-构建产物输出到 `dist/` 目录。
+输出到 `dist/` 目录。
 
 ---
 
@@ -67,69 +62,69 @@ npm run build
 ```
 src/
 ├── components/
-│   ├── DomainSidebar.astro   # 左侧分类导航
-│   └── CommandNav.astro      # 右侧浮动命令导航
+│   ├── DomainSidebar.astro   # 左侧分类导航（图标 + 名称 + 命令数）
+│   └── CommandNav.astro      # 右侧浮动命令导航（A-Z 索引 + 滚动联动）
 ├── data/commands/
-│   ├── linux/                # Linux 命令 JSON 数据
-│   ├── claudecode/           # Claude Code 命令 JSON 数据
-│   └── windows/              # Windows 命令 JSON 数据
+│   ├── linux/                # Linux 命令 JSON
+│   ├── claudecode/           # Claude Code 命令 JSON
+│   └── windows/              # Windows 命令 JSON
 ├── layouts/
-│   └── Layout.astro          # 全局布局 + 样式
+│   └── Layout.astro          # 全局布局 + 样式 + 搜索弹窗
 └── pages/
-    └── index.astro           # 首页逻辑
+    └── index.astro           # 首页逻辑 + 渲染 + 交互
 ```
 
-### 添加新命令
+---
 
-在对应目录下创建 JSON 文件即可，格式如下：
+## ➕ 添加新命令
+
+在对应目录下创建 JSON 文件：
 
 ```json
 {
   "name": "命令名",
-  "aliases": ["别名1", "别名2"],
+  "aliases": ["别名"],
   "domain": "linux",
   "category": "file",
-  "tags": ["标签1", "标签2"],
+  "tags": ["标签"],
   "description": "命令描述（中文）",
   "syntax": "命令语法",
   "example": "示例命令",
-  "scenarios": ["使用场景1", "使用场景2"],
-  "related": ["相关命令1", "相关命令2"]
+  "scenarios": ["使用场景"],
+  "related": ["相关命令"]
 }
 ```
 
-Windows 命令支持 `variants` 字段来区分 CMD 和 PowerShell：
+**分类（category）**：`file` `text` `system` `network` `process` `session` `config` `review` `cli` `package`
 
-```json
-{
-  "name": "dir",
-  "variants": [
-    { "name": "CMD", "syntax": "dir [路径]", "example": "dir /s" },
-    { "name": "PowerShell", "syntax": "Get-ChildItem [-Path] 路径", "example": "Get-ChildItem -Recurse" }
-  ]
-}
+**危险等级**：在 `src/pages/index.astro` 的 `dangerMap` 中添加：
+
+```js
+const dangerMap = {
+  'rm': 'high',     // 🔴 高危
+  'chmod': 'mid',   // 🟡 中危
+};
 ```
 
 ---
 
 ## 🚀 部署
 
-项目通过 **GitHub Actions** 自动部署到 GitHub Pages。
+通过 **GitHub Actions** 自动部署到 GitHub Pages。
 
-推送到 `main` 分支后会自动触发构建和部署。
-
-手动部署设置：
-1. 进入仓库 **Settings → Pages**
-2. **Source** 选择 **GitHub Actions**
+1. 推送到 `main` 分支自动触发构建
+2. 进入 **Settings → Pages → Source**，选择 **GitHub Actions**
 
 ---
 
 ## 📄 技术栈
 
-- [Astro](https://astro.build/) — 静态站点生成
-- [Tailwind CSS](https://tailwindcss.com/) — 原子化 CSS
-- GitHub Pages — 托管
-- GitHub Actions — CI/CD
+| 技术 | 用途 |
+|------|------|
+| [Astro](https://astro.build/) v7 | 静态站点生成 |
+| [Tailwind CSS](https://tailwindcss.com/) v4 | 原子化 CSS |
+| GitHub Actions | CI/CD |
+| GitHub Pages | 托管 |
 
 ---
 
@@ -139,12 +134,18 @@ MIT License
 
 ---
 
-## 🙏 贡献
-
-欢迎提交 Issue 和 Pull Request！
+## 🤝 贡献
 
 1. Fork 本仓库
 2. 创建功能分支 (`git checkout -b feature/xxx`)
 3. 提交更改 (`git commit -m 'feat: xxx'`)
-4. 推送到分支 (`git push origin feature/xxx`)
+4. 推送 (`git push origin feature/xxx`)
 5. 创建 Pull Request
+
+---
+
+## 🙏 致谢
+
+- 图标来自 [Lucide](https://lucide.dev/)
+- 配色参考 [Tailwind CSS](https://tailwindcss.com/docs/colors)
+- 灵感来自 [Devhints](https://devhints.io/) 和 [OverAPI](https://overapi.com/)
