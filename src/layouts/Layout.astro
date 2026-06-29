@@ -439,6 +439,40 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     background: var(--bg-code);
   }
 
+  .header-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+
+  .accordion-header:hover .header-copy-btn {
+    opacity: 1;
+  }
+
+  .header-copy-btn:hover {
+    background: var(--bg-code);
+    color: var(--accent);
+  }
+
+  .header-copy-btn.copied {
+    color: #22c55e;
+    opacity: 1;
+  }
+
+  .header-copy-btn.copied svg {
+    stroke: #22c55e;
+  }
+
   .accordion-title {
     display: flex;
     align-items: center;
@@ -503,7 +537,7 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     padding: 4px 24px 28px;
   }
 
-  .cmd-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .cmd-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; margin-bottom: 12px; }
   .cmd-tag {
     font-size: 0.7rem;
     padding: 2px 8px;
@@ -710,6 +744,41 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.2);
     width: 8px;
     height: 8px;
+  }
+
+  /* ==================== Back to Top ==================== */
+  .back-to-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    z-index: 80;
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: all 0.25s;
+  }
+
+  .back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .back-to-top:hover {
+    border-color: var(--accent-light);
+    color: var(--accent);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
   }
 
   /* ==================== Search Modal ==================== */

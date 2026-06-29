@@ -31,7 +31,7 @@ const domains = [
 const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claudeCmds, windows: windowsCmds };
 ---
 
-<Layout title="Cmd Cheatsheet — 命令速查站" description="Linux · Claude Code · Windows 常用命令速查">
+<Layout title="Cmd Cheatsheet - 命令速查站" description="Linux · Claude Code · Windows 常用命令速查">
   {/* ===== Header ===== */}
   <header class="site-header">
     <div class="header-left">
@@ -48,7 +48,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     <div class="header-search">
       <button class="header-search-btn" id="search-trigger">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <span>搜索命令…</span>
+        <span>搜索命令...</span>
         <span class="header-search-kbd">Ctrl K</span>
       </button>
     </div>
@@ -83,7 +83,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     <div class="search-modal">
       <div class="search-input-wrap">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input class="search-input" id="search-input" type="text" placeholder="输入命令名称、描述或标签…" autocomplete="off" />
+        <input class="search-input" id="search-input" type="text" placeholder="输入命令名称、描述或标签..." autocomplete="off" />
         <span class="search-kbd-hint" id="search-close-hint">ESC</span>
       </div>
       <div class="search-results" id="search-results">
@@ -109,6 +109,11 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     </button>
   </div>
   <div class="mobile-overlay" id="mobile-overlay"></div>
+
+  {/* Back to top button */}
+  <button class="back-to-top" id="back-to-top" aria-label="回到顶部">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
 
   {/* ===== Body ===== */}
   <div class="body-layout">
@@ -183,12 +188,15 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
       }
 
       const scenariosHtml = cmd.scenarios?.length ? `<div class="cmd-scenarios"><div class="cmd-label">🎯 使用场景</div><ul>${cmd.scenarios.map(s => `<li>${escapeHtml(s)}</li>`).join('')}</ul></div>` : '';
-      const relatedHtml = cmd.related?.length ? `<div class="cmd-related"><span class="cmd-label">相关：</span>${cmd.related.map(r => `<span class="cmd-alias-tag">${escapeHtml(r)}</span>`).join('')}</div>` : '';
+      const relatedHtml = cmd.related?.length ? `<div class="cmd-related"><span class="cmd-label">相关:</span>${cmd.related.map(r => `<span class="cmd-alias-tag">${escapeHtml(r)}</span>`).join('')}</div>` : '';
 
       return `<div class="accordion-item" id="cmd-${cmd.name}" data-index="${i}">
         <button class="accordion-header">
           <div class="accordion-title">
             <span class="accordion-name">${escapeHtml(cmd.name)}</span>
+            <button class="header-copy-btn" data-copy="${escapeHtml(cmd.name)}" title="复制命令名">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
             <span class="accordion-cat">${escapeHtml(cat)}</span>
             ${aliasStr}
           </div>
@@ -233,8 +241,9 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
 
     if (container) container.innerHTML = renderAccordion(commands, domain);
     renderNav(commands);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     document.dispatchEvent(new CustomEvent('domain-changed'));
-    document.dispatchEvent(new CustomEvent('domain-switched'));
+    document.dispatchEvent(new CustomEvent('domain-switched'));  
   }
 
   // Sidebar click
@@ -487,6 +496,35 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     }
     if (e.key === 'Escape' && searchOverlay?.classList.contains('open')) {
       closeSearch();
+    }
+  });
+
+  // Back to top button
+  const backToTopBtn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopBtn?.classList.add('visible');
+    } else {
+      backToTopBtn?.classList.remove('visible');
+    }
+  });
+  backToTopBtn?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Header copy button (inside accordion header)
+  document.getElementById('accordion-container')?.addEventListener('click', (e) => {
+    const copyBtn = (e.target as HTMLElement).closest('.header-copy-btn');
+    if (copyBtn) {
+      e.stopPropagation();
+      e.preventDefault();
+      const text = copyBtn.getAttribute('data-copy');
+      if (text) {
+        navigator.clipboard.writeText(text).then(() => {
+          copyBtn.classList.add('copied');
+          setTimeout(() => copyBtn.classList.remove('copied'), 1500);
+        });
+      }
     }
   });
 </script>
