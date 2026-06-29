@@ -356,6 +356,9 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
   document.getElementById('accordion-container')?.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
 
+    // Skip if clicking header-copy-btn (handled by separate handler)
+    if (target.closest('.header-copy-btn')) return;
+
     // Copy button
     const copyBtn = target.closest('.copy-btn');
     if (copyBtn) {
