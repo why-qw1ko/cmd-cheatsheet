@@ -13,6 +13,7 @@ const { commands } = Astro.props;
 
 <nav class="floating-nav" id="floating-nav">
   <div class="floating-nav-title">命令导航</div>
+  <div class="nav-letter-index" id="nav-letter-index"></div>
   <div class="floating-nav-list" id="nav-list">
     {commands.map((cmd) => (
       <a class="floating-nav-link" href={`#cmd-${cmd.name}`} data-target={cmd.name}>

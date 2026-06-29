@@ -368,10 +368,125 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     max-width: 1000px;
   }
 
+  .header-actions {
+    display: flex;
+    gap: 6px;
+  }
+
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-card);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all 0.15s;
+  }
+
+  .action-btn:hover {
+    border-color: var(--accent-light);
+    color: var(--accent);
+  }
+
+  /* Danger badges */
+  .accordion-danger {
+    font-size: 0.65rem;
+    padding: 1px 6px;
+    border-radius: 9999px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+  }
+
+  .danger-high {
+    background: #fef2f2;
+    color: #dc2626;
+  }
+
+  .danger-mid {
+    background: #fffbeb;
+    color: #d97706;
+  }
+
+  [data-theme="dark"] .danger-high {
+    background: #450a0a;
+    color: #f87171;
+  }
+
+  [data-theme="dark"] .danger-mid {
+    background: #451a03;
+    color: #fbbf24;
+  }
+
+  /* Letter index */
+  .nav-letter-index {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    padding: 8px 12px 4px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .letter-btn {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: all 0.1s;
+  }
+
+  .letter-btn:hover {
+    background: var(--tag-bg);
+    color: var(--accent);
+  }
+
+  .nav-letter {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    padding: 8px 10px 2px;
+    letter-spacing: 0.04em;
+  }
+
+  /* Nav scrollbar */
+  .floating-nav-list::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .floating-nav-list::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .floating-nav-list::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
+  }
+
+  .floating-nav-list::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+  }
+
   .main-header {
     margin-bottom: 24px;
     padding-bottom: 20px;
     border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
   }
 
   .main-title {
@@ -1047,6 +1162,13 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     .floating-nav {
       display: none;
     }
+    .main-area {
+      margin-right: 0;
+      max-width: 100%;
+    }
+    .site-footer {
+      margin-right: 0;
+    }
   }
 
   /* ===== Mobile: ≤768px ===== */
@@ -1077,7 +1199,23 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
 
     .main-area {
       margin-left: 0;
+      margin-right: 0;
       padding: 20px 16px 80px;
+      max-width: 100%;
+    }
+
+    .main-header {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .header-actions {
+      width: 100%;
+    }
+
+    .action-btn {
+      flex: 1;
+      justify-content: center;
     }
 
     .floating-nav {

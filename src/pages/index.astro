@@ -127,6 +127,16 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
         </h1>
         <p class="main-subtitle" id="main-subtitle">共 {linuxCmds.length} 条命令 · 点击展开查看详情</p>
       </div>
+      <div class="header-actions">
+        <button class="action-btn" id="btn-expand-all" title="一键展开">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg>
+          <span>展开全部</span>
+        </button>
+        <button class="action-btn" id="btn-collapse-all" title="一键折叠">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="7 11 12 6 17 11"/><polyline points="7 18 12 13 17 18"/></svg>
+          <span>折叠全部</span>
+        </button>
+      </div>
       <div id="accordion-container"></div>
     </main>
 
@@ -174,6 +184,28 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
   const domainLabels: Record<string, string> = {
     linux: 'Linux', claudecode: 'Claude Code', windows: 'Windows',
   };
+
+  // Danger levels
+  const dangerMap: Record<string, 'high' | 'mid'> = {
+    'rm': 'high', 'mkfs': 'high', 'dd': 'high', 'fdisk': 'high',
+    'kill': 'high', 'pkill': 'high', 'killall': 'high',
+    'shutdown': 'high', 'format': 'high', 'reg': 'mid',
+    'chmod': 'mid', 'chown': 'mid', 'sfc': 'mid', 'del': 'mid',
+  };
+  const dangerLabel: Record<string, string> = { high: '高危', mid: '中危' };
+  const dangerClass: Record<string, string> = { high: 'danger-high', mid: 'danger-mid' };
+
+  // Expand memory
+  let expandMemory = new Set<string>();
+  function loadExpandMemory(domain: string) {
+    try { expandMemory = new Set(JSON.parse(localStorage.getItem('expand_' + domain) || '[]')); } catch { expandMemory = new Set(); }
+  }
+  function saveExpandMemory(domain: string) {
+    localStorage.setItem('expand_' + domain, JSON.stringify([...expandMemory]));
+  }
+  function isExpanded(cmdName: string): boolean {
+    return expandMemory.has(cmdName);
+  }
   const domainIcons: Record<string, string> = {
     linux: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`,
     claudecode: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>`,
@@ -205,10 +237,14 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
       const scenariosHtml = cmd.scenarios?.length ? `<div class="cmd-scenarios"><div class="cmd-label">🎯 使用场景</div><ul>${cmd.scenarios.map(s => `<li>${escapeHtml(s)}</li>`).join('')}</ul></div>` : '';
       const relatedHtml = cmd.related?.length ? `<div class="cmd-related"><span class="cmd-label">相关:</span>${cmd.related.map(r => `<span class="cmd-alias-tag">${escapeHtml(r)}</span>`).join('')}</div>` : '';
 
-      return `<div class="accordion-item" id="cmd-${cmd.name}" data-index="${i}">
+      const danger = dangerMap[cmd.name];
+      const dangerBadge = danger ? `<span class="accordion-danger ${dangerClass[danger]}">${dangerLabel[danger]}</span>` : '';
+      const expanded = isExpanded(cmd.name);
+      return `<div class="accordion-item${expanded ? ' open' : ''}" id="cmd-${cmd.name}" data-index="${i}">
         <div class="accordion-header" role="button" tabindex="0">
           <div class="accordion-title">
             <span class="accordion-name">${escapeHtml(cmd.name)}</span>
+            ${dangerBadge}
             <button class="header-copy-btn" data-copy="${escapeHtml(cmd.name)}" title="复制命令名">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             </button>
@@ -227,9 +263,27 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
   function renderNav(commands: Command[]) {
     const navList = document.getElementById('nav-list');
     if (!navList) return;
-    navList.innerHTML = commands.map(cmd =>
-      `<a class="floating-nav-link" href="#cmd-${cmd.name}" data-target="${cmd.name}"><span class="floating-nav-dot"></span><span>${escapeHtml(cmd.name)}</span></a>`
-    ).join('');
+    // Group by first letter
+    const groups: Record<string, Command[]> = {};
+    commands.forEach(cmd => {
+      const letter = (cmd.name.replace(/^[^a-zA-Z]*/, '') || cmd.name)[0]?.toUpperCase() || '#';
+      if (!groups[letter]) groups[letter] = [];
+      groups[letter].push(cmd);
+    });
+    const letters = Object.keys(groups).sort();
+    let html = '';
+    letters.forEach(letter => {
+      html += `<div class="nav-letter" data-letter="${letter}">${letter}</div>`;
+      groups[letter].forEach(cmd => {
+        html += `<a class="floating-nav-link" href="#cmd-${cmd.name}" data-target="${cmd.name}"><span>${escapeHtml(cmd.name)}</span></a>`;
+      });
+    });
+    navList.innerHTML = html;
+    // Update letter index
+    const indexEl = document.getElementById('nav-letter-index');
+    if (indexEl) {
+      indexEl.innerHTML = letters.map(l => `<button class="letter-btn" data-letter="${l}">${l}</button>`).join('');
+    }
   }
 
   // Initial render
@@ -240,6 +294,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
   function switchDomain(domain: string) {
     const commands = allCommands[domain];
     if (!commands) return;
+    loadExpandMemory(domain);
 
     document.querySelectorAll('.sidebar-btn[data-domain]').forEach(btn => {
       btn.classList.toggle('active', (btn as HTMLElement).dataset.domain === domain);
@@ -330,7 +385,14 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     const header = target.closest('.accordion-header');
     if (header) {
       const item = header.closest('.accordion-item');
-      if (item) item.classList.toggle('open');
+      if (item) {
+        item.classList.toggle('open');
+        const name = item.id.replace('cmd-', '');
+        if (item.classList.contains('open')) expandMemory.add(name);
+        else expandMemory.delete(name);
+        const currentDomain = (document.querySelector('.sidebar-btn.active') as HTMLElement)?.dataset?.domain || 'linux';
+        saveExpandMemory(currentDomain);
+      }
     }
   });
 
@@ -351,28 +413,6 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     }
   });
 
-  // Scroll spy
-  function setupScrollSpy() {
-    const items = document.querySelectorAll('.accordion-item');
-    const links = document.querySelectorAll('.floating-nav-link');
-    if (!items.length || !links.length) return;
-    const observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          const id = entry.target.id.replace('cmd-', '');
-          links.forEach(l => l.classList.remove('active'));
-          const active = document.querySelector(`.floating-nav-link[data-target="${id}"]`);
-          if (active) {
-            active.classList.add('active');
-            active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }
-          break;
-        }
-      }
-    }, { rootMargin: '-80px 0px -60% 0px', threshold: 0 });
-    items.forEach(item => observer.observe(item));
-  }
-  setupScrollSpy();
   document.addEventListener('domain-changed', () => requestAnimationFrame(setupScrollSpy));
 
   // Search trigger
@@ -534,6 +574,69 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
   backToTopBtn?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  // Expand All / Collapse All
+  document.getElementById('btn-expand-all')?.addEventListener('click', () => {
+    document.querySelectorAll('.accordion-item').forEach(item => {
+      item.classList.add('open');
+      expandMemory.add(item.id.replace('cmd-', ''));
+    });
+    const currentDomain = (document.querySelector('.sidebar-btn.active') as HTMLElement)?.dataset?.domain || 'linux';
+    saveExpandMemory(currentDomain);
+  });
+  document.getElementById('btn-collapse-all')?.addEventListener('click', () => {
+    document.querySelectorAll('.accordion-item').forEach(item => {
+      item.classList.remove('open');
+    });
+    expandMemory.clear();
+    const currentDomain = (document.querySelector('.sidebar-btn.active') as HTMLElement)?.dataset?.domain || 'linux';
+    saveExpandMemory(currentDomain);
+  });
+
+  // Letter index click
+  document.getElementById('nav-letter-index')?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('.letter-btn') as HTMLElement;
+    if (!btn) return;
+    const letter = btn.dataset.letter;
+    const firstLink = document.querySelector(`.nav-letter[data-letter="${letter}"]`) as HTMLElement;
+    if (firstLink) firstLink.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  // Scroll spy - real time highlight
+  function setupScrollSpy() {
+    const items = document.querySelectorAll('.accordion-item');
+    const links = document.querySelectorAll('.floating-nav-link');
+    const letters = document.querySelectorAll('.nav-letter');
+    if (!items.length || !links.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          const id = entry.target.id.replace('cmd-', '');
+          links.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.floating-nav-link[data-target="${id}"]`);
+          if (active) {
+            active.classList.add('active');
+            // Scroll nav to show active item
+            const navList = document.getElementById('nav-list');
+            if (navList) {
+              const linkRect = active.getBoundingClientRect();
+              const navRect = navList.getBoundingClientRect();
+              if (linkRect.top < navRect.top || linkRect.bottom > navRect.bottom) {
+                active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              }
+            }
+          }
+          break;
+        }
+      }
+    }, { rootMargin: '-72px 0px -65% 0px', threshold: 0 });
+
+    items.forEach(item => observer.observe(item));
+  }
+
+  // Re-setup on domain change
+  document.addEventListener('domain-changed', () => requestAnimationFrame(setupScrollSpy));
 
   // Header copy button (inside accordion header)
   document.getElementById('accordion-container')?.addEventListener('click', (e) => {
