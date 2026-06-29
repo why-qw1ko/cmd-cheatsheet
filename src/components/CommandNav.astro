@@ -24,6 +24,18 @@ const { commands } = Astro.props;
 </nav>
 
 <script>
+  function scrollToCommand(el: Element) {
+    // Expand if collapsed
+    if (!el.classList.contains('open')) el.classList.add('open');
+    // Scroll to the header with offset for fixed top bar
+    const header = el.querySelector('.accordion-header');
+    if (header) {
+      const rect = header.getBoundingClientRect();
+      const y = window.scrollY + rect.top - 72; // 56px header + 16px gap
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }
+
   // Click to scroll
   document.getElementById('nav-list')?.addEventListener('click', (e) => {
     const link = (e.target as HTMLElement).closest('.floating-nav-link') as HTMLAnchorElement;
@@ -31,15 +43,7 @@ const { commands } = Astro.props;
     e.preventDefault();
     const target = link.getAttribute('data-target');
     const el = document.getElementById(`cmd-${target}`);
-    if (el) {
-      // Expand if collapsed
-      if (!el.classList.contains('open')) el.classList.add('open');
-      // Scroll to the command header, not the expanded body
-      const header = el.querySelector('.accordion-header');
-      if (header) {
-        header.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
+    if (el) scrollToCommand(el);
   });
 
   // Scroll spy
