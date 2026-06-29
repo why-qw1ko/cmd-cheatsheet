@@ -1,42 +1,42 @@
-# 🖥️ Cmd Cheatsheet
+# 🖥️ Cmd Cheatsheet — 命令速查站
 
-A modern command-line reference covering **Linux**, **Claude Code**, and **Windows** — **63 commands** in one place.
+一个现代化的命令速查工具，覆盖 **Linux**、**Claude Code**、**Windows** 三大平台，共 **63 条**常用命令。
 
-🔗 **Live**: [https://why-qw1ko.github.io/cmd-cheatsheet](https://why-qw1ko.github.io/cmd-cheatsheet)
-
----
-
-## ✨ Features
-
-- 🔍 **Global Search** — `Ctrl+K` fuzzy search across command names, descriptions, tags, and aliases
-- 📋 **One-Click Copy** — Copy syntax or command name instantly
-- 🌙 **Dark Mode** — Manual toggle + system preference detection
-- 📱 **Responsive** — Mobile, tablet, and desktop layouts
-- 🎯 **Command Nav** — Floating right-side navigation with A-Z index + scroll spy
-- ⚠️ **Danger Badges** — High-risk / mid-risk commands visually flagged
-- 💾 **Expand Memory** — localStorage persists expand/collapse state per domain
-- 🦴 **Skeleton Loading** — Smooth transition when switching categories
+🔗 **在线访问**：[https://why-qw1ko.github.io/cmd-cheatsheet](https://why-qw1ko.github.io/cmd-cheatsheet)
 
 ---
 
-## 📦 Command Stats
+## ✨ 功能特性
 
-| Platform | Count | Examples |
-|----------|-------|---------|
+- 🔍 **全局搜索** — `Ctrl+K` 快速搜索命令名、描述、标签、别名
+- 📋 **一键复制** — 命令语法、命令名均可一键复制
+- 🌙 **暗色模式** — 支持手动切换 + 跟随系统偏好
+- 📱 **响应式** — 适配手机、平板、桌面端
+- 🎯 **命令导航** — 右侧浮动导航，A-Z 字母索引 + 滚动联动高亮
+- ⚠️ **危险标识** — 高危/中危命令醒目标注
+- 💾 **展开记忆** — localStorage 保存每个分类的展开状态
+- 🦴 **骨架屏** — 切换分类时平滑过渡
+
+---
+
+## 📦 命令统计
+
+| 平台 | 命令数 | 示例 |
+|------|--------|------|
 | 🐧 Linux | 29 | `ls` `grep` `find` `ssh` `curl` `systemctl` |
 | 🤖 Claude Code | 18 | `/clear` `/compact` `/review` `/model` `claude (CLI)` |
 | 🪟 Windows | 16 | `dir` `ipconfig` `netstat` `winget` `Get-Process` |
 
 ---
 
-## 🛠️ Development
+## 🛠️ 本地开发
 
-### Prerequisites
+### 环境要求
 
 - [Node.js](https://nodejs.org/) >= 18
 - npm
 
-### Getting Started
+### 启动
 
 ```bash
 git clone https://github.com/why-qw1ko/cmd-cheatsheet.git
@@ -45,107 +45,107 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:4321/cmd-cheatsheet/`
+访问 `http://localhost:4321/cmd-cheatsheet/`
 
-### Build
+### 构建
 
 ```bash
 npm run build
 ```
 
-Output goes to `dist/`.
+输出到 `dist/` 目录。
 
 ---
 
-## 📁 Project Structure
+## 📁 项目结构
 
 ```
 src/
 ├── components/
-│   ├── DomainSidebar.astro   # Left sidebar (icons + names + counts)
-│   └── CommandNav.astro      # Floating right nav (A-Z index + scroll spy)
+│   ├── DomainSidebar.astro   # 左侧分类导航（图标 + 名称 + 命令数）
+│   └── CommandNav.astro      # 右侧浮动命令导航（A-Z 索引 + 滚动联动）
 ├── data/commands/
-│   ├── linux/                # Linux command JSON files
-│   ├── claudecode/           # Claude Code command JSON files
-│   └── windows/              # Windows command JSON files
+│   ├── linux/                # Linux 命令 JSON
+│   ├── claudecode/           # Claude Code 命令 JSON
+│   └── windows/              # Windows 命令 JSON
 ├── layouts/
-│   └── Layout.astro          # Global layout + styles + search modal
+│   └── Layout.astro          # 全局布局 + 样式 + 搜索弹窗
 └── pages/
-    └── index.astro           # Page logic + rendering + interactions
+    └── index.astro           # 首页逻辑 + 渲染 + 交互
 ```
 
 ---
 
-## ➕ Adding Commands
+## ➕ 添加新命令
 
-Create a JSON file in the appropriate directory:
+在对应目录下创建 JSON 文件：
 
 ```json
 {
-  "name": "command-name",
-  "aliases": ["alias"],
+  "name": "命令名",
+  "aliases": ["别名"],
   "domain": "linux",
   "category": "file",
-  "tags": ["tag1", "tag2"],
-  "description": "Command description",
-  "syntax": "command syntax",
-  "example": "example usage",
-  "scenarios": ["use case 1", "use case 2"],
-  "related": ["related-command"]
+  "tags": ["标签"],
+  "description": "命令描述（中文）",
+  "syntax": "命令语法",
+  "example": "示例命令",
+  "scenarios": ["使用场景"],
+  "related": ["相关命令"]
 }
 ```
 
-**Categories**: `file` `text` `system` `network` `process` `session` `config` `review` `cli` `package`
+**分类（category）**：`file` `text` `system` `network` `process` `session` `config` `review` `cli` `package`
 
-**Danger levels**: Add to `dangerMap` in `src/pages/index.astro`:
+**危险等级**：在 `src/pages/index.astro` 的 `dangerMap` 中添加：
 
 ```js
 const dangerMap = {
-  'rm': 'high',     // 🔴 High risk
-  'chmod': 'mid',   // 🟡 Medium risk
+  'rm': 'high',     // 🔴 高危
+  'chmod': 'mid',   // 🟡 中危
 };
 ```
 
 ---
 
-## 🚀 Deployment
+## 🚀 部署
 
-Auto-deploys to GitHub Pages via **GitHub Actions** on push to `main`.
+通过 **GitHub Actions** 自动部署到 GitHub Pages。
 
-1. Go to **Settings → Pages → Source**
-2. Select **GitHub Actions**
+1. 推送到 `main` 分支自动触发构建
+2. 进入 **Settings → Pages → Source**，选择 **GitHub Actions**
 
 ---
 
-## 📄 Tech Stack
+## 📄 技术栈
 
-| Tech | Purpose |
-|------|---------|
-| [Astro](https://astro.build/) v7 | Static site generation |
-| [Tailwind CSS](https://tailwindcss.com/) v4 | Utility-first CSS |
+| 技术 | 用途 |
+|------|------|
+| [Astro](https://astro.build/) v7 | 静态站点生成 |
+| [Tailwind CSS](https://tailwindcss.com/) v4 | 原子化 CSS |
 | GitHub Actions | CI/CD |
-| GitHub Pages | Hosting |
+| GitHub Pages | 托管 |
 
 ---
 
-## 📝 License
+## 📝 许可证
 
 MIT License
 
 ---
 
-## 🤝 Contributing
+## 🤝 贡献
 
-1. Fork this repo
-2. Create a feature branch (`git checkout -b feature/xxx`)
-3. Commit changes (`git commit -m 'feat: xxx'`)
-4. Push (`git push origin feature/xxx`)
-5. Open a Pull Request
+1. Fork 本仓库
+2. 创建功能分支 (`git checkout -b feature/xxx`)
+3. 提交更改 (`git commit -m 'feat: xxx'`)
+4. 推送 (`git push origin feature/xxx`)
+5. 创建 Pull Request
 
 ---
 
-## 🙏 Acknowledgments
+## 🙏 致谢
 
-- Icons from [Lucide](https://lucide.dev/)
-- Color palette inspired by [Tailwind CSS](https://tailwindcss.com/docs/colors)
-- Inspired by [Devhints](https://devhints.io/) and [OverAPI](https://overapi.com/)
+- 图标来自 [Lucide](https://lucide.dev/)
+- 配色参考 [Tailwind CSS](https://tailwindcss.com/docs/colors)
+- 灵感来自 [Devhints](https://devhints.io/) 和 [OverAPI](https://overapi.com/)
