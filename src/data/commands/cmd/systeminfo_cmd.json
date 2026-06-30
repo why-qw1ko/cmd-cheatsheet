@@ -1,0 +1,27 @@
+{
+  "name": "systeminfo",
+  "aliases": [
+    "Get-ComputerInfo"
+  ],
+  "domain": "cmd",
+  "category": "system",
+  "tags": [
+    "system",
+    "info",
+    "hardware",
+    "os",
+    "spec"
+  ],
+  "description": "显示详细的系统配置信息，包括操作系统版本、处理器、内存、网络适配器、补丁等。",
+  "syntax": "systeminfo [/FO format]",
+  "scenarios": [
+    "查看系统配置概览",
+    "检查已安装的补丁",
+    "确认操作系统版本和架构"
+  ],
+  "related": [
+    "tasklist",
+    "sfc"
+  ],
+  "example": "systeminfo | findstr /C:\"Total Physical Memory\""
+}

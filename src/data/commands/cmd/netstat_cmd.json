@@ -1,0 +1,26 @@
+{
+  "name": "netstat",
+  "aliases": [],
+  "domain": "cmd",
+  "category": "network",
+  "tags": [
+    "network",
+    "port",
+    "connection",
+    "socket",
+    "tcp"
+  ],
+  "description": "显示网络连接、监听端口、路由表和协议统计。排查网络问题和端口占用的利器。",
+  "syntax": "netstat [-a] [-n] [-o] [-b]",
+  "scenarios": [
+    "查看哪个进程占用了某个端口",
+    "检查当前所有网络连接状态",
+    "排查网络连接异常",
+    "监控入站/出站连接数"
+  ],
+  "related": [
+    "ipconfig",
+    "tasklist"
+  ],
+  "example": "netstat -ano | findstr :8080"
+}

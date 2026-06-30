@@ -1,0 +1,25 @@
+{
+  "name": "taskkill",
+  "aliases": [
+    "Stop-Process"
+  ],
+  "domain": "cmd",
+  "category": "process",
+  "tags": [
+    "kill",
+    "process",
+    "terminate"
+  ],
+  "description": "终止正在运行的进程。支持按名称或 PID 终止，可强制结束无响应的进程。",
+  "syntax": "taskkill /IM 进程名 /F",
+  "scenarios": [
+    "强制关闭无响应的程序",
+    "批量终止同名进程",
+    "按 PID 精确终止进程"
+  ],
+  "related": [
+    "tasklist",
+    "Get-Process"
+  ],
+  "example": "taskkill /IM chrome.exe /F"
+}

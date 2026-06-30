@@ -1,0 +1,28 @@
+{
+  "name": "Invoke-WebRequest",
+  "aliases": [
+    "iwr",
+    "curl",
+    "wget"
+  ],
+  "domain": "powershell",
+  "category": "network",
+  "tags": [
+    "http",
+    "download",
+    "web",
+    "api"
+  ],
+  "description": "PowerShell 的 Web 请求工具。可下载文件、调用 API、解析 HTML。",
+  "syntax": "Invoke-WebRequest -Uri URL [选项]",
+  "scenarios": [
+    "下载文件",
+    "调用 REST API",
+    "爬取网页内容"
+  ],
+  "related": [
+    "Invoke-RestMethod",
+    "Start-BitsTransfer"
+  ],
+  "example": "Invoke-WebRequest -Uri 'https://example.com/file.zip' -OutFile 'file.zip'"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "type",
+  "aliases": [
+    "Get-Content"
+  ],
+  "domain": "cmd",
+  "category": "text",
+  "tags": [
+    "file",
+    "read",
+    "view",
+    "cat"
+  ],
+  "description": "显示文本文件内容。CMD 中为 type，PowerShell 中 Get-Content 功能更强大。",
+  "syntax": "type 文件名",
+  "scenarios": [
+    "快速查看配置文件内容",
+    "查看日志文件最后几行",
+    "配合管道处理文本"
+  ],
+  "related": [
+    "more",
+    "findstr",
+    "Select-String"
+  ],
+  "example": "type config.txt"
+}

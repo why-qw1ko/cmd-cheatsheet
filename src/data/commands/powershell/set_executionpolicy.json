@@ -1,0 +1,24 @@
+{
+  "name": "Set-ExecutionPolicy",
+  "aliases": [],
+  "domain": "powershell",
+  "category": "config",
+  "tags": [
+    "security",
+    "policy",
+    "powershell",
+    "script"
+  ],
+  "description": "设置 PowerShell 脚本执行策略。控制哪些脚本可以运行，是 PowerShell 安全的基础。",
+  "syntax": "Set-ExecutionPolicy 策略 [-Scope 范围]",
+  "scenarios": [
+    "允许运行本地脚本（RemoteSigned）",
+    "临时允许所有脚本（Bypass）",
+    "恢复默认安全策略（Restricted）"
+  ],
+  "related": [
+    "Get-ExecutionPolicy",
+    "Get-AuthenticodeSignature"
+  ],
+  "example": "Set-ExecutionPolicy RemoteSigned -Scope CurrentUser"
+}

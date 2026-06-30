@@ -1,0 +1,26 @@
+{
+  "name": "findstr",
+  "aliases": [
+    "Select-String"
+  ],
+  "domain": "powershell",
+  "category": "text",
+  "tags": [
+    "search",
+    "grep",
+    "text",
+    "regex"
+  ],
+  "description": "在文件中搜索字符串。CMD 用 findstr，PowerShell 用 Select-String（别名 sls）。类似 Linux 的 grep。",
+  "syntax": "Select-String [-Pattern] 模式 [-Path] 文件",
+  "scenarios": [
+    "在日志中搜索错误信息",
+    "递归搜索代码中的关键字",
+    "用正则表达式匹配文本"
+  ],
+  "related": [
+    "dir",
+    "type"
+  ],
+  "example": "Select-String -Pattern 'ERROR' -Path *.log"
+}

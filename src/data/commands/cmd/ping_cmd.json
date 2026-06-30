@@ -1,0 +1,26 @@
+{
+  "name": "ping",
+  "aliases": [
+    "Test-Connection"
+  ],
+  "domain": "cmd",
+  "category": "network",
+  "tags": [
+    "network",
+    "icmp",
+    "connectivity",
+    "latency"
+  ],
+  "description": "测试网络连通性和延迟。发送 ICMP 回显请求包到目标主机，显示往返时间。",
+  "syntax": "ping [-n 次数] 目标",
+  "scenarios": [
+    "测试网络是否通畅",
+    "检测到服务器的延迟",
+    "持续测试网络稳定性"
+  ],
+  "related": [
+    "ipconfig",
+    "netstat"
+  ],
+  "example": "ping -n 10 8.8.8.8"
+}

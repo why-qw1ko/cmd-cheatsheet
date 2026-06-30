@@ -1,0 +1,6 @@
+{
+  "label": "Windows CMD",
+  "icon": "cmd",
+  "order": 2,
+  "categories": ["file", "network", "system", "process", "session", "config"]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "ver",
+  "aliases": [],
+  "domain": "cmd",
+  "category": "system",
+  "tags": [
+    "version",
+    "windows",
+    "os"
+  ],
+  "description": "显示 Windows 版本号。",
+  "syntax": "ver",
+  "scenarios": [
+    "快速查看 Windows 版本",
+    "确认系统版本号",
+    "脚本中判断系统版本"
+  ],
+  "related": [
+    "systeminfo",
+    "winver"
+  ],
+  "example": "ver"
+}

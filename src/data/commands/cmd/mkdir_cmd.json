@@ -1,0 +1,27 @@
+{
+  "name": "mkdir",
+  "aliases": [
+    "md",
+    "New-Item"
+  ],
+  "domain": "cmd",
+  "category": "file",
+  "tags": [
+    "directory",
+    "create",
+    "folder"
+  ],
+  "description": "创建新目录。支持递归创建多级目录。",
+  "syntax": "mkdir 目录名",
+  "scenarios": [
+    "创建新项目目录",
+    "递归创建多级目录",
+    "批量创建目录结构"
+  ],
+  "related": [
+    "rmdir",
+    "cd",
+    "dir"
+  ],
+  "example": "mkdir C:\\Projects\\new-app"
+}

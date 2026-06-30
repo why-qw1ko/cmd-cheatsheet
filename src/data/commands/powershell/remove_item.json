@@ -1,0 +1,28 @@
+{
+  "name": "Remove-Item",
+  "aliases": [
+    "ri",
+    "del",
+    "rm"
+  ],
+  "domain": "powershell",
+  "category": "file",
+  "tags": [
+    "delete",
+    "remove",
+    "file"
+  ],
+  "description": "删除文件或目录。PowerShell 中删除文件和文件夹的通用命令。",
+  "syntax": "Remove-Item -Path 路径 [-Recurse] [-Force]",
+  "scenarios": [
+    "删除文件",
+    "递归删除目录",
+    "强制删除只读文件"
+  ],
+  "related": [
+    "New-Item",
+    "Copy-Item",
+    "Move-Item"
+  ],
+  "example": "Remove-Item -Path '.\\temp' -Recurse -Force"
+}

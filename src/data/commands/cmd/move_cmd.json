@@ -1,0 +1,26 @@
+{
+  "name": "move",
+  "aliases": [
+    "Move-Item"
+  ],
+  "domain": "cmd",
+  "category": "file",
+  "tags": [
+    "move",
+    "rename",
+    "file"
+  ],
+  "description": "移动或重命名文件和目录。CMD 用 move，PowerShell 用 Move-Item。",
+  "syntax": "move [/Y] 源 目标",
+  "scenarios": [
+    "移动文件到其他目录",
+    "重命名文件",
+    "整理文件目录结构"
+  ],
+  "related": [
+    "copy",
+    "del",
+    "dir"
+  ],
+  "example": "move report.txt D:\\archive\\"
+}

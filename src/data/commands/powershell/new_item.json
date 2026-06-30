@@ -1,0 +1,27 @@
+{
+  "name": "New-Item",
+  "aliases": [
+    "ni"
+  ],
+  "domain": "powershell",
+  "category": "file",
+  "tags": [
+    "create",
+    "file",
+    "directory",
+    "folder"
+  ],
+  "description": "创建新项目（文件、目录、注册表项等）。PowerShell 的通用创建命令。",
+  "syntax": "New-Item -ItemType 类型 -Path 路径",
+  "scenarios": [
+    "创建新文件",
+    "创建新目录",
+    "创建注册表项"
+  ],
+  "related": [
+    "Remove-Item",
+    "Set-Content",
+    "Get-Item"
+  ],
+  "example": "New-Item -ItemType File -Path '.\\config.txt' -Value 'default'"
+}

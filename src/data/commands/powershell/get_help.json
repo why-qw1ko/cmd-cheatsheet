@@ -1,0 +1,26 @@
+{
+  "name": "Get-Help",
+  "aliases": [
+    "help",
+    "man"
+  ],
+  "domain": "powershell",
+  "category": "cli",
+  "tags": [
+    "help",
+    "documentation",
+    "manual"
+  ],
+  "description": "查看 PowerShell 命令的帮助文档。支持在线更新和详细示例。",
+  "syntax": "Get-Help 命令名 [-Full]",
+  "scenarios": [
+    "查看命令的用法和参数",
+    "获取完整的帮助文档（-Full）",
+    "查看使用示例（-Examples）"
+  ],
+  "related": [
+    "Get-Command",
+    "Get-Member"
+  ],
+  "example": "Get-Help Get-Process -Full"
+}

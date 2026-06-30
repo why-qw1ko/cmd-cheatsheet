@@ -6,7 +6,8 @@ import CommandNav from '../components/CommandNav.astro';
 // Import all command data
 const linuxModules = import.meta.glob('../data/commands/linux/*.json', { eager: true });
 const claudeModules = import.meta.glob('../data/commands/claudecode/*.json', { eager: true });
-const windowsModules = import.meta.glob('../data/commands/windows/*.json', { eager: true });
+const cmdModules = import.meta.glob('../data/commands/cmd/*.json', { eager: true });
+const psModules = import.meta.glob('../data/commands/powershell/*.json', { eager: true });
 
 function loadCommands(mods: Record<string, any>) {
   return Object.entries(mods)
@@ -17,18 +18,24 @@ function loadCommands(mods: Record<string, any>) {
 
 const linuxCmds = loadCommands(linuxModules);
 const claudeCmds = loadCommands(claudeModules);
-const windowsCmds = loadCommands(windowsModules);
+const cmdCmds = loadCommands(cmdModules);
+const psCmds = loadCommands(psModules);
+
+const cmdIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`;
+const psIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg>`;
 
 const domains = [
   { id: 'linux', label: 'Linux', desc: '系统命令', count: linuxCmds.length,
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>` },
+  { id: 'cmd', label: 'Windows CMD', desc: '命令提示符', count: cmdCmds.length,
+    icon: cmdIcon },
+  { id: 'powershell', label: 'PowerShell', desc: 'PowerShell 命令', count: psCmds.length,
+    icon: psIcon },
   { id: 'claudecode', label: 'Claude Code', desc: 'AI 编程助手', count: claudeCmds.length,
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>` },
-  { id: 'windows', label: 'Windows', desc: '系统命令', count: windowsCmds.length,
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="3" x2="12" y2="12"/></svg>` },
 ];
 
-const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claudeCmds, windows: windowsCmds };
+const allCommands: Record<string, any[]> = { linux: linuxCmds, cmd: cmdCmds, powershell: psCmds, claudecode: claudeCmds };
 ---
 
 <Layout title="Cmd Cheatsheet - 命令速查站" description="Linux · Claude Code · Windows 常用命令速查">
@@ -54,7 +61,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     </div>
 
     <div class="header-right">
-      <span class="header-stat-badge" id="header-stat-badge">{linuxCmds.length + claudeCmds.length + windowsCmds.length} 条命令</span>
+      <span class="header-stat-badge" id="header-stat-badge">{linuxCmds.length + cmdCmds.length + psCmds.length + claudeCmds.length} 条命令</span>
       <a class="header-link" href="https://github.com/why-qw1ko/cmd-cheatsheet/releases" target="_blank" rel="noopener" title="更新日志">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         <span>更新日志</span>
@@ -178,10 +185,10 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     cli: 'cat-cli', package: 'cat-package',
   };
   const domainLabels: Record<string, string> = {
-    linux: 'Linux', claudecode: 'Claude Code', windows: 'Windows',
+    linux: 'Linux', cmd: 'Windows CMD', powershell: 'PowerShell', claudecode: 'Claude Code',
   };
   const platformLabels: Record<string, string> = {
-    linux: 'Linux', windows: 'Windows',
+    linux: 'Linux', cmd: 'CMD', powershell: 'PowerShell',
   };
 
   // Danger levels
@@ -209,8 +216,9 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
   }
   const domainIcons: Record<string, string> = {
     linux: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`,
+    cmd: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`,
+    powershell: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg>`,
     claudecode: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>`,
-    windows: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="3" x2="12" y2="12"/></svg>`,
   };
 
   const dataEl = document.getElementById('domain-data');
@@ -228,8 +236,9 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     });
   });
 
-  // Tag filter state
+  // Filter state
   let activeTag: string | null = null;
+  let activeCategory: string | null = null;
 
   function escapeHtml(str: string): string {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -248,8 +257,13 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
         const entry = cpEntries[0];
         const others = entry.others.filter(o => o.name !== cmd.name);
         if (others.length) {
+          const platformSvgIcons: Record<string, string> = {
+            linux: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>',
+            cmd: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>',
+            powershell: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg>',
+          };
           const items = others.map(o => {
-            const icon = o.platform === 'linux' ? '🐧' : o.platform === 'windows' ? '🪟' : '🤖';
+            const icon = platformSvgIcons[o.platform] || '';
             const label = platformLabels[o.platform] || o.platform;
             return `<span class="cp-equiv-item" data-cmd="${escapeHtml(o.name)}" data-platform="${o.platform}">${icon} <code>${escapeHtml(o.name)}</code> <small>${label}</small></span>`;
           }).join('');
@@ -277,7 +291,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
           <div class="accordion-title">
             <span class="accordion-name">${escapeHtml(cmd.name)}</span>
             ${dangerBadge}
-            <span class="accordion-cat ${categoryClass[cmd.category] || ""}">${escapeHtml(cat)}</span>
+            <button class="accordion-cat ${categoryClass[cmd.category] || ""}" data-category="${escapeHtml(cmd.category)}">${escapeHtml(cat)}</button>
             ${aliasStr}
           </div>
           <div class="accordion-right">
@@ -330,9 +344,11 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     if (activeTag) {
       commands = commands.filter(cmd => cmd.tags?.includes(activeTag!));
     }
+    if (activeCategory) {
+      commands = commands.filter(cmd => cmd.category === activeCategory);
+    }
     if (container) container.innerHTML = renderAccordion(commands, domain);
     renderNav(commands);
-    // Update filter bar
     updateFilterBar();
     requestAnimationFrame(() => { if ((window as any).initScrollSpy) (window as any).initScrollSpy(); });
   }
@@ -340,16 +356,20 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
   function updateFilterBar() {
     const existing = document.getElementById('tag-filter-bar');
     if (existing) existing.remove();
-    if (!activeTag) return;
+    if (!activeTag && !activeCategory) return;
     const mainHeader = document.querySelector('.main-header');
     if (!mainHeader) return;
     const bar = document.createElement('div');
     bar.id = 'tag-filter-bar';
     bar.className = 'tag-filter-bar';
-    bar.innerHTML = `<span class="tag-filter-label">筛选标签:</span><span class="tag-filter-tag">#${escapeHtml(activeTag)}</span><button class="tag-filter-clear" id="tag-filter-clear">✕ 清除</button>`;
+    let parts = [];
+    if (activeCategory) parts.push(`<span class="tag-filter-tag cat">${escapeHtml(categoryLabels[activeCategory] || activeCategory)}</span>`);
+    if (activeTag) parts.push(`<span class="tag-filter-tag">#${escapeHtml(activeTag)}</span>`);
+    bar.innerHTML = `<span class="tag-filter-label">筛选:</span>${parts.join('')}<button class="tag-filter-clear" id="tag-filter-clear">✕ 清除</button>`;
     mainHeader.insertAdjacentElement('afterend', bar);
     document.getElementById('tag-filter-clear')?.addEventListener('click', () => {
       activeTag = null;
+      activeCategory = null;
       const currentDomain = (document.querySelector('.sidebar-btn.active') as HTMLElement)?.dataset?.domain || 'linux';
       reRenderAccordion(currentDomain);
     });
@@ -359,10 +379,14 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
   function renderCrossPlatformView() {
     const container = document.getElementById('accordion-container');
     if (!container) return;
-    const platformIcons: Record<string, string> = { linux: '🐧', windows: '🪟' };
+    const platformSvgIcons: Record<string, string> = {
+      linux: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>',
+      cmd: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>',
+      powershell: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg>',
+    };
     const html = crossPlatformGroups.map(g => {
       const items = g.commands.map(c => {
-        const icon = platformIcons[c.platform] || '🤖';
+        const icon = platformSvgIcons[c.platform] || '';
         return `<span class="cp-view-item" data-cmd="${escapeHtml(c.name)}" data-platform="${c.platform}">${icon} <code>${escapeHtml(c.name)}</code></span>`;
       }).join('');
       return `<div class="cp-view-group"><div class="cp-view-label">${escapeHtml(g.label)}</div><div class="cp-view-items">${items}</div></div>`;
@@ -386,6 +410,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     if (!commands) return;
     loadExpandMemory(domain);
     activeTag = null;
+    activeCategory = null;
 
     document.querySelectorAll('.sidebar-btn[data-domain]').forEach(btn => {
       btn.classList.toggle('active', (btn as HTMLElement).dataset.domain === domain);
@@ -455,7 +480,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     const platform = item.dataset.platform;
     if (!cmdName) return;
     // Find which domain this command belongs to
-    const domain = platform === 'linux' ? 'linux' : 'windows';
+    const domain = platform === 'linux' ? 'linux' : platform === 'powershell' ? 'powershell' : 'cmd';
     switchDomain(domain);
     setTimeout(() => {
       const el = document.getElementById(`cmd-${cmdName}`);
@@ -495,11 +520,20 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
       e.stopPropagation();
       const tag = (tagBtn as HTMLElement).dataset.tag;
       if (tag) {
-        if (activeTag === tag) {
-          activeTag = null;
-        } else {
-          activeTag = tag;
-        }
+        activeTag = activeTag === tag ? null : tag;
+        const currentDomain = (document.querySelector('.sidebar-btn.active') as HTMLElement)?.dataset?.domain || 'linux';
+        reRenderAccordion(currentDomain);
+      }
+      return;
+    }
+
+    // Category click -> filter
+    const catBtn = target.closest('.accordion-cat');
+    if (catBtn) {
+      e.stopPropagation();
+      const cat = (catBtn as HTMLElement).dataset.category;
+      if (cat) {
+        activeCategory = activeCategory === cat ? null : cat;
         const currentDomain = (document.querySelector('.sidebar-btn.active') as HTMLElement)?.dataset?.domain || 'linux';
         reRenderAccordion(currentDomain);
       }

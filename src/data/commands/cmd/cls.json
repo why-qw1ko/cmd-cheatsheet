@@ -1,0 +1,25 @@
+{
+  "name": "cls",
+  "aliases": [
+    "clear"
+  ],
+  "domain": "cmd",
+  "category": "session",
+  "tags": [
+    "clear",
+    "screen",
+    "terminal"
+  ],
+  "description": "清除命令行终端屏幕。CMD 和 PowerShell 均支持。",
+  "syntax": "cls",
+  "scenarios": [
+    "清除终端输出，保持界面整洁",
+    "在执行重要命令前清理屏幕",
+    "隐私保护，清除之前的输出"
+  ],
+  "related": [
+    "Clear-Host",
+    "echo"
+  ],
+  "example": "cls"
+}

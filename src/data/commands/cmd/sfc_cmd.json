@@ -1,0 +1,27 @@
+{
+  "name": "sfc",
+  "aliases": [
+    "scannow"
+  ],
+  "domain": "cmd",
+  "category": "system",
+  "tags": [
+    "repair",
+    "system",
+    "integrity",
+    "corrupt"
+  ],
+  "description": "系统文件检查器，扫描并修复受保护的 Windows 系统文件。当系统出现异常或怀疑文件损坏时的首选排查工具。",
+  "syntax": "sfc /scannow",
+  "scenarios": [
+    "系统频繁蓝屏或崩溃",
+    "系统文件被误删或损坏",
+    "Windows 更新后出现异常",
+    "排查系统完整性问题"
+  ],
+  "related": [
+    "tasklist",
+    "winget"
+  ],
+  "example": "sfc /scannow"
+}

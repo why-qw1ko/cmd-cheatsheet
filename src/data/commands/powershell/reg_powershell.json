@@ -1,0 +1,27 @@
+{
+  "name": "reg",
+  "aliases": [
+    "Registry"
+  ],
+  "domain": "powershell",
+  "category": "system",
+  "tags": [
+    "registry",
+    "config",
+    "system",
+    "settings"
+  ],
+  "description": "Windows 注册表操作工具。可查询、添加、修改、删除注册表项和值。修改注册表需谨慎，建议先备份。",
+  "syntax": "Get-ItemProperty / Set-ItemProperty -Path 注册表路径",
+  "scenarios": [
+    "查看某个注册表项的值",
+    "修改系统设置（如禁用自动更新）",
+    "备份注册表（reg export）",
+    "排查软件配置问题"
+  ],
+  "related": [
+    "systeminfo",
+    "sfc"
+  ],
+  "example": "Get-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion'"
+}

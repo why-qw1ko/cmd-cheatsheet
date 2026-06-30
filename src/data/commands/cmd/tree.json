@@ -1,0 +1,23 @@
+{
+  "name": "tree",
+  "aliases": [],
+  "domain": "cmd",
+  "category": "file",
+  "tags": [
+    "directory",
+    "structure",
+    "visual"
+  ],
+  "description": "以树状图形式显示目录结构。直观展示文件夹层级关系。",
+  "syntax": "tree [路径] [/F]",
+  "scenarios": [
+    "查看项目目录结构",
+    "生成目录树文档",
+    "快速了解文件夹组织方式"
+  ],
+  "related": [
+    "dir",
+    "ls"
+  ],
+  "example": "tree C:\\Projects /F > structure.txt"
+}

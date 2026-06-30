@@ -1,0 +1,6 @@
+{
+  "label": "PowerShell",
+  "icon": "powershell",
+  "order": 3,
+  "categories": ["file", "network", "system", "process", "text", "config", "cli"]
+}

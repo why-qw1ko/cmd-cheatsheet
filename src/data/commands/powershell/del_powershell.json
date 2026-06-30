@@ -1,0 +1,26 @@
+{
+  "name": "del",
+  "aliases": [
+    "Remove-Item",
+    "erase"
+  ],
+  "domain": "powershell",
+  "category": "file",
+  "tags": [
+    "delete",
+    "remove",
+    "file"
+  ],
+  "description": "删除文件。CMD 用 del，PowerShell 用 Remove-Item。注意：删除后不进回收站。",
+  "syntax": "Remove-Item [-Path] 路径 [-Force] [-Recurse]",
+  "scenarios": [
+    "清理临时文件",
+    "批量删除特定类型文件",
+    "强制删除只读文件"
+  ],
+  "related": [
+    "copy",
+    "dir"
+  ],
+  "example": "Remove-Item -Path .\\*.log -Force"
+}

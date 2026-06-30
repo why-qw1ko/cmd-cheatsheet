@@ -1,0 +1,24 @@
+{
+  "name": "shutdown",
+  "aliases": [],
+  "domain": "cmd",
+  "category": "system",
+  "tags": [
+    "shutdown",
+    "restart",
+    "logoff",
+    "power"
+  ],
+  "description": "关闭、重启或注销系统。支持定时关机和远程关机。",
+  "syntax": "shutdown [/s | /r | /l] [/t 秒]",
+  "scenarios": [
+    "定时关机（shutdown /s /t 3600）",
+    "取消定时关机（shutdown /a）",
+    "远程重启服务器（shutdown /r /m \\\\server）"
+  ],
+  "related": [
+    "systeminfo",
+    "sfc"
+  ],
+  "example": "shutdown /r /t 60 /c \"系统将在1分钟后重启\""
+}

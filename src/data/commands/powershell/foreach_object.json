@@ -1,0 +1,26 @@
+{
+  "name": "ForEach-Object",
+  "aliases": [
+    "foreach",
+    "%"
+  ],
+  "domain": "powershell",
+  "category": "text",
+  "tags": [
+    "loop",
+    "iterate",
+    "pipeline"
+  ],
+  "description": "对管道中的每个对象执行操作。PowerShell 中最常用的循环命令。",
+  "syntax": "ForEach-Object -Process {脚本块}",
+  "scenarios": [
+    "批量处理管道中的对象",
+    "对每个文件执行操作",
+    "数据转换"
+  ],
+  "related": [
+    "Where-Object",
+    "Select-Object"
+  ],
+  "example": "Get-Process | ForEach-Object { $_.Name + ': ' + $_.CPU }"
+}

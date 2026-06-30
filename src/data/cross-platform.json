@@ -9,11 +9,11 @@
       },
       {
         "name": "dir",
-        "platform": "windows"
+        "platform": "cmd"
       },
       {
         "name": "Get-ChildItem",
-        "platform": "windows"
+        "platform": "powershell"
       }
     ]
   },
@@ -27,11 +27,11 @@
       },
       {
         "name": "cd",
-        "platform": "windows"
+        "platform": "cmd"
       },
       {
         "name": "Set-Location",
-        "platform": "windows"
+        "platform": "powershell"
       }
     ]
   },
@@ -45,11 +45,11 @@
       },
       {
         "name": "mkdir",
-        "platform": "windows"
+        "platform": "cmd"
       },
       {
         "name": "New-Item",
-        "platform": "windows"
+        "platform": "powershell"
       }
     ]
   },
@@ -63,11 +63,11 @@
       },
       {
         "name": "del",
-        "platform": "windows"
+        "platform": "cmd"
       },
       {
         "name": "Remove-Item",
-        "platform": "windows"
+        "platform": "powershell"
       }
     ]
   },
@@ -81,11 +81,11 @@
       },
       {
         "name": "copy",
-        "platform": "windows"
+        "platform": "cmd"
       },
       {
         "name": "Copy-Item",
-        "platform": "windows"
+        "platform": "powershell"
       }
     ]
   },
@@ -99,11 +99,11 @@
       },
       {
         "name": "move",
-        "platform": "windows"
+        "platform": "cmd"
       },
       {
         "name": "Move-Item",
-        "platform": "windows"
+        "platform": "powershell"
       }
     ]
   },
@@ -117,11 +117,11 @@
       },
       {
         "name": "type",
-        "platform": "windows"
+        "platform": "cmd"
       },
       {
         "name": "Get-Content",
-        "platform": "windows"
+        "platform": "powershell"
       }
     ]
   },
@@ -135,7 +135,7 @@
       },
       {
         "name": "Get-ChildItem",
-        "platform": "windows"
+        "platform": "powershell"
       }
     ]
   },
@@ -149,11 +149,11 @@
       },
       {
         "name": "findstr",
-        "platform": "windows"
+        "platform": "cmd"
       },
       {
         "name": "Select-String",
-        "platform": "windows"
+        "platform": "powershell"
       }
     ]
   },
@@ -167,11 +167,11 @@
       },
       {
         "name": "tasklist",
-        "platform": "windows"
+        "platform": "cmd"
       },
       {
         "name": "Get-Process",
-        "platform": "windows"
+        "platform": "powershell"
       }
     ]
   },
@@ -185,11 +185,11 @@
       },
       {
         "name": "taskkill",
-        "platform": "windows"
+        "platform": "cmd"
       },
       {
         "name": "Stop-Process",
-        "platform": "windows"
+        "platform": "powershell"
       }
     ]
   },
@@ -207,7 +207,7 @@
       },
       {
         "name": "ipconfig",
-        "platform": "windows"
+        "platform": "cmd"
       }
     ]
   },
@@ -221,7 +221,7 @@
       },
       {
         "name": "ping",
-        "platform": "windows"
+        "platform": "cmd"
       }
     ]
   },
@@ -235,7 +235,7 @@
       },
       {
         "name": "netstat",
-        "platform": "windows"
+        "platform": "cmd"
       }
     ]
   },
@@ -249,7 +249,7 @@
       },
       {
         "name": "tracert",
-        "platform": "windows"
+        "platform": "cmd"
       }
     ]
   },
@@ -277,7 +277,7 @@
       },
       {
         "name": "systeminfo",
-        "platform": "windows"
+        "platform": "cmd"
       }
     ]
   },
@@ -291,7 +291,7 @@
       },
       {
         "name": "hostname",
-        "platform": "windows"
+        "platform": "cmd"
       }
     ]
   },
@@ -305,7 +305,7 @@
       },
       {
         "name": "whoami",
-        "platform": "windows"
+        "platform": "cmd"
       }
     ]
   },
@@ -323,7 +323,7 @@
       },
       {
         "name": "Invoke-WebRequest",
-        "platform": "windows"
+        "platform": "powershell"
       }
     ]
   },
@@ -337,7 +337,7 @@
       },
       {
         "name": "Sort-Object",
-        "platform": "windows"
+        "platform": "powershell"
       }
     ]
   },
@@ -351,7 +351,7 @@
       },
       {
         "name": "Measure-Object",
-        "platform": "windows"
+        "platform": "powershell"
       }
     ]
   },
@@ -365,7 +365,7 @@
       },
       {
         "name": "cls",
-        "platform": "windows"
+        "platform": "cmd"
       }
     ]
   },
@@ -379,15 +379,15 @@
       },
       {
         "name": "Get-Service",
-        "platform": "windows"
+        "platform": "powershell"
       },
       {
         "name": "Start-Service",
-        "platform": "windows"
+        "platform": "powershell"
       },
       {
         "name": "Stop-Service",
-        "platform": "windows"
+        "platform": "powershell"
       }
     ]
   },
@@ -415,7 +415,7 @@
       },
       {
         "name": "attrib",
-        "platform": "windows"
+        "platform": "cmd"
       }
     ]
   },

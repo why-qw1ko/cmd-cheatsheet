@@ -1,0 +1,27 @@
+{
+  "name": "Where-Object",
+  "aliases": [
+    "where",
+    "?"
+  ],
+  "domain": "powershell",
+  "category": "text",
+  "tags": [
+    "filter",
+    "condition",
+    "where"
+  ],
+  "description": "根据条件过滤管道中的对象。PowerShell 中最常用的过滤命令。",
+  "syntax": "Where-Object {-Property 属性 -条件 值}",
+  "scenarios": [
+    "筛选特定状态的服务",
+    "过滤大于指定大小的文件",
+    "查找特定进程"
+  ],
+  "related": [
+    "Select-Object",
+    "Sort-Object",
+    "ForEach-Object"
+  ],
+  "example": "Get-Process | Where-Object {$_.CPU -gt 100}"
+}

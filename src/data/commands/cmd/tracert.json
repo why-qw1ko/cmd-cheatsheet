@@ -1,0 +1,27 @@
+{
+  "name": "tracert",
+  "aliases": [
+    "traceroute"
+  ],
+  "domain": "cmd",
+  "category": "network",
+  "tags": [
+    "network",
+    "route",
+    "trace",
+    "hop"
+  ],
+  "description": "追踪数据包到达目标的路由路径。Windows 版的 traceroute。",
+  "syntax": "tracert [选项] 目标",
+  "scenarios": [
+    "排查网络延迟节点",
+    "查看数据包路由路径",
+    "诊断网络连接问题"
+  ],
+  "related": [
+    "ping",
+    "pathping",
+    "netstat"
+  ],
+  "example": "tracert google.com"
+}

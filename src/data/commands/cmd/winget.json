@@ -1,0 +1,29 @@
+{
+  "name": "winget",
+  "aliases": [
+    "Windows Package Manager"
+  ],
+  "domain": "cmd",
+  "category": "package",
+  "tags": [
+    "package",
+    "install",
+    "update",
+    "manager",
+    "store"
+  ],
+  "description": "Windows 官方包管理器。一行命令安装、更新、卸载软件，类似 Linux 的 apt/brew。支持从 Microsoft Store 和社区仓库搜索。",
+  "syntax": "winget <命令> [选项]",
+  "scenarios": [
+    "一行命令安装软件（winget install VSCode）",
+    "批量更新所有已安装软件（winget upgrade --all）",
+    "搜索可用软件包（winget search firefox）",
+    "导出/导入已安装软件列表做环境迁移"
+  ],
+  "related": [
+    "sfc",
+    "tasklist"
+  ],
+  "example": "winget install --id Google.Chrome --accept-package-agreements",
+  "since": "Windows 10 1809"
+}

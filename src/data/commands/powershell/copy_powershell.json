@@ -1,0 +1,26 @@
+{
+  "name": "copy",
+  "aliases": [
+    "xcopy",
+    "robocopy"
+  ],
+  "domain": "powershell",
+  "category": "file",
+  "tags": [
+    "copy",
+    "file",
+    "backup"
+  ],
+  "description": "复制文件。CMD 用 copy/xcopy，PowerShell 用 Copy-Item。robocopy 是高级复制工具，支持断点续传和镜像。",
+  "syntax": "Copy-Item [-Path] 源 [-Destination] 目标 [-Recurse]",
+  "scenarios": [
+    "备份重要文件",
+    "复制目录结构",
+    "大批量文件同步（robocopy）"
+  ],
+  "related": [
+    "dir",
+    "del"
+  ],
+  "example": "Copy-Item -Path .\\src -Destination D:\\backup\\ -Recurse"
+}
