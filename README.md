@@ -1,6 +1,6 @@
 # 🖥️ Cmd Cheatsheet — 命令速查站
 
-一个现代化的命令速查工具，覆盖 **Linux**、**Claude Code**、**Windows** 三大平台，共 **63 条**常用命令。
+一个现代化的命令速查工具，覆盖 **Linux**、**Windows CMD**、**PowerShell**、**Claude Code** 四大平台，共 **181 条**常用命令。
 
 🔗 **在线访问**：[https://why-qw1ko.github.io/cmd-cheatsheet](https://why-qw1ko.github.io/cmd-cheatsheet)
 
@@ -12,7 +12,9 @@
 - 📋 **一键复制** — 命令语法、命令名均可一键复制
 - 🌙 **暗色模式** — 支持手动切换 + 跟随系统偏好
 - 📱 **响应式** — 适配手机、平板、桌面端
-- 🎯 **命令导航** — 右侧浮动导航，A-Z 字母索引 + 滚动联动高亮
+- 🎯 **命令导航** — 右侧浮动导航，A-Z 字母索引 + 分组筛选
+- 🔄 **跨平台对照** — Linux ↔ CMD ↔ PowerShell 命令等价对照
+- 🏷️ **分类筛选** — 点击分类标签（文件/文本/系统等）过滤命令
 - ⚠️ **危险标识** — 高危/中危命令醒目标注
 - 💾 **展开记忆** — localStorage 保存每个分类的展开状态
 - 🦴 **骨架屏** — 切换分类时平滑过渡
@@ -23,9 +25,11 @@
 
 | 平台 | 命令数 | 示例 |
 |------|--------|------|
-| 🐧 Linux | 29 | `ls` `grep` `find` `ssh` `curl` `systemctl` |
-| 🤖 Claude Code | 18 | `/clear` `/compact` `/review` `/model` `claude (CLI)` |
-| 🪟 Windows | 16 | `dir` `ipconfig` `netstat` `winget` `Get-Process` |
+| 🐧 Linux | 82 | `ls` `grep` `ssh` `systemctl` `awk` `htop` |
+| 💻 Windows CMD | 30 | `dir` `ipconfig` `taskkill` `robocopy` `sfc` |
+| ⚡ PowerShell | 40 | `Get-ChildItem` `Invoke-WebRequest` `Select-Object` |
+| 🤖 Claude Code | 29 | `/clear` `/compact` `--print` `--model` `/mcp` |
+| **总计** | **181** | |
 
 ---
 
@@ -62,12 +66,15 @@ npm run build
 ```
 src/
 ├── components/
-│   ├── DomainSidebar.astro   # 左侧分类导航（图标 + 名称 + 命令数）
-│   └── CommandNav.astro      # 右侧浮动命令导航（A-Z 索引 + 滚动联动）
-├── data/commands/
-│   ├── linux/                # Linux 命令 JSON
-│   ├── claudecode/           # Claude Code 命令 JSON
-│   └── windows/              # Windows 命令 JSON
+│   ├── DomainSidebar.astro   # 左侧分类导航（图标 + 名称 + 命令数 + 跨平台入口）
+│   └── CommandNav.astro      # 右侧浮动命令导航（A-Z 索引 + 分组 + 滚动联动）
+├── data/
+│   ├── commands/
+│   │   ├── linux/            # Linux 命令 JSON (82条)
+│   │   ├── cmd/              # Windows CMD 命令 JSON (30条)
+│   │   ├── powershell/       # PowerShell 命令 JSON (40条)
+│   │   └── claudecode/       # Claude Code 命令 JSON (29条)
+│   └── cross-platform.json   # 跨平台命令对照数据 (28组)
 ├── layouts/
 │   └── Layout.astro          # 全局布局 + 样式 + 搜索弹窗
 └── pages/
@@ -95,16 +102,11 @@ src/
 }
 ```
 
-**分类（category）**：`file` `text` `system` `network` `process` `session` `config` `review` `cli` `package`
+**domain**：`linux` `cmd` `powershell` `claudecode`
 
-**危险等级**：在 `src/pages/index.astro` 的 `dangerMap` 中添加：
+**category**：`file` `text` `system` `network` `process` `session` `config` `review` `cli` `package`
 
-```js
-const dangerMap = {
-  'rm': 'high',     // 🔴 高危
-  'chmod': 'mid',   // 🟡 中危
-};
-```
+**危险等级**：在 `src/pages/index.astro` 的 `dangerMap` 中添加。
 
 ---
 
@@ -131,21 +133,3 @@ const dangerMap = {
 ## 📝 许可证
 
 MIT License
-
----
-
-## 🤝 贡献
-
-1. Fork 本仓库
-2. 创建功能分支 (`git checkout -b feature/xxx`)
-3. 提交更改 (`git commit -m 'feat: xxx'`)
-4. 推送 (`git push origin feature/xxx`)
-5. 创建 Pull Request
-
----
-
-## 🙏 致谢
-
-- 图标来自 [Lucide](https://lucide.dev/)
-- 配色参考 [Tailwind CSS](https://tailwindcss.com/docs/colors)
-- 灵感来自 [Devhints](https://devhints.io/) 和 [OverAPI](https://overapi.com/)
