@@ -1,0 +1,446 @@
+[
+  {
+    "group": "list-files",
+    "label": "列出目录内容",
+    "commands": [
+      {
+        "name": "ls",
+        "platform": "linux"
+      },
+      {
+        "name": "dir",
+        "platform": "windows"
+      },
+      {
+        "name": "Get-ChildItem",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "change-dir",
+    "label": "切换目录",
+    "commands": [
+      {
+        "name": "cd",
+        "platform": "linux"
+      },
+      {
+        "name": "cd",
+        "platform": "windows"
+      },
+      {
+        "name": "Set-Location",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "make-dir",
+    "label": "创建目录",
+    "commands": [
+      {
+        "name": "mkdir",
+        "platform": "linux"
+      },
+      {
+        "name": "mkdir",
+        "platform": "windows"
+      },
+      {
+        "name": "New-Item",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "remove-file",
+    "label": "删除文件",
+    "commands": [
+      {
+        "name": "rm",
+        "platform": "linux"
+      },
+      {
+        "name": "del",
+        "platform": "windows"
+      },
+      {
+        "name": "Remove-Item",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "copy-file",
+    "label": "复制文件",
+    "commands": [
+      {
+        "name": "cp",
+        "platform": "linux"
+      },
+      {
+        "name": "copy",
+        "platform": "windows"
+      },
+      {
+        "name": "Copy-Item",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "move-file",
+    "label": "移动/重命名文件",
+    "commands": [
+      {
+        "name": "mv",
+        "platform": "linux"
+      },
+      {
+        "name": "move",
+        "platform": "windows"
+      },
+      {
+        "name": "Move-Item",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "view-file",
+    "label": "查看文件内容",
+    "commands": [
+      {
+        "name": "cat",
+        "platform": "linux"
+      },
+      {
+        "name": "type",
+        "platform": "windows"
+      },
+      {
+        "name": "Get-Content",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "find-file",
+    "label": "查找文件",
+    "commands": [
+      {
+        "name": "find",
+        "platform": "linux"
+      },
+      {
+        "name": "Get-ChildItem",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "search-text",
+    "label": "搜索文本内容",
+    "commands": [
+      {
+        "name": "grep",
+        "platform": "linux"
+      },
+      {
+        "name": "findstr",
+        "platform": "windows"
+      },
+      {
+        "name": "Select-String",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "process-list",
+    "label": "查看进程",
+    "commands": [
+      {
+        "name": "ps",
+        "platform": "linux"
+      },
+      {
+        "name": "tasklist",
+        "platform": "windows"
+      },
+      {
+        "name": "Get-Process",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "process-kill",
+    "label": "终止进程",
+    "commands": [
+      {
+        "name": "kill",
+        "platform": "linux"
+      },
+      {
+        "name": "taskkill",
+        "platform": "windows"
+      },
+      {
+        "name": "Stop-Process",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "network-info",
+    "label": "查看网络信息",
+    "commands": [
+      {
+        "name": "ifconfig",
+        "platform": "linux"
+      },
+      {
+        "name": "ip",
+        "platform": "linux"
+      },
+      {
+        "name": "ipconfig",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "network-test",
+    "label": "网络连通测试",
+    "commands": [
+      {
+        "name": "ping",
+        "platform": "linux"
+      },
+      {
+        "name": "ping",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "network-ports",
+    "label": "查看端口连接",
+    "commands": [
+      {
+        "name": "ss",
+        "platform": "linux"
+      },
+      {
+        "name": "netstat",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "network-route",
+    "label": "路由追踪",
+    "commands": [
+      {
+        "name": "traceroute",
+        "platform": "linux"
+      },
+      {
+        "name": "tracert",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "disk-usage",
+    "label": "磁盘使用情况",
+    "commands": [
+      {
+        "name": "df",
+        "platform": "linux"
+      },
+      {
+        "name": "du",
+        "platform": "linux"
+      }
+    ]
+  },
+  {
+    "group": "system-info",
+    "label": "系统信息",
+    "commands": [
+      {
+        "name": "uname",
+        "platform": "linux"
+      },
+      {
+        "name": "systeminfo",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "hostname",
+    "label": "主机名",
+    "commands": [
+      {
+        "name": "hostname",
+        "platform": "linux"
+      },
+      {
+        "name": "hostname",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "current-user",
+    "label": "当前用户",
+    "commands": [
+      {
+        "name": "whoami",
+        "platform": "linux"
+      },
+      {
+        "name": "whoami",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "download",
+    "label": "下载文件",
+    "commands": [
+      {
+        "name": "wget",
+        "platform": "linux"
+      },
+      {
+        "name": "curl",
+        "platform": "linux"
+      },
+      {
+        "name": "Invoke-WebRequest",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "sort-text",
+    "label": "排序",
+    "commands": [
+      {
+        "name": "sort",
+        "platform": "linux"
+      },
+      {
+        "name": "Sort-Object",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "count-lines",
+    "label": "统计行数/计数",
+    "commands": [
+      {
+        "name": "wc",
+        "platform": "linux"
+      },
+      {
+        "name": "Measure-Object",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "clear-screen",
+    "label": "清屏",
+    "commands": [
+      {
+        "name": "clear",
+        "platform": "linux"
+      },
+      {
+        "name": "cls",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "service-mgmt",
+    "label": "服务管理",
+    "commands": [
+      {
+        "name": "systemctl",
+        "platform": "linux"
+      },
+      {
+        "name": "Get-Service",
+        "platform": "windows"
+      },
+      {
+        "name": "Start-Service",
+        "platform": "windows"
+      },
+      {
+        "name": "Stop-Service",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "archive",
+    "label": "压缩/归档",
+    "commands": [
+      {
+        "name": "tar",
+        "platform": "linux"
+      },
+      {
+        "name": "gzip",
+        "platform": "linux"
+      }
+    ]
+  },
+  {
+    "group": "file-perms",
+    "label": "文件权限",
+    "commands": [
+      {
+        "name": "chmod",
+        "platform": "linux"
+      },
+      {
+        "name": "attrib",
+        "platform": "windows"
+      }
+    ]
+  },
+  {
+    "group": "env-vars",
+    "label": "环境变量",
+    "commands": [
+      {
+        "name": "env",
+        "platform": "linux"
+      },
+      {
+        "name": "export",
+        "platform": "linux"
+      }
+    ]
+  },
+  {
+    "group": "dns-lookup",
+    "label": "DNS 查询",
+    "commands": [
+      {
+        "name": "dig",
+        "platform": "linux"
+      }
+    ]
+  }
+]

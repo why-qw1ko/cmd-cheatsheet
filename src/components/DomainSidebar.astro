@@ -30,6 +30,18 @@ const { domains } = Astro.props;
         </span>
       </button>
     ))}
+    <button class="sidebar-btn" id="btn-cross-platform" title="跨平台对照">
+      <span class="sidebar-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 18l6-6-6-6"/>
+          <path d="M8 6l-6 6 6 6"/>
+        </svg>
+      </span>
+      <span class="sidebar-btn-text">
+        <span class="sidebar-btn-label">跨平台对照</span>
+        <span class="sidebar-btn-count">Linux ↔ Windows</span>
+      </span>
+    </button>
   </nav>
 
   <div class="sidebar-divider" />

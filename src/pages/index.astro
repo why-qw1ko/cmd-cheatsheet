@@ -149,6 +149,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
   </footer>
 
   <script id="domain-data" type="application/json" set:html={JSON.stringify(allCommands)} />
+  <script id="cross-platform-data" type="application/json" set:html={JSON.stringify((await import('../data/cross-platform.json')).default)} />
 </Layout>
 
 <script>
@@ -178,6 +179,9 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
   };
   const domainLabels: Record<string, string> = {
     linux: 'Linux', claudecode: 'Claude Code', windows: 'Windows',
+  };
+  const platformLabels: Record<string, string> = {
+    linux: 'Linux', windows: 'Windows',
   };
 
   // Danger levels
@@ -212,6 +216,21 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
   const dataEl = document.getElementById('domain-data');
   const allCommands: Record<string, Command[]> = dataEl ? JSON.parse(dataEl.textContent || '{}') : {};
 
+  // Load cross-platform data
+  const cpDataEl = document.getElementById('cross-platform-data');
+  const crossPlatformGroups: {group: string; label: string; commands: {name: string; platform: string}[]}[] = cpDataEl ? JSON.parse(cpDataEl.textContent || '[]') : [];
+  const cpLookup: Record<string, {label: string; others: {name: string; platform: string}[]}[]> = {};
+  crossPlatformGroups.forEach(g => {
+    g.commands.forEach(cmd => {
+      const key = cmd.name;
+      if (!cpLookup[key]) cpLookup[key] = [];
+      cpLookup[key].push({ label: g.label, others: g.commands.filter(c => c.name !== cmd.name) });
+    });
+  });
+
+  // Tag filter state
+  let activeTag: string | null = null;
+
   function escapeHtml(str: string): string {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
@@ -220,7 +239,23 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     return `<div class="accordion-list" id="accordion-list">${commands.map((cmd, i) => {
       const cat = categoryLabels[cmd.category] || cmd.category;
       const aliasStr = cmd.aliases?.length ? `<span class="accordion-alias">${escapeHtml(cmd.aliases.join(', '))}</span>` : '';
-      const tagsHtml = cmd.tags?.length ? `<div class="cmd-tags">${cmd.tags.map(t => `<span class="cmd-tag">#${escapeHtml(t)}</span>`).join('')}</div>` : '';
+      const tagsHtml = cmd.tags?.length ? `<div class="cmd-tags">${cmd.tags.map(t => `<button class="cmd-tag${activeTag === t ? ' active' : ''}" data-tag="${escapeHtml(t)}">#${escapeHtml(t)}</button>`).join('')}</div>` : '';
+
+      // Cross-platform equivalents
+      const cpEntries = cpLookup[cmd.name] || [];
+      let cpHtml = '';
+      if (cpEntries.length) {
+        const entry = cpEntries[0];
+        const others = entry.others.filter(o => o.name !== cmd.name);
+        if (others.length) {
+          const items = others.map(o => {
+            const icon = o.platform === 'linux' ? '🐧' : o.platform === 'windows' ? '🪟' : '🤖';
+            const label = platformLabels[o.platform] || o.platform;
+            return `<span class="cp-equiv-item" data-cmd="${escapeHtml(o.name)}" data-platform="${o.platform}">${icon} <code>${escapeHtml(o.name)}</code> <small>${label}</small></span>`;
+          }).join('');
+          cpHtml = `<div class="cmd-cross-platform"><div class="cmd-label">🔄 跨平台对照</div><div class="cp-equiv-list">${items}</div></div>`;
+        }
+      }
 
       let syntaxHtml = '';
       if (cmd.variants?.length) {
@@ -253,7 +288,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
           </div>
         </div>
         <div class="accordion-body"><div class="accordion-content"><div class="accordion-content-inner">
-          ${tagsHtml}<p class="cmd-desc">${escapeHtml(cmd.description)}</p>${syntaxHtml}${scenariosHtml}${relatedHtml}
+          ${tagsHtml}<p class="cmd-desc">${escapeHtml(cmd.description)}</p>${syntaxHtml}${scenariosHtml}${cpHtml}${relatedHtml}
         </div></div></div>
       </div>`;
     }).join('')}</div>`;
@@ -289,6 +324,55 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     if (activeBtn) activeBtn.classList.remove('active');
   }
 
+  // Tag filter re-render
+  function reRenderAccordion(domain: string) {
+    let commands = allCommands[domain] || [];
+    if (activeTag) {
+      commands = commands.filter(cmd => cmd.tags?.includes(activeTag!));
+    }
+    if (container) container.innerHTML = renderAccordion(commands, domain);
+    renderNav(commands);
+    // Update filter bar
+    updateFilterBar();
+    requestAnimationFrame(() => { if ((window as any).initScrollSpy) (window as any).initScrollSpy(); });
+  }
+
+  function updateFilterBar() {
+    const existing = document.getElementById('tag-filter-bar');
+    if (existing) existing.remove();
+    if (!activeTag) return;
+    const mainHeader = document.querySelector('.main-header');
+    if (!mainHeader) return;
+    const bar = document.createElement('div');
+    bar.id = 'tag-filter-bar';
+    bar.className = 'tag-filter-bar';
+    bar.innerHTML = `<span class="tag-filter-label">筛选标签:</span><span class="tag-filter-tag">#${escapeHtml(activeTag)}</span><button class="tag-filter-clear" id="tag-filter-clear">✕ 清除</button>`;
+    mainHeader.insertAdjacentElement('afterend', bar);
+    document.getElementById('tag-filter-clear')?.addEventListener('click', () => {
+      activeTag = null;
+      const currentDomain = (document.querySelector('.sidebar-btn.active') as HTMLElement)?.dataset?.domain || 'linux';
+      reRenderAccordion(currentDomain);
+    });
+  }
+
+  // Cross-platform view
+  function renderCrossPlatformView() {
+    const container = document.getElementById('accordion-container');
+    if (!container) return;
+    const platformIcons: Record<string, string> = { linux: '🐧', windows: '🪟' };
+    const html = crossPlatformGroups.map(g => {
+      const items = g.commands.map(c => {
+        const icon = platformIcons[c.platform] || '🤖';
+        return `<span class="cp-view-item" data-cmd="${escapeHtml(c.name)}" data-platform="${c.platform}">${icon} <code>${escapeHtml(c.name)}</code></span>`;
+      }).join('');
+      return `<div class="cp-view-group"><div class="cp-view-label">${escapeHtml(g.label)}</div><div class="cp-view-items">${items}</div></div>`;
+    }).join('');
+    container.innerHTML = `<div class="cp-view-list">${html}</div>`;
+    // Hide nav
+    const nav = document.getElementById('floating-nav') as HTMLElement;
+    if (nav) nav.style.display = 'none';
+  }
+
   // Initial render
   const container = document.getElementById('accordion-container');
   if (container) container.innerHTML = renderAccordion(allCommands['linux'] || [], 'linux');
@@ -301,10 +385,12 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     const commands = allCommands[domain];
     if (!commands) return;
     loadExpandMemory(domain);
+    activeTag = null;
 
     document.querySelectorAll('.sidebar-btn[data-domain]').forEach(btn => {
       btn.classList.toggle('active', (btn as HTMLElement).dataset.domain === domain);
     });
+    document.getElementById('btn-cross-platform')?.classList.remove('active');
 
     const titleIcon = document.getElementById('title-icon');
     const titleText = document.getElementById('title-text');
@@ -318,6 +404,12 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     if (container) {
       // Show skeleton briefly
       container.innerHTML = Array(8).fill('<div class="skeleton-item"></div>').join('');
+      // Restore nav visibility
+      const nav = document.getElementById('floating-nav') as HTMLElement;
+      if (nav) nav.style.display = '';
+      // Remove filter bar
+      const filterBar = document.getElementById('tag-filter-bar');
+      if (filterBar) filterBar.remove();
       requestAnimationFrame(() => {
         setTimeout(() => {
           container.innerHTML = renderAccordion(commands, domain);
@@ -335,6 +427,44 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
   document.getElementById('domain-sidebar')?.addEventListener('click', (e) => {
     const btn = (e.target as HTMLElement).closest('.sidebar-btn[data-domain]') as HTMLElement;
     if (btn?.dataset.domain) switchDomain(btn.dataset.domain);
+  });
+
+  // Cross-platform button
+  document.getElementById('btn-cross-platform')?.addEventListener('click', () => {
+    // Highlight the button
+    document.querySelectorAll('.sidebar-btn[data-domain]').forEach(b => b.classList.remove('active'));
+    document.getElementById('btn-cross-platform')?.classList.add('active');
+    // Update title
+    const titleIcon = document.getElementById('title-icon');
+    const titleText = document.getElementById('title-text');
+    const subtitle = document.getElementById('main-subtitle');
+    if (titleIcon) titleIcon.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>`;
+    if (titleText) titleText.textContent = '跨平台对照';
+    if (subtitle) subtitle.textContent = `共 ${crossPlatformGroups.length} 组对照 · 点击命令可跳转`;
+    // Render
+    activeTag = null;
+    renderCrossPlatformView();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Cross-platform item click -> jump to command
+  document.getElementById('accordion-container')?.addEventListener('click', (e) => {
+    const item = (e.target as HTMLElement).closest('.cp-view-item, .cp-equiv-item') as HTMLElement;
+    if (!item) return;
+    const cmdName = item.dataset.cmd;
+    const platform = item.dataset.platform;
+    if (!cmdName) return;
+    // Find which domain this command belongs to
+    const domain = platform === 'linux' ? 'linux' : 'windows';
+    switchDomain(domain);
+    setTimeout(() => {
+      const el = document.getElementById(`cmd-${cmdName}`);
+      if (el) {
+        if (!el.classList.contains('open')) el.classList.add('open');
+        const h = el.querySelector('.accordion-header');
+        if (h) { const r = h.getBoundingClientRect(); window.scrollTo({ top: window.scrollY + r.top - 62, behavior: 'smooth' }); }
+      }
+    }, 300);
   });
 
   // Header theme toggle
@@ -358,6 +488,23 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
   // Accordion + copy (event delegation on container)
   document.getElementById('accordion-container')?.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
+
+    // Tag click -> filter
+    const tagBtn = target.closest('.cmd-tag');
+    if (tagBtn) {
+      e.stopPropagation();
+      const tag = (tagBtn as HTMLElement).dataset.tag;
+      if (tag) {
+        if (activeTag === tag) {
+          activeTag = null;
+        } else {
+          activeTag = tag;
+        }
+        const currentDomain = (document.querySelector('.sidebar-btn.active') as HTMLElement)?.dataset?.domain || 'linux';
+        reRenderAccordion(currentDomain);
+      }
+      return;
+    }
 
     // Skip if clicking header-copy-btn (handled by separate handler)
     if (target.closest('.header-copy-btn')) return;

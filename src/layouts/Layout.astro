@@ -488,6 +488,146 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     transform: translateX(-50%) translateY(0);
   }
 
+  /* Tag filter bar */
+  .tag-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.85rem;
+  }
+
+  .tag-filter-label {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+
+  .tag-filter-tag {
+    background: var(--accent);
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+
+  .tag-filter-clear {
+    margin-left: auto;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: all 0.15s;
+  }
+
+  .tag-filter-clear:hover {
+    background: var(--bg-code);
+    color: var(--text);
+  }
+
+  /* Cross-platform equivalents in accordion */
+  .cmd-cross-platform {
+    margin-bottom: 12px;
+  }
+
+  .cp-equiv-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cp-equiv-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 8px;
+    background: var(--bg-code);
+    border: 1px solid var(--border);
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .cp-equiv-item:hover {
+    border-color: var(--accent);
+    background: var(--tag-bg);
+  }
+
+  .cp-equiv-item code {
+    font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .cp-equiv-item small {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+  }
+
+  /* Cross-platform view */
+  .cp-view-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cp-view-group {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg-card);
+    padding: 14px 18px;
+    transition: box-shadow 0.2s;
+  }
+
+  .cp-view-group:hover {
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .cp-view-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .cp-view-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cp-view-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    background: var(--bg-code);
+    border: 1px solid var(--border);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .cp-view-item:hover {
+    border-color: var(--accent);
+    background: var(--tag-bg);
+  }
+
+  .cp-view-item code {
+    font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
   .nav-letter {
     font-size: 0.7rem;
     font-weight: 700;
@@ -773,6 +913,19 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     border: 1px solid var(--border);
     font-weight: 500;
     letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .cmd-tag:hover {
+    border-color: var(--accent);
+    background: var(--tag-bg);
+  }
+
+  .cmd-tag.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
   }
 
   .cmd-desc {
