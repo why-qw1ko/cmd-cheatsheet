@@ -1,0 +1,24 @@
+{
+  "name": "/mcp",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "config",
+  "tags": [
+    "mcp",
+    "server",
+    "tools"
+  ],
+  "description": "管理 MCP（Model Context Protocol）服务器连接。查看可用工具和服务器状态。",
+  "syntax": "/mcp [action]",
+  "platform": "slash",
+  "scenarios": [
+    "查看已连接的 MCP 服务器",
+    "检查 MCP 工具是否可用",
+    "排查 MCP 连接问题"
+  ],
+  "related": [
+    "/config",
+    "/permissions"
+  ],
+  "example": "/mcp"
+}

@@ -54,7 +54,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     </div>
 
     <div class="header-right">
-      <span class="header-stat-badge" id="header-stat-badge">63 条命令</span>
+      <span class="header-stat-badge" id="header-stat-badge">{linuxCmds.length + claudeCmds.length + windowsCmds.length} 条命令</span>
       <a class="header-link" href="https://github.com/why-qw1ko/cmd-cheatsheet/releases" target="_blank" rel="noopener" title="更新日志">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         <span>更新日志</span>
@@ -186,6 +186,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     'kill': 'high', 'pkill': 'high', 'killall': 'high',
     'shutdown': 'high', 'format': 'high', 'reg': 'mid',
     'chmod': 'mid', 'chown': 'mid', 'sfc': 'mid', 'del': 'mid',
+    'taskkill': 'high', 'Stop-Process': 'high',
   };
   const dangerLabel: Record<string, string> = { high: '高危', mid: '中危' };
   const dangerClass: Record<string, string> = { high: 'danger-high', mid: 'danger-mid' };
@@ -270,10 +271,11 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     const letters = Object.keys(groups).sort();
     let html = '';
     letters.forEach(letter => {
-      html += `<div class="nav-letter" data-letter="${letter}">${letter}</div>`;
+      html += `<div class="nav-letter-group" data-letter="${letter}"><div class="nav-letter">${letter}</div>`;
       groups[letter].forEach(cmd => {
         html += `<a class="floating-nav-link" href="#cmd-${cmd.name}" data-target="${cmd.name}" data-letter="${letter}"><span>${escapeHtml(cmd.name)}</span></a>`;
       });
+      html += `</div>`;
     });
     navList.innerHTML = html;
     // Update letter index
@@ -409,7 +411,15 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     if (!link) return;
     e.preventDefault();
     const targetName = link.dataset.target;
-    const el = document.getElementById(`cmd-${targetName}`);
+    const activeLetterBtn = document.querySelector('.letter-btn.active');
+    let el: HTMLElement | null = null;
+    if (activeLetterBtn) {
+      // Letter filter active - only look in visible group
+      const activeGroup = document.querySelector('.nav-letter-group:not(.hidden)');
+      el = activeGroup?.querySelector(`[data-target="${targetName}"]`) as HTMLElement | null;
+    } else {
+      el = document.getElementById(`cmd-${targetName}`);
+    }
     if (el) {
       if (!el.classList.contains('open')) el.classList.add('open');
       const header = el.querySelector('.accordion-header');

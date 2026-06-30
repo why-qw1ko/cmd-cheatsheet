@@ -1,0 +1,25 @@
+{
+  "name": "robocopy",
+  "aliases": [],
+  "domain": "windows",
+  "category": "file",
+  "tags": [
+    "copy",
+    "backup",
+    "sync",
+    "robust"
+  ],
+  "description": "强大的文件复制工具，支持增量复制、断点续传、多线程和详细日志。Windows 备份的首选。",
+  "syntax": "robocopy 源目录 目标目录 [选项]",
+  "scenarios": [
+    "增量备份重要数据",
+    "迁移大量文件到新磁盘",
+    "同步两个目录的内容"
+  ],
+  "related": [
+    "xcopy",
+    "copy",
+    "rsync"
+  ],
+  "example": "robocopy C:\\Data D:\\Backup /MIR /R:3 /W:5 /LOG:backup.log"
+}

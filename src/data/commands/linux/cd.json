@@ -1,0 +1,17 @@
+{
+  "name": "cd",
+  "aliases": ["chdir"],
+  "domain": "linux",
+  "category": "file",
+  "tags": ["directory", "navigation", "path"],
+  "description": "切换当前工作目录。不带参数时回到用户主目录，支持相对路径、绝对路径和特殊符号（~、-、..）。",
+  "syntax": "cd [目录]",
+  "scenarios": [
+    "进入指定目录（cd /var/log）",
+    "回到上一次所在的目录（cd -）",
+    "回到用户主目录（cd ~ 或 cd）",
+    "进入上级目录（cd ..）"
+  ],
+  "related": ["pwd", "ls", "mkdir"],
+  "example": "cd /var/log && ls -la"
+}

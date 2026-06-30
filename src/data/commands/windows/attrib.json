@@ -1,0 +1,23 @@
+{
+  "name": "attrib",
+  "aliases": [],
+  "domain": "windows",
+  "category": "file",
+  "tags": [
+    "attribute",
+    "readonly",
+    "hidden"
+  ],
+  "description": "查看或修改文件属性（只读、隐藏、系统、归档）。",
+  "syntax": "attrib [+|-属性] 文件",
+  "scenarios": [
+    "查看文件属性",
+    "隐藏文件（attrib +h secret.txt）",
+    "去除只读属性（attrib -r file.txt）"
+  ],
+  "related": [
+    "dir",
+    "icacls"
+  ],
+  "example": "attrib +h +s important.dat"
+}

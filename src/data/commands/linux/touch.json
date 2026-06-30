@@ -1,0 +1,24 @@
+{
+    "name": "touch",
+    "aliases": [],
+    "domain": "linux",
+    "category": "file",
+    "tags": [
+        "file",
+        "create",
+        "timestamp"
+    ],
+    "description": "\u521b\u5efa\u7a7a\u6587\u4ef6\u6216\u66f4\u65b0\u6587\u4ef6\u7684\u65f6\u95f4\u6233\u3002\u5982\u679c\u6587\u4ef6\u5df2\u5b58\u5728\uff0c\u4ec5\u66f4\u65b0\u8bbf\u95ee\u548c\u4fee\u6539\u65f6\u95f4\u3002",
+    "syntax": "touch [\u9009\u9879] \u6587\u4ef6...",
+    "scenarios": [
+        "\u5feb\u901f\u521b\u5efa\u7a7a\u6587\u4ef6",
+        "\u6279\u91cf\u521b\u5efa\u6d4b\u8bd5\u6587\u4ef6\uff08touch file{1..100}.txt\uff09",
+        "\u66f4\u65b0\u6587\u4ef6\u65f6\u95f4\u6233\u4f7f\u5176\u4e0d\u88ab\u6e05\u7406"
+    ],
+    "related": [
+        "mkdir",
+        "cp",
+        "stat"
+    ],
+    "example": "touch newfile.txt"
+}

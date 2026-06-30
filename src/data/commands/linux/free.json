@@ -1,0 +1,24 @@
+{
+  "name": "free",
+  "aliases": [],
+  "domain": "linux",
+  "category": "system",
+  "tags": [
+    "memory",
+    "ram",
+    "swap"
+  ],
+  "description": "显示系统内存使用情况，包括物理内存、交换空间和可用内存。排查内存问题的第一步。",
+  "syntax": "free [选项]",
+  "scenarios": [
+    "查看当前内存使用情况",
+    "以人类可读格式显示（free -h）",
+    "持续监控内存变化（free -s 2）"
+  ],
+  "related": [
+    "top",
+    "ps",
+    "vmstat"
+  ],
+  "example": "free -h"
+}

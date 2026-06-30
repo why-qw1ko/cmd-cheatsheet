@@ -1,0 +1,24 @@
+{
+    "name": "rsync",
+    "aliases": [],
+    "domain": "linux",
+    "category": "network",
+    "tags": [
+        "sync",
+        "backup",
+        "transfer"
+    ],
+    "description": "\u9ad8\u6548\u7684\u6587\u4ef6\u540c\u6b65\u5de5\u5177\uff0c\u4ec5\u4f20\u8f93\u5dee\u5f02\u90e8\u5206\u3002\u652f\u6301\u672c\u5730\u548c\u8fdc\u7a0b\u540c\u6b65\uff0c\u662f\u5907\u4efd\u548c\u90e8\u7f72\u7684\u9996\u9009\u5de5\u5177\u3002",
+    "syntax": "rsync [\u9009\u9879] \u6e90 \u76ee\u6807",
+    "scenarios": [
+        "\u589e\u91cf\u5907\u4efd\u76ee\u5f55",
+        "\u540c\u6b65\u8fdc\u7a0b\u670d\u52a1\u5668\u6587\u4ef6",
+        "\u90e8\u7f72\u4ee3\u7801\u5230\u751f\u4ea7\u73af\u5883"
+    ],
+    "related": [
+        "scp",
+        "cp",
+        "tar"
+    ],
+    "example": "rsync -avz --progress ./dist/ user@server:/var/www/html/"
+}

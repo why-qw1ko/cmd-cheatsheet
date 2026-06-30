@@ -1,0 +1,24 @@
+{
+  "name": "uname",
+  "aliases": [],
+  "domain": "linux",
+  "category": "system",
+  "tags": [
+    "system",
+    "kernel",
+    "info"
+  ],
+  "description": "打印系统信息，包括内核名称、版本、架构等。排查兼容性问题时常用。",
+  "syntax": "uname [选项]",
+  "scenarios": [
+    "查看内核版本（uname -r）",
+    "查看系统架构（uname -m）",
+    "查看完整系统信息（uname -a）"
+  ],
+  "related": [
+    "hostnamectl",
+    "lsb_release",
+    "cat /etc/os-release"
+  ],
+  "example": "uname -a"
+}

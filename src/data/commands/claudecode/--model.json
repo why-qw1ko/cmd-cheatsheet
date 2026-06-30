@@ -1,0 +1,22 @@
+{
+  "name": "--model",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "cli",
+  "tags": [
+    "model",
+    "selection"
+  ],
+  "description": "指定使用的模型。可以在启动时选择不同的 Claude 模型版本。",
+  "syntax": "claude --model MODEL_NAME",
+  "scenarios": [
+    "使用特定模型版本",
+    "测试不同模型的表现",
+    "在脚本中指定模型"
+  ],
+  "related": [
+    "/model",
+    "/config"
+  ],
+  "example": "claude --model claude-sonnet-4-20250514"
+}

@@ -1,0 +1,24 @@
+{
+    "name": "diff",
+    "aliases": [],
+    "domain": "linux",
+    "category": "text",
+    "tags": [
+        "compare",
+        "patch",
+        "difference"
+    ],
+    "description": "\u9010\u884c\u6bd4\u8f83\u4e24\u4e2a\u6587\u4ef6\u7684\u5dee\u5f02\u3002\u652f\u6301\u5e76\u6392\u5bf9\u6bd4\u548c\u751f\u6210\u8865\u4e01\u6587\u4ef6\uff0c\u662f\u7248\u672c\u63a7\u5236\u548c\u4ee3\u7801\u5ba1\u67e5\u7684\u57fa\u7840\u5de5\u5177\u3002",
+    "syntax": "diff [\u9009\u9879] \u6587\u4ef61 \u6587\u4ef62",
+    "scenarios": [
+        "\u6bd4\u8f83\u4e24\u4e2a\u914d\u7f6e\u6587\u4ef6\u7684\u5dee\u5f02",
+        "\u751f\u6210\u8865\u4e01\u6587\u4ef6\uff08diff -u old new > patch.diff\uff09",
+        "\u6bd4\u8f83\u4e24\u4e2a\u76ee\u5f55\u7684\u5185\u5bb9\uff08diff -r dir1/ dir2/\uff09"
+    ],
+    "related": [
+        "patch",
+        "cmp",
+        "comm"
+    ],
+    "example": "diff -u config.old config.new"
+}

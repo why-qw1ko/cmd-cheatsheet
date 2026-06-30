@@ -2,5 +2,5 @@
   "label": "Windows",
   "icon": "🪟",
   "order": 3,
-  "categories": ["file", "network", "system", "process", "package"]
+  "categories": ["file", "network", "system", "process", "package", "text", "config", "session", "cli"]
 }

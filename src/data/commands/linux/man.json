@@ -1,0 +1,27 @@
+{
+    "name": "man",
+    "aliases": [
+        "info",
+        "help"
+    ],
+    "domain": "linux",
+    "category": "system",
+    "tags": [
+        "manual",
+        "help",
+        "documentation"
+    ],
+    "description": "\u67e5\u770b\u547d\u4ee4\u7684\u5b98\u65b9\u624b\u518c\u9875\u3002\u5305\u542b\u8be6\u7ec6\u7684\u7528\u6cd5\u8bf4\u660e\u3001\u9009\u9879\u89e3\u91ca\u548c\u793a\u4f8b\uff0c\u662f Linux \u6700\u6743\u5a01\u7684\u53c2\u8003\u8d44\u6599\u3002",
+    "syntax": "man [\u7ae0\u8282] \u547d\u4ee4",
+    "scenarios": [
+        "\u67e5\u770b\u547d\u4ee4\u7684\u5b8c\u6574\u7528\u6cd5",
+        "\u641c\u7d22\u624b\u518c\u4e2d\u7684\u5173\u952e\u5b57\uff08man -k keyword\uff09",
+        "\u67e5\u770b\u914d\u7f6e\u6587\u4ef6\u683c\u5f0f\uff08man 5 crontab\uff09"
+    ],
+    "related": [
+        "help",
+        "info",
+        "apropos"
+    ],
+    "example": "man grep"
+}

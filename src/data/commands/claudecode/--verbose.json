@@ -1,0 +1,23 @@
+{
+  "name": "--verbose",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "cli",
+  "tags": [
+    "debug",
+    "verbose",
+    "log"
+  ],
+  "description": "启用详细输出模式。显示更多的执行信息，便于调试。",
+  "syntax": "claude --verbose 'prompt'",
+  "scenarios": [
+    "调试 Claude 的执行过程",
+    "查看工具调用的详细信息",
+    "排查响应异常"
+  ],
+  "related": [
+    "--output-format",
+    "/doctor"
+  ],
+  "example": "claude --verbose '修复这个 bug'"
+}

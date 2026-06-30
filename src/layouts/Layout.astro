@@ -236,9 +236,12 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
   }
 
   /* Theme toggle icons */
-  .theme-icon-dark { display: none; }
-  [data-theme="dark"] .theme-icon-light { display: none; }
-  [data-theme="dark"] .theme-icon-dark { display: flex; }
+  .theme-icon-dark,
+  .sidebar-icon.theme-icon-dark { display: none; }
+  [data-theme="dark"] .theme-icon-light,
+  [data-theme="dark"] .sidebar-icon.theme-icon-light { display: none; }
+  [data-theme="dark"] .theme-icon-dark,
+  [data-theme="dark"] .sidebar-icon.theme-icon-dark { display: flex; }
 
   /* ==================== Body Layout ==================== */
   .body-layout {
@@ -456,6 +459,10 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
   .letter-btn.active {
     background: var(--accent);
     color: #fff;
+  }
+
+  .nav-letter-group.hidden {
+    display: none;
   }
 
   .nav-letter {

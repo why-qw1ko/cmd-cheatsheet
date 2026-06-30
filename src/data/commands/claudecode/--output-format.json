@@ -1,0 +1,23 @@
+{
+  "name": "--output-format",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "cli",
+  "tags": [
+    "format",
+    "json",
+    "stream"
+  ],
+  "description": "指定输出格式。支持纯文本、JSON 和流式 JSON，方便程序化处理。",
+  "syntax": "claude --output-format json 'prompt'",
+  "scenarios": [
+    "需要结构化输出供程序解析",
+    "流式获取增量结果",
+    "集成到自动化工作流"
+  ],
+  "related": [
+    "--print",
+    "--verbose"
+  ],
+  "example": "claude -p --output-format json '分析这个文件'"
+}

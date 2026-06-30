@@ -1,0 +1,25 @@
+{
+  "name": "--print",
+  "aliases": [
+    "-p"
+  ],
+  "domain": "claudecode",
+  "category": "cli",
+  "tags": [
+    "non-interactive",
+    "script",
+    "batch"
+  ],
+  "description": "非交互模式，直接输出结果后退出。适用于脚本集成和批处理场景。",
+  "syntax": "claude --print 'prompt'",
+  "scenarios": [
+    "在 CI/CD 脚本中调用 Claude",
+    "批量处理文件",
+    "将 Claude 输出管道给其他命令"
+  ],
+  "related": [
+    "--output-format",
+    "--max-turns"
+  ],
+  "example": "claude -p '解释这段代码的作用' < main.py"
+}

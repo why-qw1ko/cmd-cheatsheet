@@ -1,0 +1,24 @@
+{
+    "name": "ln",
+    "aliases": [],
+    "domain": "linux",
+    "category": "file",
+    "tags": [
+        "link",
+        "symlink",
+        "hardlink"
+    ],
+    "description": "\u521b\u5efa\u786c\u94fe\u63a5\u6216\u7b26\u53f7\u94fe\u63a5\uff08\u8f6f\u94fe\u63a5\uff09\u3002\u7b26\u53f7\u94fe\u63a5\u53ef\u4ee5\u8de8\u6587\u4ef6\u7cfb\u7edf\uff0c\u7c7b\u4f3c Windows \u7684\u5feb\u6377\u65b9\u5f0f\u3002",
+    "syntax": "ln [\u9009\u9879] \u76ee\u6807 \u94fe\u63a5\u540d",
+    "scenarios": [
+        "\u521b\u5efa\u7b26\u53f7\u94fe\u63a5\uff08ln -s /usr/bin/python3 /usr/bin/python\uff09",
+        "\u4e3a\u957f\u8def\u5f84\u521b\u5efa\u77ed\u522b\u540d",
+        "\u94fe\u63a5\u5171\u4eab\u5e93\u6587\u4ef6"
+    ],
+    "related": [
+        "cp",
+        "mv",
+        "readlink"
+    ],
+    "example": "ln -s /opt/app/config.yaml ~/app-config.yaml"
+}

@@ -1,0 +1,23 @@
+{
+    "name": "pwd",
+    "aliases": [],
+    "domain": "linux",
+    "category": "file",
+    "tags": [
+        "directory",
+        "path",
+        "current"
+    ],
+    "description": "\u6253\u5370\u5f53\u524d\u5de5\u4f5c\u76ee\u5f55\u7684\u5b8c\u6574\u8def\u5f84\u3002\u5e38\u7528\u4e8e\u811a\u672c\u4e2d\u83b7\u53d6\u5f53\u524d\u8def\u5f84\u6216\u786e\u8ba4\u5f53\u524d\u4f4d\u7f6e\u3002",
+    "syntax": "pwd [-LP]",
+    "scenarios": [
+        "\u786e\u8ba4\u5f53\u524d\u6240\u5728\u76ee\u5f55",
+        "\u5728\u811a\u672c\u4e2d\u83b7\u53d6\u5f53\u524d\u8def\u5f84",
+        "\u533a\u5206\u7b26\u53f7\u94fe\u63a5\u548c\u7269\u7406\u8def\u5f84\uff08pwd -P\uff09"
+    ],
+    "related": [
+        "cd",
+        "ls"
+    ],
+    "example": "pwd"
+}

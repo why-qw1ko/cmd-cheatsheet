@@ -1,0 +1,25 @@
+{
+    "name": "lsof",
+    "aliases": [],
+    "domain": "linux",
+    "category": "system",
+    "tags": [
+        "file",
+        "open",
+        "socket",
+        "process"
+    ],
+    "description": "\u5217\u51fa\u5f53\u524d\u7cfb\u7edf\u6253\u5f00\u7684\u6587\u4ef6\u3002\u5728 Linux \u4e2d\u4e00\u5207\u7686\u6587\u4ef6\uff0clsof \u53ef\u4ee5\u67e5\u770b\u8fdb\u7a0b\u6253\u5f00\u7684\u6587\u4ef6\u3001\u7f51\u7edc\u8fde\u63a5\u7b49\u3002",
+    "syntax": "lsof [\u9009\u9879]",
+    "scenarios": [
+        "\u67e5\u770b\u54ea\u4e2a\u8fdb\u7a0b\u5360\u7528\u4e86\u67d0\u7aef\u53e3\uff08lsof -i :8080\uff09",
+        "\u67e5\u770b\u67d0\u8fdb\u7a0b\u6253\u5f00\u4e86\u54ea\u4e9b\u6587\u4ef6\uff08lsof -p PID\uff09",
+        "\u67e5\u770b\u67d0\u6587\u4ef6\u88ab\u54ea\u4e2a\u8fdb\u7a0b\u4f7f\u7528\uff08lsof /var/log/syslog\uff09"
+    ],
+    "related": [
+        "ss",
+        "netstat",
+        "fuser"
+    ],
+    "example": "lsof -i :3000"
+}

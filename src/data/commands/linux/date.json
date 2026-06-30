@@ -1,0 +1,24 @@
+{
+  "name": "date",
+  "aliases": [],
+  "domain": "linux",
+  "category": "system",
+  "tags": [
+    "time",
+    "clock",
+    "format"
+  ],
+  "description": "显示或设置系统日期和时间。支持自定义格式输出，常用于日志时间戳和脚本中。",
+  "syntax": "date [选项] [+格式]",
+  "scenarios": [
+    "获取当前时间（自定义格式）",
+    "生成日志文件名（date +%Y%m%d）",
+    "计算时间差（date -d '3 days ago'）"
+  ],
+  "related": [
+    "timedatectl",
+    "cal",
+    "hwclock"
+  ],
+  "example": "date '+%Y-%m-%d %H:%M:%S'"
+}

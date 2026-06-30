@@ -1,0 +1,24 @@
+{
+  "name": "/bug",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "review",
+  "tags": [
+    "bug",
+    "report",
+    "issue"
+  ],
+  "description": "报告 Claude Code 的 bug。会自动收集上下文信息并生成 GitHub Issue。",
+  "syntax": "/bug [描述]",
+  "platform": "slash",
+  "scenarios": [
+    "遇到异常行为时报告 bug",
+    "提交功能请求",
+    "反馈模型输出问题"
+  ],
+  "related": [
+    "/doctor",
+    "/help"
+  ],
+  "example": "/bug 代码补全时出现无限循环"
+}

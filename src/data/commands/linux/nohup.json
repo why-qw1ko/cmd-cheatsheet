@@ -1,0 +1,24 @@
+{
+    "name": "nohup",
+    "aliases": [],
+    "domain": "linux",
+    "category": "process",
+    "tags": [
+        "background",
+        "detach",
+        "persist"
+    ],
+    "description": "\u8ba9\u547d\u4ee4\u5728\u540e\u53f0\u6301\u7eed\u8fd0\u884c\uff0c\u5373\u4f7f\u7ec8\u7aef\u5173\u95ed\u4e5f\u4e0d\u4f1a\u88ab SIGHUP \u4fe1\u53f7\u7ec8\u6b62\u3002\u5e38\u7528\u4e8e\u957f\u65f6\u95f4\u8fd0\u884c\u7684\u4efb\u52a1\u3002",
+    "syntax": "nohup \u547d\u4ee4 &",
+    "scenarios": [
+        "\u540e\u53f0\u8fd0\u884c\u957f\u65f6\u95f4\u811a\u672c",
+        "\u670d\u52a1\u5668\u4e0a\u542f\u52a8\u670d\u52a1\u4e0d\u88ab\u7ec8\u7aef\u65ad\u5f00\u5f71\u54cd",
+        "\u914d\u5408 & \u7b26\u53f7\u5b9e\u73b0\u540e\u53f0\u8fd0\u884c"
+    ],
+    "related": [
+        "screen",
+        "tmux",
+        "disown"
+    ],
+    "example": "nohup python train.py > train.log 2>&1 &"
+}

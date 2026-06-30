@@ -1,0 +1,24 @@
+{
+    "name": "file",
+    "aliases": [],
+    "domain": "linux",
+    "category": "file",
+    "tags": [
+        "filetype",
+        "detect",
+        "magic"
+    ],
+    "description": "\u68c0\u6d4b\u6587\u4ef6\u7c7b\u578b\u3002\u901a\u8fc7\u6587\u4ef6\u5185\u5bb9\uff08magic bytes\uff09\u800c\u975e\u6269\u5c55\u540d\u5224\u65ad\uff0c\u5e38\u7528\u4e8e\u6392\u67e5\u672a\u77e5\u6587\u4ef6\u3002",
+    "syntax": "file [\u9009\u9879] \u6587\u4ef6...",
+    "scenarios": [
+        "\u68c0\u6d4b\u672a\u77e5\u6587\u4ef6\u7684\u771f\u5b9e\u7c7b\u578b",
+        "\u786e\u8ba4\u6587\u4ef6\u662f\u5426\u4e3a\u4e8c\u8fdb\u5236\u6216\u6587\u672c",
+        "\u68c0\u67e5\u538b\u7f29\u6587\u4ef6\u7c7b\u578b"
+    ],
+    "related": [
+        "stat",
+        "ls",
+        "xxd"
+    ],
+    "example": "file suspicious.dat"
+}

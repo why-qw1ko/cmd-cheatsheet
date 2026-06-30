@@ -1,0 +1,23 @@
+{
+  "name": "--system-prompt",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "cli",
+  "tags": [
+    "system",
+    "prompt",
+    "custom"
+  ],
+  "description": "自定义系统提示词。覆盖默认行为，适用于特定场景的需求。",
+  "syntax": "claude --system-prompt 'prompt'",
+  "scenarios": [
+    "自定义 Claude 的角色和行为",
+    "添加项目特定的上下文",
+    "在脚本中设定特定的执行规则"
+  ],
+  "related": [
+    "--print",
+    "--model"
+  ],
+  "example": "claude --system-prompt '你是 Python 专家' '优化这段代码'"
+}

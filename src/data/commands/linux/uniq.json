@@ -1,0 +1,24 @@
+{
+    "name": "uniq",
+    "aliases": [],
+    "domain": "linux",
+    "category": "text",
+    "tags": [
+        "deduplicate",
+        "unique",
+        "filter"
+    ],
+    "description": "\u53bb\u9664\u6216\u7edf\u8ba1\u76f8\u90bb\u7684\u91cd\u590d\u884c\u3002\u901a\u5e38\u4e0e sort \u914d\u5408\u4f7f\u7528\uff0c\u5148\u6392\u5e8f\u518d\u53bb\u91cd\u3002",
+    "syntax": "uniq [\u9009\u9879] [\u8f93\u5165] [\u8f93\u51fa]",
+    "scenarios": [
+        "\u53bb\u9664\u91cd\u590d\u884c\uff08sort file | uniq\uff09",
+        "\u7edf\u8ba1\u6bcf\u884c\u51fa\u73b0\u6b21\u6570\uff08sort file | uniq -c\uff09",
+        "\u53ea\u663e\u793a\u91cd\u590d\u884c\uff08uniq -d\uff09"
+    ],
+    "related": [
+        "sort",
+        "wc",
+        "cut"
+    ],
+    "example": "sort access.log | uniq -c | sort -rn | head -20"
+}

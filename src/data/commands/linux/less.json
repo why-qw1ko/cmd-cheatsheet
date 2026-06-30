@@ -1,0 +1,25 @@
+{
+    "name": "less",
+    "aliases": [],
+    "domain": "linux",
+    "category": "text",
+    "tags": [
+        "pager",
+        "view",
+        "scroll"
+    ],
+    "description": "\u5206\u9875\u67e5\u770b\u6587\u4ef6\u5185\u5bb9\uff0c\u652f\u6301\u5411\u524d/\u5411\u540e\u6eda\u52a8\u3001\u641c\u7d22\u548c\u8df3\u8f6c\u3002\u6bd4 more \u66f4\u5f3a\u5927\uff0c\u662f\u65e5\u5fd7\u67e5\u770b\u7684\u9996\u9009\u5de5\u5177\u3002",
+    "syntax": "less [\u9009\u9879] \u6587\u4ef6",
+    "scenarios": [
+        "\u67e5\u770b\u5927\u65e5\u5fd7\u6587\u4ef6\uff08\u4e0d\u52a0\u8f7d\u5168\u90e8\u5185\u5bb9\uff09",
+        "\u914d\u5408\u7ba1\u9053\u4f7f\u7528\uff08dmesg | less\uff09",
+        "\u5728\u6587\u4ef6\u4e2d\u641c\u7d22\u5173\u952e\u5b57\uff08/pattern\uff09"
+    ],
+    "related": [
+        "more",
+        "head",
+        "tail",
+        "cat"
+    ],
+    "example": "less /var/log/syslog"
+}

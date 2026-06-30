@@ -1,0 +1,24 @@
+{
+  "name": "/approved-tools",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "config",
+  "tags": [
+    "tools",
+    "approved",
+    "permission"
+  ],
+  "description": "查看和管理已批准的工具列表。控制 Claude 可以使用哪些工具。",
+  "syntax": "/approved-tools",
+  "platform": "slash",
+  "scenarios": [
+    "查看当前批准的工具",
+    "管理工具权限",
+    "安全审计"
+  ],
+  "related": [
+    "/permissions",
+    "--allowedTools"
+  ],
+  "example": "/approved-tools"
+}

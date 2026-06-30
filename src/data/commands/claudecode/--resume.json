@@ -1,0 +1,23 @@
+{
+  "name": "--resume",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "session",
+  "tags": [
+    "resume",
+    "continue",
+    "session"
+  ],
+  "description": "恢复之前的会话。可以继续上次中断的对话。",
+  "syntax": "claude --resume [session_id]",
+  "scenarios": [
+    "继续昨天未完成的工作",
+    "恢复意外中断的会话",
+    "回顾之前的对话内容"
+  ],
+  "related": [
+    "/resume",
+    "/clear"
+  ],
+  "example": "claude --resume"
+}

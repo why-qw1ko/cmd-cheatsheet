@@ -1,0 +1,24 @@
+{
+    "name": "crontab",
+    "aliases": [],
+    "domain": "linux",
+    "category": "config",
+    "tags": [
+        "schedule",
+        "cron",
+        "timer"
+    ],
+    "description": "\u7ba1\u7406\u7528\u6237\u7ea7\u5b9a\u65f6\u4efb\u52a1\u3002\u901a\u8fc7 cron \u8868\u8fbe\u5f0f\u8bbe\u5b9a\u5468\u671f\u6027\u6267\u884c\u7684\u547d\u4ee4\uff0c\u662f Linux \u5b9a\u65f6\u4efb\u52a1\u7684\u6807\u51c6\u65b9\u5f0f\u3002",
+    "syntax": "crontab [\u9009\u9879]",
+    "scenarios": [
+        "\u8bbe\u7f6e\u5b9a\u65f6\u5907\u4efd\u4efb\u52a1",
+        "\u67e5\u770b\u5f53\u524d\u7528\u6237\u7684\u5b9a\u65f6\u4efb\u52a1\uff08crontab -l\uff09",
+        "\u7f16\u8f91\u5b9a\u65f6\u4efb\u52a1\uff08crontab -e\uff09"
+    ],
+    "related": [
+        "at",
+        "systemctl",
+        "anacron"
+    ],
+    "example": "0 2 * * * /home/user/backup.sh"
+}

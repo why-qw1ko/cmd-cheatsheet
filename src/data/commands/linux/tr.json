@@ -1,0 +1,24 @@
+{
+  "name": "tr",
+  "aliases": [],
+  "domain": "linux",
+  "category": "text",
+  "tags": [
+    "translate",
+    "replace",
+    "transform"
+  ],
+  "description": "字符级转换或删除。支持字符集映射、大小写转换和删除指定字符。",
+  "syntax": "tr [选项] 字符集1 [字符集2]",
+  "scenarios": [
+    "大小写转换（tr a-z A-Z）",
+    "删除换行符（tr -d '\\n'）",
+    "压缩连续空格（tr -s ' '）"
+  ],
+  "related": [
+    "sed",
+    "awk",
+    "cut"
+  ],
+  "example": "cat file.txt | tr -s ' ' | tr '\\t' ','"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "--max-turns",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "cli",
+  "tags": [
+    "limit",
+    "turns",
+    "safety"
+  ],
+  "description": "限制对话的最大轮数。防止 agent 循环执行，提高安全性。",
+  "syntax": "claude --max-turns N 'prompt'",
+  "scenarios": [
+    "限制自动执行的步数",
+    "在脚本中控制执行时间",
+    "防止意外的无限循环"
+  ],
+  "related": [
+    "--print",
+    "--timeout"
+  ],
+  "example": "claude --max-turns 5 '重构这个函数'"
+}

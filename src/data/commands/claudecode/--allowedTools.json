@@ -1,0 +1,23 @@
+{
+  "name": "--allowedTools",
+  "aliases": [],
+  "domain": "claudecode",
+  "category": "cli",
+  "tags": [
+    "tools",
+    "permission",
+    "security"
+  ],
+  "description": "指定允许使用的工具列表。限制 Claude 可调用的工具，提高安全性。",
+  "syntax": "claude --allowedTools tool1,tool2",
+  "scenarios": [
+    "限制只读操作",
+    "在 CI 环境中限制工具访问",
+    "精确控制 Claude 的能力范围"
+  ],
+  "related": [
+    "/permissions",
+    "--disallowedTools"
+  ],
+  "example": "claude --allowedTools Read,Glob,Grep '分析代码结构'"
+}

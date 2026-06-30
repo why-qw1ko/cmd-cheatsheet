@@ -1,0 +1,24 @@
+{
+  "name": "alias",
+  "aliases": [],
+  "domain": "linux",
+  "category": "config",
+  "tags": [
+    "shortcut",
+    "command",
+    "shell"
+  ],
+  "description": "为常用命令创建简短别名。仅在当前 shell 会话有效，持久化需写入 ~/.bashrc 或 ~/.zshrc。",
+  "syntax": "alias 名称='命令'",
+  "scenarios": [
+    "创建常用命令的短别名",
+    "覆盖危险命令的默认行为（alias rm='rm -i'）",
+    "查看所有已定义的别名"
+  ],
+  "related": [
+    "unalias",
+    "bashrc",
+    "zshrc"
+  ],
+  "example": "alias ll='ls -alF'"
+}
