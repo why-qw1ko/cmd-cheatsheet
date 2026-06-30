@@ -519,8 +519,12 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     if (!active) return;
     const domain = active.dataset.domain;
     const name = active.dataset.name;
-    if (domain) switchDomain(domain);
+    const currentDomain = (document.querySelector('.sidebar-btn.active') as HTMLElement)?.dataset?.domain || 'linux';
+    const needSwitch = domain && domain !== currentDomain;
+    if (needSwitch) switchDomain(domain);
     closeSearch();
+    // Wait longer if switching domain (needs time for accordion re-render)
+    const delay = needSwitch ? 300 : 50;
     setTimeout(() => {
       const el = document.getElementById(`cmd-${name}`);
       if (el) {
@@ -528,7 +532,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
         const h = el.querySelector('.accordion-header');
         if (h) { const r = h.getBoundingClientRect(); window.scrollTo({ top: window.scrollY + r.top - 62, behavior: 'smooth' }); }
       }
-    }, 50);
+    }, delay);
   }
 
   // Search event handlers
@@ -554,8 +558,11 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     if (!item) return;
     const domain = item.dataset.domain;
     const name = item.dataset.name;
-    if (domain) switchDomain(domain);
+    const currentDomain = (document.querySelector('.sidebar-btn.active') as HTMLElement)?.dataset?.domain || 'linux';
+    const needSwitch = domain && domain !== currentDomain;
+    if (needSwitch) switchDomain(domain);
     closeSearch();
+    const delay = needSwitch ? 300 : 50;
     setTimeout(() => {
       const el = document.getElementById(`cmd-${name}`);
       if (el) {
@@ -563,7 +570,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
         const h = el.querySelector('.accordion-header');
         if (h) { const r = h.getBoundingClientRect(); window.scrollTo({ top: window.scrollY + r.top - 62, behavior: 'smooth' }); }
       }
-    }, 50);
+    }, delay);
   });
 
   // Ctrl+K shortcut
