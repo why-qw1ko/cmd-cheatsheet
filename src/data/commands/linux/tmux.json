@@ -1,0 +1,24 @@
+{
+  "name": "tmux",
+  "aliases": [],
+  "domain": "linux",
+  "category": "session",
+  "tags": [
+    "terminal",
+    "session",
+    "split",
+    "detach"
+  ],
+  "description": "现代化的终端复用器。支持分屏、会话分离和恢复，是 screen 的替代品。",
+  "syntax": "tmux [命令]",
+  "scenarios": [
+    "分屏显示多个终端",
+    "后台运行任务并随时恢复",
+    "远程协作调试"
+  ],
+  "related": [
+    "screen",
+    "nohup"
+  ],
+  "example": "tmux new -s dev"
+}

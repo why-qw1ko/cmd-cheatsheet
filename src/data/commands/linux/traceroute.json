@@ -1,0 +1,27 @@
+{
+  "name": "traceroute",
+  "aliases": [
+    "tracert"
+  ],
+  "domain": "linux",
+  "category": "network",
+  "tags": [
+    "network",
+    "route",
+    "trace",
+    "hop"
+  ],
+  "description": "追踪数据包到达目标主机的路由路径。显示每一跳的地址和延迟，用于排查网络问题。",
+  "syntax": "traceroute [选项] 主机",
+  "scenarios": [
+    "排查网络延迟在哪个节点",
+    "查看数据包经过的路由",
+    "诊断网络连接问题"
+  ],
+  "related": [
+    "ping",
+    "mtr",
+    "netstat"
+  ],
+  "example": "traceroute -n google.com"
+}

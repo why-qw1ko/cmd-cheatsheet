@@ -3,16 +3,21 @@
   "aliases": [],
   "domain": "linux",
   "category": "network",
-  "tags": ["download", "http", "fetch", "mirror"],
-  "description": "非交互式网络下载工具。支持 HTTP/HTTPS/FTP，可断点续传、递归下载整站、限速下载。",
-  "syntax": "wget [选项] [URL...]",
-  "scenarios": [
-    "下载文件（wget https://example.com/file.zip）",
-    "断点续传（wget -c https://example.com/large.iso）",
-    "后台下载（wget -b https://example.com/file.tar.gz）",
-    "镜像整站（wget -m -p https://example.com）"
+  "tags": [
+    "download",
+    "http",
+    "ftp"
   ],
-  "related": ["curl", "scp"],
-  "example": "wget -c -q --show-progress https://releases.example.com/app.tar.gz",
-  "since": "1996"
+  "description": "从网络下载文件。支持 HTTP、HTTPS 和 FTP 协议，支持断点续传和递归下载。",
+  "syntax": "wget [选项] URL",
+  "scenarios": [
+    "下载文件",
+    "断点续传（wget -c）",
+    "递归下载整个网站"
+  ],
+  "related": [
+    "curl",
+    "aria2"
+  ],
+  "example": "wget -c https://example.com/file.zip"
 }

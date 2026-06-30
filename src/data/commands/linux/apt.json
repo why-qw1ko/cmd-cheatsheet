@@ -1,0 +1,27 @@
+{
+  "name": "apt",
+  "aliases": [
+    "apt-get"
+  ],
+  "domain": "linux",
+  "category": "package",
+  "tags": [
+    "package",
+    "install",
+    "debian",
+    "ubuntu"
+  ],
+  "description": "Debian/Ubuntu 系列的包管理器。安装、更新、卸载软件包。",
+  "syntax": "apt [命令] [包名]",
+  "scenarios": [
+    "更新软件源（apt update）",
+    "安装软件（apt install）",
+    "卸载软件（apt remove）"
+  ],
+  "related": [
+    "dpkg",
+    "yum",
+    "snap"
+  ],
+  "example": "sudo apt update && sudo apt install -y nginx"
+}

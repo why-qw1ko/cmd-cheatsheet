@@ -1,0 +1,25 @@
+{
+  "name": "dmesg",
+  "aliases": [],
+  "domain": "linux",
+  "category": "system",
+  "tags": [
+    "kernel",
+    "log",
+    "hardware",
+    "boot"
+  ],
+  "description": "显示内核环形缓冲区消息。用于排查硬件问题、驱动加载和启动错误。",
+  "syntax": "dmesg [选项]",
+  "scenarios": [
+    "排查硬件识别问题",
+    "查看 USB 设备插拔记录",
+    "查看启动过程中的错误"
+  ],
+  "related": [
+    "journalctl",
+    "lsusb",
+    "lspci"
+  ],
+  "example": "dmesg | tail -50"
+}

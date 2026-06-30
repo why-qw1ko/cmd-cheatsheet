@@ -1,0 +1,24 @@
+{
+  "name": "screen",
+  "aliases": [],
+  "domain": "linux",
+  "category": "session",
+  "tags": [
+    "terminal",
+    "session",
+    "detach"
+  ],
+  "description": "终端会话管理器。可以创建、分离和恢复终端会话，防止 SSH 断开导致任务中断。",
+  "syntax": "screen [选项]",
+  "scenarios": [
+    "后台运行长时间任务",
+    "断开 SSH 后继续执行命令",
+    "多个终端窗口间切换"
+  ],
+  "related": [
+    "tmux",
+    "nohup",
+    "disown"
+  ],
+  "example": "screen -S mysession"
+}

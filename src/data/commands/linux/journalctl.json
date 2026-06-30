@@ -1,0 +1,24 @@
+{
+  "name": "journalctl",
+  "aliases": [],
+  "domain": "linux",
+  "category": "system",
+  "tags": [
+    "log",
+    "systemd",
+    "journal"
+  ],
+  "description": "查询 systemd 日志。比传统 syslog 更强大，支持结构化查询和过滤。",
+  "syntax": "journalctl [选项]",
+  "scenarios": [
+    "查看特定服务的日志（journalctl -u nginx）",
+    "实时跟踪日志（journalctl -f）",
+    "查看本次启动的日志（journalctl -b）"
+  ],
+  "related": [
+    "dmesg",
+    "systemctl",
+    "tail"
+  ],
+  "example": "journalctl -u nginx --since '1 hour ago'"
+}

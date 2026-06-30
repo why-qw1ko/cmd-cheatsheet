@@ -1,0 +1,24 @@
+{
+  "name": "tee",
+  "aliases": [],
+  "domain": "linux",
+  "category": "text",
+  "tags": [
+    "pipe",
+    "output",
+    "log"
+  ],
+  "description": "将标准输入同时输出到屏幕和文件。常用于管道中既查看又保存输出。",
+  "syntax": "tee [选项] 文件",
+  "scenarios": [
+    "运行命令同时保存日志",
+    "管道中既查看又记录输出",
+    "以追加模式写入文件（tee -a）"
+  ],
+  "related": [
+    "cat",
+    "echo",
+    "pipe"
+  ],
+  "example": "make 2>&1 | tee build.log"
+}

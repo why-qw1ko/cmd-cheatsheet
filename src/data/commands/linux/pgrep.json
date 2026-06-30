@@ -1,0 +1,26 @@
+{
+  "name": "pgrep",
+  "aliases": [
+    "pkill"
+  ],
+  "domain": "linux",
+  "category": "process",
+  "tags": [
+    "process",
+    "find",
+    "kill"
+  ],
+  "description": "按名称或其他属性查找进程 ID。pkill 可直接杀掉匹配的进程。",
+  "syntax": "pgrep [选项] 模式",
+  "scenarios": [
+    "查找某进程的 PID",
+    "按名称杀掉进程（pkill）",
+    "确认进程是否在运行"
+  ],
+  "related": [
+    "ps",
+    "kill",
+    "pidof"
+  ],
+  "example": "pgrep -af nginx"
+}

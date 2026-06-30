@@ -1,0 +1,28 @@
+{
+  "name": "yum",
+  "aliases": [
+    "dnf"
+  ],
+  "domain": "linux",
+  "category": "package",
+  "tags": [
+    "package",
+    "install",
+    "centos",
+    "rhel",
+    "fedora"
+  ],
+  "description": "RHEL/CentOS/Fedora 系列的包管理器。管理 RPM 软件包的安装和更新。",
+  "syntax": "yum [命令] [包名]",
+  "scenarios": [
+    "安装软件包",
+    "更新所有软件",
+    "搜索可用的软件包"
+  ],
+  "related": [
+    "apt",
+    "rpm",
+    "dnf"
+  ],
+  "example": "sudo yum install -y httpd"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "timeout",
+  "aliases": [
+    "pause"
+  ],
+  "domain": "windows",
+  "category": "session",
+  "tags": [
+    "wait",
+    "delay",
+    "batch"
+  ],
+  "description": "暂停命令执行指定的秒数。常用于批处理脚本中控制执行节奏。",
+  "syntax": "timeout /T 秒数 [/Nobreak]",
+  "scenarios": [
+    "批处理脚本中添加延迟",
+    "给用户时间阅读输出",
+    "等待服务启动"
+  ],
+  "related": [
+    "pause",
+    "start"
+  ],
+  "example": "timeout /T 10"
+}

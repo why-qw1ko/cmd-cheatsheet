@@ -1,0 +1,24 @@
+{
+  "name": "uptime",
+  "aliases": [],
+  "domain": "linux",
+  "category": "system",
+  "tags": [
+    "system",
+    "load",
+    "time"
+  ],
+  "description": "显示系统运行时间和平均负载。快速了解系统运行了多久以及当前负载情况。",
+  "syntax": "uptime",
+  "scenarios": [
+    "查看系统运行了多长时间",
+    "查看 1/5/15 分钟平均负载",
+    "快速判断系统是否过载"
+  ],
+  "related": [
+    "top",
+    "w",
+    "who"
+  ],
+  "example": "uptime"
+}

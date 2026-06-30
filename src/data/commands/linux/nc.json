@@ -1,0 +1,28 @@
+{
+  "name": "nc",
+  "aliases": [
+    "ncat",
+    "netcat"
+  ],
+  "domain": "linux",
+  "category": "network",
+  "tags": [
+    "network",
+    "tcp",
+    "udp",
+    "port"
+  ],
+  "description": "网络瑞士军刀。可用于端口扫描、文件传输、聊天服务器等，功能极其灵活。",
+  "syntax": "nc [选项] 主机 端口",
+  "scenarios": [
+    "测试端口是否开放（nc -zv host 80）",
+    "简易文件传输",
+    "创建简易聊天服务器"
+  ],
+  "related": [
+    "nmap",
+    "telnet",
+    "curl"
+  ],
+  "example": "nc -zv localhost 8080"
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Start-Service",
+  "aliases": [],
+  "domain": "windows",
+  "category": "system",
+  "tags": [
+    "service",
+    "start",
+    "windows"
+  ],
+  "description": "启动 Windows 服务。",
+  "syntax": "Start-Service -Name 服务名",
+  "scenarios": [
+    "启动停止的服务",
+    "重启服务（Stop-Service + Start-Service）",
+    "脚本中管理服务"
+  ],
+  "related": [
+    "Stop-Service",
+    "Restart-Service",
+    "Get-Service"
+  ],
+  "example": "Start-Service -Name 'Spooler'"
+}

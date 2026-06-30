@@ -1,0 +1,26 @@
+{
+  "name": "Rename-Item",
+  "aliases": [
+    "rn",
+    "ren"
+  ],
+  "domain": "windows",
+  "category": "file",
+  "tags": [
+    "rename",
+    "file",
+    "name"
+  ],
+  "description": "重命名文件或目录。",
+  "syntax": "Rename-Item -Path 路径 -NewName 新名称",
+  "scenarios": [
+    "重命名文件",
+    "批量重命名（配合管道）",
+    "修改文件扩展名"
+  ],
+  "related": [
+    "Move-Item",
+    "Copy-Item"
+  ],
+  "example": "Rename-Item '.\\report.txt' 'report-final.txt'"
+}

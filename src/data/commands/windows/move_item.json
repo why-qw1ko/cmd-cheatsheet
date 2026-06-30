@@ -1,0 +1,27 @@
+{
+  "name": "Move-Item",
+  "aliases": [
+    "mv",
+    "move"
+  ],
+  "domain": "windows",
+  "category": "file",
+  "tags": [
+    "move",
+    "rename",
+    "file"
+  ],
+  "description": "移动或重命名文件和目录。",
+  "syntax": "Move-Item -Path 源 -Destination 目标",
+  "scenarios": [
+    "移动文件到新位置",
+    "重命名文件",
+    "整理文件目录"
+  ],
+  "related": [
+    "Copy-Item",
+    "Remove-Item",
+    "Rename-Item"
+  ],
+  "example": "Move-Item '.\\old.txt' '.\\archive\\old.txt'"
+}

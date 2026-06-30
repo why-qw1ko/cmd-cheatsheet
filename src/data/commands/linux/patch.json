@@ -1,0 +1,23 @@
+{
+  "name": "patch",
+  "aliases": [],
+  "domain": "linux",
+  "category": "text",
+  "tags": [
+    "diff",
+    "patch",
+    "update"
+  ],
+  "description": "将 diff 生成的补丁文件应用到源文件。代码版本管理和更新的基础工具。",
+  "syntax": "patch [选项] < 补丁文件",
+  "scenarios": [
+    "应用代码补丁",
+    "回滚补丁（patch -R）",
+    "批量修改文件"
+  ],
+  "related": [
+    "diff",
+    "git"
+  ],
+  "example": "patch -p1 < fix.patch"
+}

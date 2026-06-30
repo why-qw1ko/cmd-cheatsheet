@@ -1,0 +1,24 @@
+{
+  "name": "iostat",
+  "aliases": [],
+  "domain": "linux",
+  "category": "system",
+  "tags": [
+    "io",
+    "disk",
+    "performance"
+  ],
+  "description": "报告 CPU 和磁盘 I/O 统计信息。用于诊断磁盘性能问题。",
+  "syntax": "iostat [选项] [间隔] [次数]",
+  "scenarios": [
+    "监控磁盘读写速度",
+    "诊断磁盘 I/O 瓶颈",
+    "查看 CPU 使用分布"
+  ],
+  "related": [
+    "vmstat",
+    "df",
+    "du"
+  ],
+  "example": "iostat -xz 1"
+}

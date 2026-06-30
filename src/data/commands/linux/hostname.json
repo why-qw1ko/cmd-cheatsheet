@@ -1,0 +1,23 @@
+{
+  "name": "hostname",
+  "aliases": [],
+  "domain": "linux",
+  "category": "system",
+  "tags": [
+    "hostname",
+    "system",
+    "name"
+  ],
+  "description": "显示或设置系统的主机名。常用于脚本中获取当前机器标识。",
+  "syntax": "hostname [选项]",
+  "scenarios": [
+    "查看当前主机名",
+    "获取 FQDN（hostname -f）",
+    "临时修改主机名"
+  ],
+  "related": [
+    "uname",
+    "hostnamectl"
+  ],
+  "example": "hostname -f"
+}

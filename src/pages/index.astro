@@ -187,6 +187,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
     'shutdown': 'high', 'format': 'high', 'reg': 'mid',
     'chmod': 'mid', 'chown': 'mid', 'sfc': 'mid', 'del': 'mid',
     'taskkill': 'high', 'Stop-Process': 'high',
+    'mount': 'mid', 'umount': 'mid', 'Remove-Item': 'mid',
   };
   const dangerLabel: Record<string, string> = { high: '高危', mid: '中危' };
   const dangerClass: Record<string, string> = { high: 'danger-high', mid: 'danger-mid' };
@@ -586,6 +587,18 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, claudecode: claud
 
   // Back to top button
   const backToTopBtn = document.getElementById('back-to-top');
+
+  // Avatar click -> toast
+  document.getElementById('sidebar-avatar-btn')?.addEventListener('click', () => {
+    const existing = document.querySelector('.dev-toast');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.className = 'dev-toast';
+    toast.textContent = '🚧 功能开发中，敬请期待';
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add('show'));
+    setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 2000);
+  });
   window.addEventListener('scroll', () => {
     if (window.scrollY > 300) {
       backToTopBtn?.classList.add('visible');

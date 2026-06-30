@@ -1,0 +1,24 @@
+{
+  "name": "ifconfig",
+  "aliases": [],
+  "domain": "linux",
+  "category": "network",
+  "tags": [
+    "network",
+    "interface",
+    "ip"
+  ],
+  "description": "查看和配置网络接口信息。显示 IP 地址、MAC 地址、子网掩码等。已被 ip 命令取代，但仍广泛使用。",
+  "syntax": "ifconfig [接口] [选项]",
+  "scenarios": [
+    "查看本机 IP 地址",
+    "查看网络接口状态",
+    "临时配置 IP 地址"
+  ],
+  "related": [
+    "ip",
+    "ping",
+    "netstat"
+  ],
+  "example": "ifconfig eth0"
+}

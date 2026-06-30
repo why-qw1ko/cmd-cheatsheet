@@ -1,0 +1,25 @@
+{
+  "name": "vmstat",
+  "aliases": [],
+  "domain": "linux",
+  "category": "system",
+  "tags": [
+    "memory",
+    "cpu",
+    "performance",
+    "monitor"
+  ],
+  "description": "报告虚拟内存、CPU 和 I/O 统计信息。用于快速诊断系统性能瓶颈。",
+  "syntax": "vmstat [间隔] [次数]",
+  "scenarios": [
+    "监控 CPU 和内存使用情况",
+    "查看系统上下文切换频率",
+    "诊断 I/O 瓶颈"
+  ],
+  "related": [
+    "iostat",
+    "free",
+    "top"
+  ],
+  "example": "vmstat 1 5"
+}

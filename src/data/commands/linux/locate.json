@@ -1,0 +1,24 @@
+{
+  "name": "locate",
+  "aliases": [],
+  "domain": "linux",
+  "category": "file",
+  "tags": [
+    "search",
+    "find",
+    "fast"
+  ],
+  "description": "基于数据库快速搜索文件。比 find 快很多，但数据库需要定期更新（updatedb）。",
+  "syntax": "locate [选项] 模式",
+  "scenarios": [
+    "快速查找文件位置",
+    "搜索包含特定名称的文件",
+    "查找配置文件路径"
+  ],
+  "related": [
+    "find",
+    "which",
+    "whereis"
+  ],
+  "example": "locate nginx.conf"
+}

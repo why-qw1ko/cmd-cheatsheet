@@ -1,0 +1,26 @@
+{
+  "name": "Group-Object",
+  "aliases": [
+    "group"
+  ],
+  "domain": "windows",
+  "category": "text",
+  "tags": [
+    "group",
+    "aggregate",
+    "count"
+  ],
+  "description": "按属性对对象分组并统计。类似 SQL 的 GROUP BY。",
+  "syntax": "Group-Object [-Property 属性]",
+  "scenarios": [
+    "按扩展名统计文件数量",
+    "按状态分组服务",
+    "数据聚合分析"
+  ],
+  "related": [
+    "Sort-Object",
+    "Measure-Object",
+    "Select-Object"
+  ],
+  "example": "Get-ChildItem | Group-Object Extension | Sort-Object Count -Descending"
+}

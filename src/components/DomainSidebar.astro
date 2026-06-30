@@ -77,17 +77,7 @@ const { domains } = Astro.props;
     localStorage.setItem('theme', next);
   });
 
-  // Avatar click -> toast
-  document.getElementById('sidebar-avatar-btn')?.addEventListener('click', () => {
-    const existing = document.querySelector('.dev-toast');
-    if (existing) existing.remove();
-    const toast = document.createElement('div');
-    toast.className = 'dev-toast';
-    toast.textContent = '🚧 功能开发中，敬请期待';
-    document.body.appendChild(toast);
-    requestAnimationFrame(() => toast.classList.add('show'));
-    setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 2000);
-  });
+  // Avatar click handler is in index.astro
 </script>
 
 <style>
@@ -139,25 +129,4 @@ const { domains } = Astro.props;
     color: var(--text-muted);
   }
 
-  .dev-toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 20px;
-    font-size: 0.9rem;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-    z-index: 999;
-    opacity: 0;
-    transition: opacity 0.3s, transform 0.3s;
-    pointer-events: none;
-  }
-
-  .dev-toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
 </style>

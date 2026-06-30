@@ -1,0 +1,24 @@
+{
+  "name": "lsblk",
+  "aliases": [],
+  "domain": "linux",
+  "category": "system",
+  "tags": [
+    "disk",
+    "block",
+    "partition"
+  ],
+  "description": "列出所有块设备（硬盘、分区、LVM）。以树状结构显示设备关系。",
+  "syntax": "lsblk [选项]",
+  "scenarios": [
+    "查看所有磁盘和分区",
+    "查看挂载点信息",
+    "确认新添加的磁盘"
+  ],
+  "related": [
+    "fdisk",
+    "blkid",
+    "mount"
+  ],
+  "example": "lsblk -f"
+}

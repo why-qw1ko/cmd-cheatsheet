@@ -1,0 +1,25 @@
+{
+  "name": "ip",
+  "aliases": [],
+  "domain": "linux",
+  "category": "network",
+  "tags": [
+    "network",
+    "route",
+    "address",
+    "link"
+  ],
+  "description": "强大的网络配置工具，替代 ifconfig 和 route。管理 IP 地址、路由表、网络接口等。",
+  "syntax": "ip [选项] 对象 命令",
+  "scenarios": [
+    "查看 IP 地址（ip addr）",
+    "查看路由表（ip route）",
+    "启用/禁用网络接口（ip link set）"
+  ],
+  "related": [
+    "ifconfig",
+    "route",
+    "ss"
+  ],
+  "example": "ip addr show"
+}

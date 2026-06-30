@@ -1,0 +1,24 @@
+{
+  "name": "stat",
+  "aliases": [],
+  "domain": "linux",
+  "category": "file",
+  "tags": [
+    "file",
+    "info",
+    "metadata"
+  ],
+  "description": "显示文件或文件系统的详细元数据。包括大小、权限、时间戳、inode 等。",
+  "syntax": "stat [选项] 文件",
+  "scenarios": [
+    "查看文件的详细信息",
+    "查看文件的 inode 信息",
+    "查看文件系统信息（stat -f）"
+  ],
+  "related": [
+    "ls",
+    "file",
+    "find"
+  ],
+  "example": "stat -c '%a %U %G %s' /etc/passwd"
+}

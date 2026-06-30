@@ -1,0 +1,24 @@
+{
+  "name": "fdisk",
+  "aliases": [],
+  "domain": "linux",
+  "category": "system",
+  "tags": [
+    "disk",
+    "partition",
+    "format"
+  ],
+  "description": "磁盘分区表管理工具。创建、删除、查看分区。",
+  "syntax": "fdisk [选项] 设备",
+  "scenarios": [
+    "查看磁盘分区表（fdisk -l）",
+    "创建新分区",
+    "删除旧分区"
+  ],
+  "related": [
+    "parted",
+    "lsblk",
+    "mkfs"
+  ],
+  "example": "fdisk -l /dev/sda"
+}

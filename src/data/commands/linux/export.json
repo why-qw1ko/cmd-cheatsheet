@@ -1,0 +1,24 @@
+{
+  "name": "export",
+  "aliases": [],
+  "domain": "linux",
+  "category": "config",
+  "tags": [
+    "environment",
+    "variable",
+    "shell"
+  ],
+  "description": "设置或导出环境变量。使变量在子进程中也可用。",
+  "syntax": "export 变量=值",
+  "scenarios": [
+    "设置 PATH 环境变量",
+    "配置代理（export http_proxy=...）",
+    "临时修改语言设置"
+  ],
+  "related": [
+    "env",
+    "source",
+    "bashrc"
+  ],
+  "example": "export PATH=$PATH:/opt/bin"
+}

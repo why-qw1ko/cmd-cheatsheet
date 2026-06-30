@@ -1,0 +1,24 @@
+{
+  "name": "readlink",
+  "aliases": [],
+  "domain": "linux",
+  "category": "file",
+  "tags": [
+    "symlink",
+    "link",
+    "path"
+  ],
+  "description": "显示符号链接指向的真实路径。配合 -f 可以解析完整的符号链接链。",
+  "syntax": "readlink [选项] 文件",
+  "scenarios": [
+    "查看符号链接指向",
+    "获取文件的绝对路径（readlink -f）",
+    "排查符号链接循环"
+  ],
+  "related": [
+    "ln",
+    "ls",
+    "realpath"
+  ],
+  "example": "readlink -f /usr/bin/python"
+}

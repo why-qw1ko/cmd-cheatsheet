@@ -1,0 +1,24 @@
+{
+  "name": "umount",
+  "aliases": [],
+  "domain": "linux",
+  "category": "system",
+  "tags": [
+    "disk",
+    "unmount",
+    "filesystem"
+  ],
+  "description": "卸载已挂载的文件系统。安全移除设备前必须先卸载。",
+  "syntax": "umount [选项] 设备或挂载点",
+  "scenarios": [
+    "安全弹出 USB 设备",
+    "卸载 NFS 共享",
+    "强制卸载忙碌的文件系统（umount -l）"
+  ],
+  "related": [
+    "mount",
+    "lsblk",
+    "eject"
+  ],
+  "example": "umount /mnt/usb"
+}

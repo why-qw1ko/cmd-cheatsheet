@@ -1,0 +1,24 @@
+{
+  "name": "dig",
+  "aliases": [],
+  "domain": "linux",
+  "category": "network",
+  "tags": [
+    "dns",
+    "lookup",
+    "domain"
+  ],
+  "description": "DNS 查询工具，用于查询域名解析记录。比 nslookup 更灵活，输出更详细。",
+  "syntax": "dig [选项] 域名 [记录类型]",
+  "scenarios": [
+    "查询域名 A 记录",
+    "查询 MX 邮件记录",
+    "追踪 DNS 解析过程（dig +trace）"
+  ],
+  "related": [
+    "nslookup",
+    "host",
+    "whois"
+  ],
+  "example": "dig example.com A +short"
+}

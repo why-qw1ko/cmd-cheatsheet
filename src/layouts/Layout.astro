@@ -465,6 +465,29 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     display: none;
   }
 
+  /* Toast notifications */
+  .dev-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+  }
+
+  .dev-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
   .nav-letter {
     font-size: 0.7rem;
     font-weight: 700;
