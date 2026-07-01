@@ -1,0 +1,16 @@
+{
+  "name": "FLUSHDB",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["danger", "clear", "database"],
+  "description": "清空当前数据库中的所有键。⚠️ 危险操作，数据不可恢复。",
+  "syntax": "FLUSHDB [ASYNC]",
+  "example": "FLUSHDB",
+  "scenarios": [
+    "开发/测试环境重置数据",
+    "⚠️ 生产环境务必谨慎使用",
+    "使用 ASYNC 异步删除减少阻塞"
+  ],
+  "related": ["FLUSHALL", "DEL", "DBSIZE"]
+}

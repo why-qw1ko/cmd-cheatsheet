@@ -1,0 +1,17 @@
+{
+  "name": "EXPIRE",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["ttl", "expire", "timeout"],
+  "description": "为键设置过期时间（秒）。到期后键会被自动删除。",
+  "syntax": "EXPIRE key seconds",
+  "example": "EXPIRE cache:user:1001 300",
+  "scenarios": [
+    "为缓存设置 5 分钟过期",
+    "延长会话有效期",
+    "实现临时数据的自动清理",
+    "配合 TTL 检查剩余时间"
+  ],
+  "related": ["TTL", "PEXPIRE", "PERSIST", "EXPIREAT"]
+}

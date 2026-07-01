@@ -1,0 +1,17 @@
+{
+  "name": "DECR",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["counter", "atomic", "number"],
+  "description": "将键的整数值减 1。如果键不存在则先初始化为 0 再减 1。原子操作。",
+  "syntax": "DECR key",
+  "example": "DECR stock:item:1001",
+  "scenarios": [
+    "库存扣减",
+    "倒计时计数器",
+    "配额消耗统计",
+    "配合 INCR 实现双向计数"
+  ],
+  "related": ["INCR", "DECRBY", "INCRBY"]
+}

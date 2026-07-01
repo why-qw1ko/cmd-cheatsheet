@@ -1,0 +1,16 @@
+{
+  "name": "TTL",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["ttl", "expire", "info"],
+  "description": "查看键的剩余生存时间（秒）。返回 -1 表示永不过期，-2 表示键不存在。",
+  "syntax": "TTL key",
+  "example": "TTL cache:user:1001",
+  "scenarios": [
+    "检查缓存还剩多少时间过期",
+    "调试过期策略",
+    "配合 EXPIRE 管理键的生命周期"
+  ],
+  "related": ["EXPIRE", "PTTL", "PERSIST"]
+}

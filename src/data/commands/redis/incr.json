@@ -1,0 +1,17 @@
+{
+  "name": "INCR",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["counter", "atomic", "number"],
+  "description": "将键的整数值加 1。如果键不存在则先初始化为 0 再加 1。原子操作，线程安全。",
+  "syntax": "INCR key",
+  "example": "INCR page:views:home",
+  "scenarios": [
+    "统计页面访问量",
+    "实现原子计数器",
+    "生成自增 ID",
+    "配合 EXPIRE 实现限流计数"
+  ],
+  "related": ["DECR", "INCRBY", "DECRBY", "GET"]
+}

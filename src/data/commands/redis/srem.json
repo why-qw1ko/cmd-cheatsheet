@@ -1,0 +1,16 @@
+{
+  "name": "SREM",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["set", "collection", "delete"],
+  "description": "从集合中移除一个或多个成员。忽略不存在的成员。",
+  "syntax": "SREM key member [member ...]",
+  "example": "SREM online:users \"user:1\"",
+  "scenarios": [
+    "用户下线时从在线集合中移除",
+    "取消点赞/收藏",
+    "从标签集合中删除标签"
+  ],
+  "related": ["SADD", "SMEMBERS", "SISMEMBER"]
+}

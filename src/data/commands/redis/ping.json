@@ -1,0 +1,17 @@
+{
+  "name": "PING",
+  "aliases": [],
+  "domain": "redis",
+  "category": "session",
+  "tags": ["ping", "test", "connection"],
+  "description": "测试与 Redis 服务器的连接。正常返回 PONG。可用于心跳检测和连接池保活。",
+  "syntax": "PING [message]",
+  "example": "PING",
+  "scenarios": [
+    "测试 Redis 连接是否正常",
+    "连接池心跳检测",
+    "诊断网络延迟",
+    "带参数时返回参数内容（PING hello → hello）"
+  ],
+  "related": ["AUTH", "INFO", "ECHO"]
+}

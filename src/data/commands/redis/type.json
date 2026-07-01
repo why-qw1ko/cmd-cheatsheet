@@ -1,0 +1,16 @@
+{
+  "name": "TYPE",
+  "aliases": [],
+  "domain": "redis",
+  "category": "review",
+  "tags": ["key", "type", "info"],
+  "description": "返回键所存储值的数据类型。可能的类型：string、list、set、zset、hash、stream。",
+  "syntax": "TYPE key",
+  "example": "TYPE user:1001",
+  "scenarios": [
+    "检查键的数据类型",
+    "调试时确认数据结构",
+    "在不确定类型时安全地判断后再选择操作命令"
+  ],
+  "related": ["EXISTS", "TTL", "OBJECT"]
+}

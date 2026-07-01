@@ -1,0 +1,16 @@
+{
+  "name": "ZRANGE",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["sorted-set", "range", "read"],
+  "description": "返回有序集合中指定排名范围的成员。按分数从小到大排列。",
+  "syntax": "ZRANGE key start stop [WITHSCORES]",
+  "example": "ZRANGE leaderboard 0 9 WITHSCORES",
+  "scenarios": [
+    "获取排行榜前 10 名",
+    "按分数范围查询成员",
+    "配合 ZREVRANGE 获取倒序排名"
+  ],
+  "related": ["ZADD", "ZREVRANGE", "ZRANGEBYSCORE", "ZSCORE"]
+}

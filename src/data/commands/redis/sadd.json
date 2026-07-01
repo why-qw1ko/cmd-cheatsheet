@@ -1,0 +1,17 @@
+{
+  "name": "SADD",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["set", "collection", "write"],
+  "description": "向集合中添加一个或多个成员。已存在的成员会被忽略。自动去重。",
+  "syntax": "SADD key member [member ...]",
+  "example": "SADD online:users \"user:1\" \"user:2\"",
+  "scenarios": [
+    "记录在线用户",
+    "存储标签集合",
+    "实现点赞/收藏功能（每条内容一个集合）",
+    "自动去重的数据收集"
+  ],
+  "related": ["SMEMBERS", "SREM", "SISMEMBER", "SCARD"]
+}

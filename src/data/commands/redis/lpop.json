@@ -1,0 +1,16 @@
+{
+  "name": "LPOP",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["list", "queue", "read"],
+  "description": "移除并返回列表的第一个元素（头部）。列表为空时返回 nil。",
+  "syntax": "LPOP key",
+  "example": "LPOP queue:tasks",
+  "scenarios": [
+    "从队列中取出任务执行",
+    "实现 FIFO 消费模式",
+    "配合 RPUSH 构建消息队列"
+  ],
+  "related": ["RPOP", "LPUSH", "RPUSH", "BLPOP"]
+}

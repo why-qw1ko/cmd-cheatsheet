@@ -1,0 +1,16 @@
+{
+  "name": "HDEL",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["hash", "field", "delete"],
+  "description": "删除哈希表中一个或多个字段。返回实际删除的字段数。",
+  "syntax": "HDEL key field [field ...]",
+  "example": "HDEL user:1001 age email",
+  "scenarios": [
+    "删除用户的某个属性",
+    "清理哈希表中不需要的字段",
+    "批量删除多个字段"
+  ],
+  "related": ["HSET", "HGET", "HEXISTS", "HGETALL"]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "LPUSH",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["list", "queue", "write"],
+  "description": "将一个或多个值插入列表头部（左边）。如果列表不存在则自动创建。",
+  "syntax": "LPUSH key value [value ...]",
+  "example": "LPUSH queue:tasks \"task1\" \"task2\"",
+  "scenarios": [
+    "实现消息队列",
+    "将新任务推入队列头部",
+    "构建最新消息列表（配合 LTRIM 保留最近 N 条）",
+    "批量推入多个值"
+  ],
+  "related": ["RPUSH", "LPOP", "RPOP", "LRANGE"]
+}

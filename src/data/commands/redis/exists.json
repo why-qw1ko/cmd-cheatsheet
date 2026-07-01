@@ -1,0 +1,16 @@
+{
+  "name": "EXISTS",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["key", "check", "info"],
+  "description": "检查一个或多个键是否存在。返回存在的键的数量。",
+  "syntax": "EXISTS key [key ...]",
+  "example": "EXISTS user:1001",
+  "scenarios": [
+    "检查缓存是否命中",
+    "判断用户会话是否有效",
+    "批量检查多个键的存在性"
+  ],
+  "related": ["TYPE", "TTL", "DEL"]
+}

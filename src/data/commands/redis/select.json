@@ -1,0 +1,16 @@
+{
+  "name": "SELECT",
+  "aliases": [],
+  "domain": "redis",
+  "category": "session",
+  "tags": ["database", "switch", "index"],
+  "description": "切换到指定的数据库。Redis 默认有 16 个数据库（0-15），默认使用 0 号。",
+  "syntax": "SELECT index",
+  "example": "SELECT 2",
+  "scenarios": [
+    "不同业务使用不同数据库隔离",
+    "开发环境用不同库区分测试数据",
+    "切换数据库后所有操作都在新库上执行"
+  ],
+  "related": ["AUTH", "DBSIZE", "FLUSHDB"]
+}

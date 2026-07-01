@@ -1,0 +1,17 @@
+{
+  "name": "HSET",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["hash", "field", "write"],
+  "description": "设置哈希表中一个或多个字段的值。如果字段不存在则创建，存在则覆盖。",
+  "syntax": "HSET key field value [field value ...]",
+  "example": "HSET user:1001 name \"张三\" age 25",
+  "scenarios": [
+    "存储用户信息（name, age, email 等）",
+    "存储对象的多个属性",
+    "批量更新哈希表的多个字段",
+    "替代多个独立键存储相关数据"
+  ],
+  "related": ["HGET", "HGETALL", "HDEL", "HMSET"]
+}

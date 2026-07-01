@@ -1,0 +1,17 @@
+{
+  "name": "SUBSCRIBE",
+  "aliases": [],
+  "domain": "redis",
+  "category": "network",
+  "tags": ["pubsub", "message", "listen"],
+  "description": "订阅一个或多个频道，接收发布到这些频道的消息。订阅后客户端进入阻塞等待状态。",
+  "syntax": "SUBSCRIBE channel [channel ...]",
+  "example": "SUBSCRIBE notifications alerts",
+  "scenarios": [
+    "接收实时通知",
+    "监听系统事件",
+    "配合 PUBLISH 实现消息广播",
+    "多频道订阅监听"
+  ],
+  "related": ["PUBLISH", "UNSUBSCRIBE", "PSUBSCRIBE"]
+}

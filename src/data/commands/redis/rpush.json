@@ -1,0 +1,16 @@
+{
+  "name": "RPUSH",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["list", "queue", "write"],
+  "description": "将一个或多个值插入列表尾部（右边）。如果列表不存在则自动创建。",
+  "syntax": "RPUSH key value [value ...]",
+  "example": "RPUSH queue:tasks \"task3\"",
+  "scenarios": [
+    "实现 FIFO 队列（RPUSH + LPOP）",
+    "将新元素追加到列表末尾",
+    "构建有序日志列表"
+  ],
+  "related": ["LPUSH", "LPOP", "RPOP", "LRANGE"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "DBSIZE",
+  "aliases": [],
+  "domain": "redis",
+  "category": "review",
+  "tags": ["size", "count", "info"],
+  "description": "返回当前数据库中键的总数。",
+  "syntax": "DBSIZE",
+  "example": "DBSIZE",
+  "scenarios": [
+    "快速了解当前数据库有多少键",
+    "监控数据增长趋势",
+    "配合 INFO 获取更详细的统计"
+  ],
+  "related": ["INFO", "KEYS", "SCAN"]
+}

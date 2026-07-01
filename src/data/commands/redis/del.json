@@ -1,0 +1,17 @@
+{
+  "name": "DEL",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["key", "delete", "remove"],
+  "description": "删除一个或多个键。返回实际删除的键数量。忽略不存在的键。",
+  "syntax": "DEL key [key ...]",
+  "example": "DEL session:abc123 cache:user:1",
+  "scenarios": [
+    "清除缓存数据",
+    "删除用户会话",
+    "批量删除多个键",
+    "配合 KEYS 或 SCAN 批量清理"
+  ],
+  "related": ["UNLINK", "EXISTS", "KEYS"]
+}

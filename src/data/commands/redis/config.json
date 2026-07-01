@@ -1,0 +1,17 @@
+{
+  "name": "CONFIG",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["config", "settings", "server"],
+  "description": "查看或修改 Redis 服务器的运行时配置参数。",
+  "syntax": "CONFIG <GET|SET> parameter [value]",
+  "example": "CONFIG SET maxmemory 256mb",
+  "scenarios": [
+    "查看当前配置（CONFIG GET *）",
+    "修改最大内存限制",
+    "修改密码（CONFIG SET requirepass）",
+    "持久化配置到文件（CONFIG REWRITE）"
+  ],
+  "related": ["INFO", "DBSIZE"]
+}

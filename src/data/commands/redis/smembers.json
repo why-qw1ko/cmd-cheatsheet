@@ -1,0 +1,16 @@
+{
+  "name": "SMEMBERS",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["set", "collection", "read"],
+  "description": "返回集合中的所有成员。",
+  "syntax": "SMEMBERS key",
+  "example": "SMEMBERS online:users",
+  "scenarios": [
+    "获取所有在线用户",
+    "查看某个内容的所有点赞用户",
+    "获取标签集合的所有标签"
+  ],
+  "related": ["SADD", "SISMEMBER", "SCARD", "SSCAN"]
+}

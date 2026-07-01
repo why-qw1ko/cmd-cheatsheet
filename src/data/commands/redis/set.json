@@ -1,0 +1,17 @@
+{
+  "name": "SET",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["string", "key-value", "write"],
+  "description": "设置键值对。如果键已存在则覆盖。支持过期时间、NX（不存在才设置）、XX（存在才设置）等选项。",
+  "syntax": "SET key value [EX seconds] [NX|XX]",
+  "example": "SET session:abc123 \"user_data\" EX 3600",
+  "scenarios": [
+    "存储缓存数据并设置过期时间",
+    "实现分布式锁（SET lock:key value NX EX 30）",
+    "存储用户会话信息",
+    "用 NX 防止覆盖已有值"
+  ],
+  "related": ["GET", "SETEX", "SETNX", "DEL"]
+}

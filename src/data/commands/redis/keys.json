@@ -1,0 +1,16 @@
+{
+  "name": "KEYS",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["key", "pattern", "search"],
+  "description": "按模式匹配查找所有符合条件的键。支持通配符 *、?、[]。⚠️ 生产环境慎用，会阻塞服务。",
+  "syntax": "KEYS pattern",
+  "example": "KEYS user:*",
+  "scenarios": [
+    "开发调试时查看匹配的键",
+    "查找某个前缀的所有键（KEYS cache:*）",
+    "⚠️ 生产环境请用 SCAN 替代"
+  ],
+  "related": ["SCAN", "DEL", "EXISTS", "TYPE"]
+}

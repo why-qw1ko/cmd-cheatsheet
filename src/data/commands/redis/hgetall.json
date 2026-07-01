@@ -1,0 +1,16 @@
+{
+  "name": "HGETALL",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["hash", "all", "read"],
+  "description": "获取哈希表中所有字段和值。返回字段-值的交替列表。",
+  "syntax": "HGETALL key",
+  "example": "HGETALL user:1001",
+  "scenarios": [
+    "获取用户的完整信息",
+    "导出哈希表的全部数据",
+    "调试时查看哈希表内容"
+  ],
+  "related": ["HGET", "HKEYS", "HVALS", "HLEN"]
+}

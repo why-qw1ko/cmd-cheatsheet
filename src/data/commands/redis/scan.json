@@ -1,0 +1,17 @@
+{
+  "name": "SCAN",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["key", "cursor", "iterate"],
+  "description": "基于游标的增量迭代遍历键空间，不会阻塞服务。是 KEYS 的生产环境替代方案。",
+  "syntax": "SCAN cursor [MATCH pattern] [COUNT count]",
+  "example": "SCAN 0 MATCH user:* COUNT 100",
+  "scenarios": [
+    "生产环境安全地遍历键",
+    "按模式匹配批量查找键",
+    "分批处理大量键（避免 KEYS 阻塞）",
+    "配合 HSCAN、SSCAN、ZSCAN 遍历集合"
+  ],
+  "related": ["KEYS", "HSCAN", "SSCAN", "ZSCAN"]
+}

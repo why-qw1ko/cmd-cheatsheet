@@ -1,0 +1,17 @@
+{
+  "name": "ZADD",
+  "aliases": [],
+  "domain": "redis",
+  "category": "config",
+  "tags": ["sorted-set", "score", "ranking"],
+  "description": "向有序集合中添加一个或多个成员，每个成员关联一个分数（score）用于排序。",
+  "syntax": "ZADD key [NX|XX] score member [score member ...]",
+  "example": "ZADD leaderboard 100 \"player:1\" 85 \"player:2\"",
+  "scenarios": [
+    "实现排行榜",
+    "存储带时间戳的消息（score 用时间戳）",
+    "实现延迟队列（score 用执行时间）",
+    "按优先级排序的任务队列"
+  ],
+  "related": ["ZRANGE", "ZREVRANGE", "ZSCORE", "ZREM"]
+}

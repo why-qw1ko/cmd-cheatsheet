@@ -1,0 +1,17 @@
+{
+  "name": "PUBLISH",
+  "aliases": [],
+  "domain": "redis",
+  "category": "network",
+  "tags": ["pubsub", "message", "broadcast"],
+  "description": "向指定频道发布消息。所有订阅该频道的客户端都会收到消息。",
+  "syntax": "PUBLISH channel message",
+  "example": "PUBLISH notifications \"新消息到达\"",
+  "scenarios": [
+    "实时通知推送",
+    "事件广播",
+    "配合 SUBSCRIBE 实现发布/订阅模式",
+    "跨服务消息通知"
+  ],
+  "related": ["SUBSCRIBE", "UNSUBSCRIBE", "PSUBSCRIBE"]
+}

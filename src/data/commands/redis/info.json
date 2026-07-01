@@ -1,0 +1,18 @@
+{
+  "name": "INFO",
+  "aliases": [],
+  "domain": "redis",
+  "category": "review",
+  "tags": ["info", "stats", "monitor"],
+  "description": "获取 Redis 服务器的各种信息和统计数据，包括内存、客户端、持久化、复制等。",
+  "syntax": "INFO [section]",
+  "example": "INFO memory",
+  "scenarios": [
+    "查看服务器运行状态",
+    "监控内存使用情况（INFO memory）",
+    "查看客户端连接数（INFO clients）",
+    "检查复制状态（INFO replication）",
+    "性能调优时获取统计数据"
+  ],
+  "related": ["CONFIG", "DBSIZE", "SLOWLOG"]
+}
