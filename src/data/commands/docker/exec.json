@@ -1,0 +1,17 @@
+{
+  "name": "docker exec",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["exec", "shell", "container"],
+  "description": "在运行中的容器内执行命令。常用于进入容器调试。",
+  "syntax": "docker exec [选项] 容器名 命令",
+  "example": "docker exec -it web bash",
+  "scenarios": [
+    "进入容器的交互式 shell（-it bash）",
+    "在容器内执行单条命令（docker exec web cat /etc/hosts）",
+    "以指定用户执行（-u root）",
+    "设置环境变量执行（-e DEBUG=true）"
+  ],
+  "related": ["docker run", "docker logs", "docker attach"]
+}

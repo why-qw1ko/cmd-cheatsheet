@@ -1,0 +1,17 @@
+{
+  "name": "docker pull",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["pull", "download", "image"],
+  "description": "从镜像仓库（默认 Docker Hub）拉取镜像到本地。",
+  "syntax": "docker pull [仓库/]镜像名[:标签]",
+  "example": "docker pull nginx:latest",
+  "scenarios": [
+    "拉取最新版镜像（nginx:latest）",
+    "拉取指定版本镜像（node:20-alpine）",
+    "从私有仓库拉取（registry.example.com/myapp）",
+    "拉取指定平台镜像（--platform linux/amd64）"
+  ],
+  "related": ["docker push", "docker images", "docker run"]
+}

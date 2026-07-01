@@ -1,0 +1,17 @@
+{
+  "name": "docker compose logs",
+  "aliases": [],
+  "domain": "docker",
+  "category": "review",
+  "tags": ["compose", "logs", "debug"],
+  "description": "查看 docker compose 服务的日志输出。",
+  "syntax": "docker compose logs [选项] [服务名]",
+  "example": "docker compose logs -f web",
+  "scenarios": [
+    "查看所有服务的日志",
+    "实时跟踪指定服务的日志（-f web）",
+    "只看最近 50 行（--tail 50）",
+    "查看指定服务的日志"
+  ],
+  "related": ["docker compose up", "docker compose ps", "docker logs"]
+}

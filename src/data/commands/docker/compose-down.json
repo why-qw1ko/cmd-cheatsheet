@@ -1,0 +1,17 @@
+{
+  "name": "docker compose down",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["compose", "multi-container", "stop"],
+  "description": "停止并移除 docker compose up 创建的容器、网络和卷。",
+  "syntax": "docker compose down [选项]",
+  "example": "docker compose down -v",
+  "scenarios": [
+    "停止并删除所有 compose 容器和网络",
+    "同时删除数据卷（-v，慎用）",
+    "同时删除镜像（--rmi all）",
+    "只移除指定服务的容器"
+  ],
+  "related": ["docker compose up", "docker compose ps", "docker compose logs"]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "docker push",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["push", "upload", "image"],
+  "description": "将本地镜像推送到镜像仓库。",
+  "syntax": "docker push [仓库/]镜像名[:标签]",
+  "example": "docker push myregistry.com/myapp:1.0",
+  "scenarios": [
+    "推送镜像到 Docker Hub",
+    "推送到私有镜像仓库",
+    "推送前需先 docker login 登录",
+    "推送多架构镜像（需先 docker manifest）"
+  ],
+  "related": ["docker pull", "docker tag", "docker login"]
+}

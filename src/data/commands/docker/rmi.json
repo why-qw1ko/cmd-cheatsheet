@@ -1,0 +1,17 @@
+{
+  "name": "docker rmi",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["rmi", "remove", "image"],
+  "description": "删除一个或多个本地镜像。",
+  "syntax": "docker rmi [选项] 镜像名[:标签]",
+  "example": "docker rmi nginx:latest",
+  "scenarios": [
+    "删除不再需要的镜像释放空间",
+    "强制删除被容器引用的镜像（-f）",
+    "删除所有悬空镜像（docker rmi $(docker images -f dangling=true -q)）",
+    "批量删除某个仓库的所有标签"
+  ],
+  "related": ["docker images", "docker rm", "docker system prune"]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "docker volume",
+  "aliases": [],
+  "domain": "docker",
+  "category": "config",
+  "tags": ["volume", "storage", "persist"],
+  "description": "管理 Docker 数据卷。数据卷用于持久化容器数据，容器删除后数据仍保留。",
+  "syntax": "docker volume <子命令>",
+  "example": "docker volume create mydata",
+  "scenarios": [
+    "创建数据卷（docker volume create）",
+    "列出所有数据卷（docker volume ls）",
+    "查看卷详情（docker volume inspect）",
+    "删除未使用的卷（docker volume prune）"
+  ],
+  "related": ["docker run", "docker network", "docker system df"]
+}

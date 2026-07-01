@@ -1,0 +1,17 @@
+{
+  "name": "docker commit",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["commit", "snapshot", "image"],
+  "description": "将容器的当前状态保存为新的镜像。适合在容器内调试后保存结果。",
+  "syntax": "docker commit [选项] 容器名 [镜像名[:标签]]",
+  "example": "docker commit -m \"installed deps\" web myapp:modified",
+  "scenarios": [
+    "在容器内安装调试后保存为新镜像",
+    "为修改后的容器创建快照",
+    "附带提交说明（-m）",
+    "修改入口点（--change 'CMD [\"python\"]'）"
+  ],
+  "related": ["docker build", "docker save", "docker diff"]
+}

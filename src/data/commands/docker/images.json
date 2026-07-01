@@ -1,0 +1,17 @@
+{
+  "name": "docker images",
+  "aliases": ["docker image ls"],
+  "domain": "docker",
+  "category": "review",
+  "tags": ["images", "list", "image"],
+  "description": "列出本地已有的镜像。",
+  "syntax": "docker images [选项]",
+  "example": "docker images --format \"table {{.Repository}}\t{{.Tag}}\t{{.Size}}\"",
+  "scenarios": [
+    "查看本地所有镜像",
+    "查看悬空镜像（-f dangling=true）",
+    "按仓库名过滤（nginx）",
+    "只显示镜像 ID（-q）方便批量删除"
+  ],
+  "related": ["docker rmi", "docker pull", "docker system df"]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "docker compose up",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["compose", "multi-container", "start"],
+  "description": "根据 docker-compose.yml 创建并启动所有服务。支持后台运行、构建和依赖等待。",
+  "syntax": "docker compose up [选项] [服务名]",
+  "example": "docker compose up -d --build",
+  "scenarios": [
+    "后台启动所有服务（-d）",
+    "启动前重新构建镜像（--build）",
+    "只启动指定服务（docker compose up -d web db）",
+    "强制重新创建容器（--force-recreate）"
+  ],
+  "related": ["docker compose down", "docker compose logs", "docker compose build"]
+}

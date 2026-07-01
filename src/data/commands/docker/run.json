@@ -1,0 +1,17 @@
+{
+  "name": "docker run",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["run", "container", "create"],
+  "description": "创建并启动一个新的容器。是最常用的 Docker 命令，支持大量选项配置端口映射、环境变量、挂载卷等。",
+  "syntax": "docker run [选项] 镜像名 [命令]",
+  "example": "docker run -d -p 8080:80 --name web nginx",
+  "scenarios": [
+    "后台启动 Nginx 并映射端口（-d -p 8080:80）",
+    "运行一次性交互式容器（-it --rm ubuntu bash）",
+    "设置环境变量启动应用（-e NODE_ENV=production）",
+    "挂载目录持久化数据（-v /host/path:/container/path）"
+  ],
+  "related": ["docker start", "docker exec", "docker stop"]
+}

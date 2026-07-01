@@ -1,0 +1,17 @@
+{
+  "name": "docker compose ps",
+  "aliases": [],
+  "domain": "docker",
+  "category": "review",
+  "tags": ["compose", "ps", "list"],
+  "description": "列出 docker compose 项目中的容器状态。",
+  "syntax": "docker compose ps [选项]",
+  "example": "docker compose ps -a",
+  "scenarios": [
+    "查看当前项目所有服务的运行状态",
+    "包括已停止的服务（-a）",
+    "只显示服务名（--services）",
+    "查看端口映射信息"
+  ],
+  "related": ["docker compose up", "docker compose logs", "docker ps"]
+}

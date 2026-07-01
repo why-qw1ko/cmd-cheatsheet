@@ -1,0 +1,17 @@
+{
+  "name": "docker compose build",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["compose", "build", "image"],
+  "description": "构建或重新构建 docker compose 项目中定义的服务镜像。",
+  "syntax": "docker compose build [选项] [服务名]",
+  "example": "docker compose build --no-cache",
+  "scenarios": [
+    "构建所有服务的镜像",
+    "不使用缓存重新构建（--no-cache）",
+    "只构建指定服务",
+    "构建前拉取最新基础镜像（--pull）"
+  ],
+  "related": ["docker compose up", "docker build", "docker compose push"]
+}

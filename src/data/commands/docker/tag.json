@@ -1,0 +1,17 @@
+{
+  "name": "docker tag",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["tag", "image", "label"],
+  "description": "为镜像创建新的标签（tag）。标签是指向镜像的引用，同一镜像可有多个标签。",
+  "syntax": "docker tag 源镜像[:标签] 目标镜像[:标签]",
+  "example": "docker tag myapp:1.0 registry.example.com/myapp:latest",
+  "scenarios": [
+    "为镜像打版本标签",
+    "为推送到私有仓库准备标签",
+    "为同一镜像创建 latest 标签",
+    "多阶段构建后为最终镜像打标签"
+  ],
+  "related": ["docker push", "docker build", "docker images"]
+}

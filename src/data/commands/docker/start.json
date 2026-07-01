@@ -1,0 +1,17 @@
+{
+  "name": "docker start",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["start", "container"],
+  "description": "启动一个或多个已停止的容器。",
+  "syntax": "docker start [选项] 容器名 [容器名 ...]",
+  "example": "docker start web",
+  "scenarios": [
+    "重新启动之前停止的容器",
+    "批量启动多个容器",
+    "附加到容器查看输出（-a）",
+    "交互式启动（-i）"
+  ],
+  "related": ["docker stop", "docker restart", "docker run"]
+}

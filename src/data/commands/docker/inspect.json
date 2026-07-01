@@ -1,0 +1,17 @@
+{
+  "name": "docker inspect",
+  "aliases": [],
+  "domain": "docker",
+  "category": "review",
+  "tags": ["inspect", "detail", "json"],
+  "description": "查看容器/镜像/网络/卷的详细信息（JSON 格式）。",
+  "syntax": "docker inspect 对象名",
+  "example": "docker inspect web --format '{{.NetworkSettings.IPAddress}}'",
+  "scenarios": [
+    "查看容器的详细配置信息",
+    "获取容器的 IP 地址",
+    "查看镜像的构建历史",
+    "使用 Go 模板提取特定字段（--format）"
+  ],
+  "related": ["docker ps", "docker logs", "docker stats"]
+}

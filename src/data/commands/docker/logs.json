@@ -1,0 +1,18 @@
+{
+  "name": "docker logs",
+  "aliases": [],
+  "domain": "docker",
+  "category": "review",
+  "tags": ["logs", "output", "debug"],
+  "description": "查看容器的日志输出。支持实时跟踪和过滤。",
+  "syntax": "docker logs [选项] 容器名",
+  "example": "docker logs -f --tail 100 web",
+  "scenarios": [
+    "查看容器运行日志",
+    "实时跟踪日志输出（-f / --follow）",
+    "只看最近 100 行（--tail 100）",
+    "查看指定时间之后的日志（--since 2024-01-01）",
+    "显示时间戳（-t）"
+  ],
+  "related": ["docker exec", "docker inspect", "docker ps"]
+}

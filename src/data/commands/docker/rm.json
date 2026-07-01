@@ -1,0 +1,17 @@
+{
+  "name": "docker rm",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["rm", "remove", "container"],
+  "description": "删除一个或多个已停止的容器。",
+  "syntax": "docker rm [选项] 容器名 [容器名 ...]",
+  "example": "docker rm web",
+  "scenarios": [
+    "删除已停止的容器",
+    "强制删除运行中的容器（-f）",
+    "删除所有已停止的容器（docker rm $(docker ps -aq -f status=exited)）",
+    "同时删除关联的卷（-v）"
+  ],
+  "related": ["docker rmi", "docker stop", "docker system prune"]
+}

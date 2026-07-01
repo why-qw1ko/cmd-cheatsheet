@@ -1,0 +1,17 @@
+{
+  "name": "docker build",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["build", "image", "dockerfile"],
+  "description": "根据 Dockerfile 构建镜像。支持指定标签、构建参数和多阶段构建。",
+  "syntax": "docker build [选项] 上下文路径",
+  "example": "docker build -t myapp:1.0 .",
+  "scenarios": [
+    "从 Dockerfile 构建镜像并打标签（-t name:tag）",
+    "使用指定 Dockerfile 构建（-f Dockerfile.prod）",
+    "传递构建参数（--build-arg NODE_ENV=production）",
+    "不使用缓存重新构建（--no-cache）"
+  ],
+  "related": ["docker push", "docker tag", "docker images"]
+}

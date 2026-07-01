@@ -1,0 +1,16 @@
+{
+  "name": "docker diff",
+  "aliases": [],
+  "domain": "docker",
+  "category": "review",
+  "tags": ["diff", "changes", "filesystem"],
+  "description": "查看容器文件系统相对于镜像的变更（新增 A、修改 C、删除 D）。",
+  "syntax": "docker diff 容器名",
+  "example": "docker diff web",
+  "scenarios": [
+    "查看容器内哪些文件被修改",
+    "调试容器文件系统问题",
+    "配合 commit 决定是否保存变更"
+  ],
+  "related": ["docker commit", "docker inspect", "docker export"]
+}

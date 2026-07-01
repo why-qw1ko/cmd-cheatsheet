@@ -1,0 +1,16 @@
+{
+  "name": "docker top",
+  "aliases": [],
+  "domain": "docker",
+  "category": "review",
+  "tags": ["top", "process", "monitor"],
+  "description": "查看容器内运行的进程（类似 Linux top 命令）。",
+  "syntax": "docker top 容器名",
+  "example": "docker top web",
+  "scenarios": [
+    "查看容器内正在运行什么进程",
+    "排查容器内进程异常",
+    "确认容器启动命令是否正确"
+  ],
+  "related": ["docker stats", "docker exec", "docker inspect"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "docker save",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["save", "export", "image"],
+  "description": "将镜像保存为 tar 归档文件，用于离线传输或备份。",
+  "syntax": "docker save -o 文件名.tar 镜像名[:标签]",
+  "example": "docker save -o nginx.tar nginx:latest",
+  "scenarios": [
+    "导出镜像到文件用于离线传输",
+    "备份重要镜像",
+    "配合 docker load 在其他机器导入"
+  ],
+  "related": ["docker load", "docker export", "docker commit"]
+}

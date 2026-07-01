@@ -1,0 +1,17 @@
+{
+  "name": "docker system df",
+  "aliases": [],
+  "domain": "docker",
+  "category": "review",
+  "tags": ["df", "disk", "usage"],
+  "description": "显示 Docker 使用的磁盘空间，包括镜像、容器、卷和构建缓存的占用。",
+  "syntax": "docker system df [选项]",
+  "example": "docker system df -v",
+  "scenarios": [
+    "查看 Docker 总体磁盘占用",
+    "查看详细的资源占用（-v）",
+    "排查磁盘空间不足问题",
+    "配合 prune 决定清理哪些资源"
+  ],
+  "related": ["docker system prune", "docker images", "docker volume ls"]
+}

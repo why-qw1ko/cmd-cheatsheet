@@ -1,0 +1,16 @@
+{
+  "name": "docker restart",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["restart", "container"],
+  "description": "重启一个或多个容器。先 stop 再 start。",
+  "syntax": "docker restart [选项] 容器名 [容器名 ...]",
+  "example": "docker restart web",
+  "scenarios": [
+    "重启应用容器以应用新配置",
+    "批量重启所有容器",
+    "设置重启超时时间（-t 10）"
+  ],
+  "related": ["docker stop", "docker start", "docker logs"]
+}

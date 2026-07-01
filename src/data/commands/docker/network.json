@@ -1,0 +1,17 @@
+{
+  "name": "docker network",
+  "aliases": [],
+  "domain": "docker",
+  "category": "network",
+  "tags": ["network", "connect", "bridge"],
+  "description": "管理 Docker 网络。容器通过网络互相通信或与外部通信。",
+  "syntax": "docker network <子命令>",
+  "example": "docker network create mynet",
+  "scenarios": [
+    "创建自定义网络（docker network create mynet）",
+    "列出所有网络（docker network ls）",
+    "将容器连接到网络（docker network connect mynet web）",
+    "查看网络详情（docker network inspect mynet）"
+  ],
+  "related": ["docker run", "docker volume", "docker compose"]
+}

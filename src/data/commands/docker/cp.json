@@ -1,0 +1,17 @@
+{
+  "name": "docker cp",
+  "aliases": [],
+  "domain": "docker",
+  "category": "file",
+  "tags": ["cp", "copy", "file"],
+  "description": "在容器和宿主机之间复制文件或目录。",
+  "syntax": "docker cp 容器名:路径 宿主机路径",
+  "example": "docker cp web:/var/log/nginx/access.log ./logs/",
+  "scenarios": [
+    "从容器中拷出日志文件",
+    "向容器中拷入配置文件",
+    "备份容器中的数据",
+    "容器和宿主机之间双向复制"
+  ],
+  "related": ["docker volume", "docker exec", "docker run"]
+}

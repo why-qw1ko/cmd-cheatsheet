@@ -1,0 +1,17 @@
+{
+  "name": "docker compose exec",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["compose", "exec", "shell"],
+  "description": "在 docker compose 服务的运行容器中执行命令。",
+  "syntax": "docker compose exec [选项] 服务名 命令",
+  "example": "docker compose exec web bash",
+  "scenarios": [
+    "进入 Web 服务容器调试",
+    "在数据库容器中执行 SQL（docker compose exec db psql -U postgres）",
+    "以指定用户执行（-u root）",
+    "在 Node 容器中运行 npm 命令"
+  ],
+  "related": ["docker exec", "docker compose run", "docker compose logs"]
+}

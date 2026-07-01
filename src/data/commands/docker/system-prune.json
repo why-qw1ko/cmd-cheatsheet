@@ -1,0 +1,17 @@
+{
+  "name": "docker system prune",
+  "aliases": [],
+  "domain": "docker",
+  "category": "config",
+  "tags": ["prune", "cleanup", "disk"],
+  "description": "清理未使用的 Docker 资源（停止的容器、悬空镜像、未使用的网络和卷）。",
+  "syntax": "docker system prune [选项]",
+  "example": "docker system prune -a --volumes",
+  "scenarios": [
+    "清理所有未使用的资源（-a 包括未被容器引用的镜像）",
+    "同时清理未使用的卷（--volumes）",
+    "跳过确认提示（-f）",
+    "定期清理释放磁盘空间"
+  ],
+  "related": ["docker rm", "docker rmi", "docker volume prune"]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "docker stop",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["stop", "container", "shutdown"],
+  "description": "优雅地停止运行中的容器（先发 SIGTERM，超时后发 SIGKILL）。",
+  "syntax": "docker stop [选项] 容器名 [容器名 ...]",
+  "example": "docker stop web",
+  "scenarios": [
+    "停止指定容器",
+    "批量停止所有运行中的容器（docker stop $(docker ps -q)）",
+    "设置超时时间（-t 30 等待 30 秒）",
+    "停止多个容器"
+  ],
+  "related": ["docker start", "docker restart", "docker kill"]
+}

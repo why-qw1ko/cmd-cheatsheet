@@ -1,0 +1,17 @@
+{
+  "name": "docker stats",
+  "aliases": [],
+  "domain": "docker",
+  "category": "review",
+  "tags": ["stats", "monitor", "resource"],
+  "description": "实时显示容器的资源使用情况（CPU、内存、网络、磁盘 I/O）。",
+  "syntax": "docker stats [容器名 ...]",
+  "example": "docker stats --no-stream",
+  "scenarios": [
+    "实时监控所有容器的资源占用",
+    "只看一次快照不持续刷新（--no-stream）",
+    "监控指定容器的资源使用",
+    "自定义输出格式"
+  ],
+  "related": ["docker top", "docker inspect", "docker system df"]
+}

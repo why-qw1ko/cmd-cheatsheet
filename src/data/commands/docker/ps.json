@@ -1,0 +1,17 @@
+{
+  "name": "docker ps",
+  "aliases": [],
+  "domain": "docker",
+  "category": "review",
+  "tags": ["ps", "list", "container"],
+  "description": "列出正在运行的容器。使用 -a 可查看所有容器（包括已停止的）。",
+  "syntax": "docker ps [选项]",
+  "example": "docker ps -a --format \"table {{.Names}}\t{{.Status}}\t{{.Ports}}\"",
+  "scenarios": [
+    "查看当前运行中的容器",
+    "查看所有容器包括已停止的（-a）",
+    "只显示容器 ID（-q）方便批量操作",
+    "自定义输出格式（--format）"
+  ],
+  "related": ["docker images", "docker logs", "docker inspect"]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "docker login",
+  "aliases": [],
+  "domain": "docker",
+  "category": "session",
+  "tags": ["login", "auth", "registry"],
+  "description": "登录到 Docker 镜像仓库（默认 Docker Hub，也可指定私有仓库）。",
+  "syntax": "docker login [仓库地址]",
+  "example": "docker login registry.example.com",
+  "scenarios": [
+    "登录 Docker Hub 推送镜像",
+    "登录私有镜像仓库",
+    "使用用户名密码登录（-u user -p pass）",
+    "配合 docker push 使用"
+  ],
+  "related": ["docker logout", "docker push", "docker pull"]
+}

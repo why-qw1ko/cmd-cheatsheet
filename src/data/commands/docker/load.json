@@ -1,0 +1,16 @@
+{
+  "name": "docker load",
+  "aliases": [],
+  "domain": "docker",
+  "category": "process",
+  "tags": ["load", "import", "image"],
+  "description": "从 tar 归档文件加载镜像。与 docker save 配合使用。",
+  "syntax": "docker load -i 文件名.tar",
+  "example": "docker load -i nginx.tar",
+  "scenarios": [
+    "从文件导入之前导出的镜像",
+    "在离线环境中部署镜像",
+    "配合 docker save 实现镜像迁移"
+  ],
+  "related": ["docker save", "docker import", "docker images"]
+}
