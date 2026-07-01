@@ -1,0 +1,16 @@
+{
+  "name": "git clone",
+  "aliases": [],
+  "domain": "git",
+  "category": "config",
+  "tags": ["clone", "download", "repository"],
+  "description": "克隆一个远程仓库到本地，自动创建目录并拉取全部历史记录。",
+  "syntax": "git clone <仓库地址> [目录名]",
+  "example": "git clone https://github.com/user/repo.git",
+  "scenarios": [
+    "从 GitHub/GitLab 下载项目到本地",
+    "克隆指定分支（git clone -b dev URL）",
+    "浅克隆只获取最近提交（git clone --depth 1 URL）"
+  ],
+  "related": ["git init", "git pull", "git remote"]
+}

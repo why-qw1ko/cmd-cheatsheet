@@ -1,0 +1,16 @@
+{
+  "name": "git pull",
+  "aliases": [],
+  "domain": "git",
+  "category": "network",
+  "tags": ["pull", "download", "sync"],
+  "description": "从远程仓库拉取最新提交并合并到当前分支。等同于 git fetch + git merge。",
+  "syntax": "git pull [远程名] [分支名]",
+  "example": "git pull origin main",
+  "scenarios": [
+    "同步远程最新代码到本地",
+    "拉取并变基（git pull --rebase）",
+    "拉取指定分支的更新"
+  ],
+  "related": ["git fetch", "git push", "git merge"]
+}

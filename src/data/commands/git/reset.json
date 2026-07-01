@@ -1,0 +1,17 @@
+{
+  "name": "git reset",
+  "aliases": [],
+  "domain": "git",
+  "category": "config",
+  "tags": ["reset", "undo", "unstage"],
+  "description": "重置当前 HEAD 到指定状态，可选择保留或丢弃工作区修改。",
+  "syntax": "git reset [模式] <提交>",
+  "example": "git reset --soft HEAD~1",
+  "scenarios": [
+    "取消暂存文件（git reset HEAD file.js）",
+    "撤销上一次提交但保留修改（git reset --soft HEAD~1）",
+    "彻底回退到某个提交（git reset --hard HEAD~1，慎用）",
+    "回退多个提交（git reset --hard abc123）"
+  ],
+  "related": ["git revert", "git checkout", "git stash"]
+}

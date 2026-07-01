@@ -1,0 +1,18 @@
+{
+  "name": "git log",
+  "aliases": [],
+  "domain": "git",
+  "category": "review",
+  "tags": ["log", "history", "commits"],
+  "description": "查看提交历史记录，支持多种格式和过滤条件。",
+  "syntax": "git log [选项]",
+  "example": "git log --oneline --graph -20",
+  "scenarios": [
+    "查看简洁的提交历史（git log --oneline）",
+    "查看分支图（git log --oneline --graph --all）",
+    "查看某个文件的历史（git log -- path/file.js）",
+    "查看某人的提交（git log --author=\"name\"）",
+    "查看最近 N 次提交（git log -10）"
+  ],
+  "related": ["git show", "git blame", "git reflog"]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "git status",
+  "aliases": [],
+  "domain": "git",
+  "category": "review",
+  "tags": ["status", "check", "info"],
+  "description": "查看工作区和暂存区的状态，显示哪些文件被修改、新增或删除。",
+  "syntax": "git status [选项]",
+  "example": "git status -sb",
+  "scenarios": [
+    "查看当前有哪些文件被修改",
+    "查看哪些文件已暂存待提交",
+    "使用 -s 查看简洁格式的状态",
+    "查看当前所在分支"
+  ],
+  "related": ["git add", "git diff", "git log"]
+}

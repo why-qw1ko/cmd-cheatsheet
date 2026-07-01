@@ -1,0 +1,17 @@
+{
+  "name": "git merge",
+  "aliases": [],
+  "domain": "git",
+  "category": "config",
+  "tags": ["merge", "combine", "branch"],
+  "description": "将指定分支的修改合并到当前分支。",
+  "syntax": "git merge <分支名>",
+  "example": "git merge feature-x",
+  "scenarios": [
+    "合并功能分支到主分支",
+    "合并前先拉取最新代码（git pull origin main）",
+    "使用 --no-ff 保留合并记录",
+    "解决合并冲突后继续合并（git merge --continue）"
+  ],
+  "related": ["git branch", "git rebase", "git conflict"]
+}

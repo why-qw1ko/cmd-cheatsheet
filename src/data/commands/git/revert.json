@@ -1,0 +1,17 @@
+{
+  "name": "git revert",
+  "aliases": [],
+  "domain": "git",
+  "category": "config",
+  "tags": ["revert", "undo", "safe"],
+  "description": "创建一个新的提交来撤销指定提交的修改，安全的撤销方式，不会改变历史。",
+  "syntax": "git revert <提交哈希>",
+  "example": "git revert abc1234",
+  "scenarios": [
+    "安全撤销某次有问题的提交",
+    "撤销多个提交（git revert HEAD~3..HEAD）",
+    "撤销合并提交（git revert -m 1 <merge-commit>）",
+    "在公共分支上撤销修改（比 reset --hard 更安全）"
+  ],
+  "related": ["git reset", "git cherry-pick"]
+}

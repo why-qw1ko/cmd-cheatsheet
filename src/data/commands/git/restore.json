@@ -1,0 +1,17 @@
+{
+  "name": "git restore",
+  "aliases": [],
+  "domain": "git",
+  "category": "file",
+  "tags": ["restore", "undo", "discard"],
+  "description": "恢复工作区文件（Git 2.23+ 引入的现代命令，替代 git checkout 的文件恢复操作）。",
+  "syntax": "git restore <文件>",
+  "example": "git restore .",
+  "scenarios": [
+    "丢弃工作区的修改（git restore file.js）",
+    "取消暂存文件（git restore --staged file.js）",
+    "恢复所有文件到上次提交状态（git restore .）",
+    "从指定提交恢复文件（git restore --source=HEAD~1 file.js）"
+  ],
+  "related": ["git checkout", "git reset", "git stash"]
+}

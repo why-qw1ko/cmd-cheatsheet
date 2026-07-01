@@ -1,0 +1,17 @@
+{
+  "name": "git push",
+  "aliases": [],
+  "domain": "git",
+  "category": "network",
+  "tags": ["push", "upload", "remote"],
+  "description": "将本地分支的提交推送到远程仓库。",
+  "syntax": "git push [远程名] [分支名]",
+  "example": "git push origin main",
+  "scenarios": [
+    "推送本地提交到远程仓库",
+    "首次推送并设置上游分支（git push -u origin main）",
+    "强制推送覆盖远程（git push --force，慎用）",
+    "推送指定标签（git push origin v1.0.0）"
+  ],
+  "related": ["git pull", "git fetch", "git remote"]
+}

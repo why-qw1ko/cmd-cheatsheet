@@ -1,0 +1,17 @@
+{
+  "name": "git add",
+  "aliases": [],
+  "domain": "git",
+  "category": "file",
+  "tags": ["add", "stage", "index"],
+  "description": "将工作区的修改添加到暂存区（index），为下一次提交做准备。",
+  "syntax": "git add <文件|目录|通配符>",
+  "example": "git add .",
+  "scenarios": [
+    "添加所有修改到暂存区（git add .）",
+    "添加指定文件（git add src/main.js）",
+    "交互式选择部分修改（git add -p）",
+    "添加所有新文件和修改（git add -A）"
+  ],
+  "related": ["git status", "git commit", "git reset"]
+}

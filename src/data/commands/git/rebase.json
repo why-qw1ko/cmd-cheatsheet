@@ -1,0 +1,17 @@
+{
+  "name": "git rebase",
+  "aliases": [],
+  "domain": "git",
+  "category": "config",
+  "tags": ["rebase", "replay", "branch"],
+  "description": "将当前分支的提交重新应用到目标分支之上，产生线性的提交历史。",
+  "syntax": "git rebase <目标分支>",
+  "example": "git rebase main",
+  "scenarios": [
+    "保持线性提交历史（替代 merge）",
+    "变基前先 fetch（git fetch && git rebase origin/main）",
+    "交互式变基整理提交（git rebase -i HEAD~3）",
+    "解决冲突后继续变基（git rebase --continue）"
+  ],
+  "related": ["git merge", "git cherry-pick", "git push"]
+}

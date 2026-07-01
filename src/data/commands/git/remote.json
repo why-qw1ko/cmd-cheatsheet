@@ -1,0 +1,17 @@
+{
+  "name": "git remote",
+  "aliases": [],
+  "domain": "git",
+  "category": "network",
+  "tags": ["remote", "server", "manage"],
+  "description": "管理远程仓库的连接，可以添加、删除、查看远程仓库地址。",
+  "syntax": "git remote [选项]",
+  "example": "git remote -v",
+  "scenarios": [
+    "查看当前配置的远程仓库（git remote -v）",
+    "添加远程仓库（git remote add origin URL）",
+    "修改远程地址（git remote set-url origin URL）",
+    "删除远程仓库配置（git remote remove origin）"
+  ],
+  "related": ["git push", "git pull", "git fetch"]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "git commit",
+  "aliases": [],
+  "domain": "git",
+  "category": "config",
+  "tags": ["commit", "save", "snapshot"],
+  "description": "将暂存区的内容提交为一个新的快照（commit），附带提交说明。",
+  "syntax": "git commit -m \"提交说明\"",
+  "example": "git commit -m \"feat: 添加登录功能\"",
+  "scenarios": [
+    "提交暂存区的修改（git commit -m \"说明\"）",
+    "跳过暂存直接提交所有跟踪文件的修改（git commit -am \"说明\"）",
+    "修改上一次提交（git commit --amend）",
+    "使用约定式提交格式（feat/fix/docs 等）"
+  ],
+  "related": ["git add", "git push", "git log"]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "git stash",
+  "aliases": [],
+  "domain": "git",
+  "category": "config",
+  "tags": ["stash", "save", "temporary"],
+  "description": "临时保存当前工作区的修改，将工作区恢复到干净状态。",
+  "syntax": "git stash [选项]",
+  "example": "git stash push -m \"WIP: 登录功能\"",
+  "scenarios": [
+    "临时保存修改切换分支处理紧急任务",
+    "保存时添加说明（git stash push -m \"说明\"）",
+    "恢复最近保存的修改（git stash pop）",
+    "查看所有暂存记录（git stash list）",
+    "恢复但不删除暂存（git stash apply）"
+  ],
+  "related": ["git checkout", "git branch", "git reset"]
+}

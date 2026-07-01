@@ -1,0 +1,17 @@
+{
+  "name": "git checkout",
+  "aliases": [],
+  "domain": "git",
+  "category": "config",
+  "tags": ["checkout", "switch", "branch"],
+  "description": "切换分支或恢复工作区文件。也可用于创建并切换到新分支。",
+  "syntax": "git checkout <分支名|文件>",
+  "example": "git checkout -b feature-x",
+  "scenarios": [
+    "切换到已有分支（git checkout dev）",
+    "创建并切换到新分支（git checkout -b feature-x）",
+    "恢复文件到上次提交的状态（git checkout -- file.js）",
+    "切换到指定标签（git checkout v1.0.0）"
+  ],
+  "related": ["git switch", "git branch", "git restore"]
+}

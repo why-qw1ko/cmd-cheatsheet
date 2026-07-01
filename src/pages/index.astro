@@ -9,6 +9,7 @@ const claudeModules = import.meta.glob('../data/commands/claudecode/*.json', { e
 const cmdModules = import.meta.glob('../data/commands/cmd/*.json', { eager: true });
 const psModules = import.meta.glob('../data/commands/powershell/*.json', { eager: true });
 const npmModules = import.meta.glob('../data/commands/npm/*.json', { eager: true });
+const gitModules = import.meta.glob('../data/commands/git/*.json', { eager: true });
 
 function loadCommands(mods: Record<string, any>) {
   return Object.entries(mods)
@@ -22,6 +23,7 @@ const claudeCmds = loadCommands(claudeModules);
 const cmdCmds = loadCommands(cmdModules);
 const psCmds = loadCommands(psModules);
 const npmCmds = loadCommands(npmModules);
+const gitCmds = loadCommands(gitModules);
 
 const domains = [
   { id: 'linux', label: 'Linux', desc: '系统命令', count: linuxCmds.length,
@@ -34,12 +36,14 @@ const domains = [
     icon: `<iconify-icon icon="mdi:code-braces" width="20" height="20"></iconify-icon>` },
   { id: 'npm', label: 'npm', desc: '包管理器', count: npmCmds.length,
     icon: `<iconify-icon icon="mdi:npm" width="20" height="20"></iconify-icon>` },
+  { id: 'git', label: 'Git', desc: '版本控制', count: gitCmds.length,
+    icon: `<iconify-icon icon="mdi:git" width="20" height="20"></iconify-icon>` },
 ];
 
-const allCommands: Record<string, any[]> = { linux: linuxCmds, cmd: cmdCmds, powershell: psCmds, claudecode: claudeCmds, npm: npmCmds };
+const allCommands: Record<string, any[]> = { linux: linuxCmds, cmd: cmdCmds, powershell: psCmds, claudecode: claudeCmds, npm: npmCmds, git: gitCmds };
 ---
 
-<Layout title="Cmd Cheatsheet - 命令速查站" description="Linux · Claude Code · Windows · npm 常用命令速查">
+<Layout title="Cmd Cheatsheet - 命令速查站" description="Linux · Claude Code · Windows · npm · Git 常用命令速查">
   {/* ===== Header ===== */}
   <header class="site-header">
     <div class="header-left">
@@ -60,7 +64,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, cmd: cmdCmds, pow
     </div>
 
     <div class="header-right">
-      <span class="header-stat-badge" id="header-stat-badge">{linuxCmds.length + cmdCmds.length + psCmds.length + claudeCmds.length + npmCmds.length} 条命令</span>
+      <span class="header-stat-badge" id="header-stat-badge">{linuxCmds.length + cmdCmds.length + psCmds.length + claudeCmds.length + npmCmds.length + gitCmds.length} 条命令</span>
       <a class="header-link" href="https://github.com/why-qw1ko/cmd-cheatsheet/releases" target="_blank" rel="noopener" title="更新日志">
         <iconify-icon icon="mdi:file-document-outline" width="16" height="16"></iconify-icon>
         <span>更新日志</span>
@@ -184,7 +188,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, cmd: cmdCmds, pow
     cli: 'cat-cli', package: 'cat-package',
   };
   const domainLabels: Record<string, string> = {
-    linux: 'Linux', cmd: 'Windows CMD', powershell: 'PowerShell', claudecode: 'Claude Code', npm: 'npm',
+    linux: 'Linux', cmd: 'Windows CMD', powershell: 'PowerShell', claudecode: 'Claude Code', npm: 'npm', git: 'Git',
   };
   const platformLabels: Record<string, string> = {
     linux: 'Linux', cmd: 'CMD', powershell: 'PowerShell',
@@ -219,6 +223,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, cmd: cmdCmds, pow
     powershell: `<iconify-icon icon="mdi:powershell" width="20" height="20"></iconify-icon>`,
     claudecode: `<iconify-icon icon="mdi:code-braces" width="20" height="20"></iconify-icon>`,
     npm: `<iconify-icon icon="mdi:npm" width="20" height="20"></iconify-icon>`,
+    git: `<iconify-icon icon="mdi:git" width="20" height="20"></iconify-icon>`,
   };
 
   const dataEl = document.getElementById('domain-data');
@@ -629,7 +634,7 @@ const allCommands: Record<string, any[]> = { linux: linuxCmds, cmd: cmdCmds, pow
   }
 
   const searchIndex: SearchItem[] = [];
-  const domainLabelMap: Record<string, string> = { linux: 'Linux', claudecode: 'Claude Code', cmd: 'Windows CMD', powershell: 'PowerShell', npm: 'npm' };
+  const domainLabelMap: Record<string, string> = { linux: 'Linux', claudecode: 'Claude Code', cmd: 'Windows CMD', powershell: 'PowerShell', npm: 'npm', git: 'Git' };
 
   for (const [domain, cmds] of Object.entries(allCommands)) {
     for (const cmd of cmds) {

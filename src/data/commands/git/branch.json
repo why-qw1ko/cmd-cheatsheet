@@ -1,0 +1,18 @@
+{
+  "name": "git branch",
+  "aliases": [],
+  "domain": "git",
+  "category": "config",
+  "tags": ["branch", "list", "manage"],
+  "description": "列出、创建或删除分支。",
+  "syntax": "git branch [选项] [分支名]",
+  "example": "git branch -a",
+  "scenarios": [
+    "查看所有本地分支",
+    "查看所有分支包括远程（git branch -a）",
+    "创建新分支（git branch feature-x）",
+    "删除分支（git branch -d feature-x）",
+    "重命名分支（git branch -m old new）"
+  ],
+  "related": ["git checkout", "git switch", "git merge"]
+}

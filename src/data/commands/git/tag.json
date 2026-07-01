@@ -1,0 +1,18 @@
+{
+  "name": "git tag",
+  "aliases": [],
+  "domain": "git",
+  "category": "config",
+  "tags": ["tag", "release", "version"],
+  "description": "为提交打标签，通常用于标记版本发布点。",
+  "syntax": "git tag <标签名> [提交哈希]",
+  "example": "git tag v1.0.0",
+  "scenarios": [
+    "为当前提交打轻量标签（git tag v1.0.0）",
+    "创建带说明的标签（git tag -a v1.0.0 -m \"首次发布\"）",
+    "为历史提交打标签（git tag v0.9.0 abc123）",
+    "推送标签到远程（git push origin v1.0.0）",
+    "推送所有标签（git push origin --tags）"
+  ],
+  "related": ["git push", "git log", "git show"]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "git cherry-pick",
+  "aliases": [],
+  "domain": "git",
+  "category": "config",
+  "tags": ["cherry-pick", "select", "commit"],
+  "description": "从其他分支选择指定的提交并应用到当前分支。",
+  "syntax": "git cherry-pick <提交哈希>",
+  "example": "git cherry-pick abc1234",
+  "scenarios": [
+    "从功能分支挑选特定提交到主分支",
+    "修复 bug 的提交需要同步到多个分支",
+    "挑选多个提交（git cherry-pick A B C）",
+    "只应用修改不自动提交（git cherry-pick --no-commit）"
+  ],
+  "related": ["git merge", "git rebase", "git revert"]
+}

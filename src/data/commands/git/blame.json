@@ -1,0 +1,17 @@
+{
+  "name": "git blame",
+  "aliases": [],
+  "domain": "git",
+  "category": "review",
+  "tags": ["blame", "annotate", "history"],
+  "description": "逐行显示文件的最后修改信息，包括谁在什么时候改了哪一行。",
+  "syntax": "git blame <文件>",
+  "example": "git blame -L 10,20 src/main.js",
+  "scenarios": [
+    "查看某行代码是谁写的",
+    "查看文件某几行的修改历史（-L start,end）",
+    "排查某段代码的引入时间",
+    "忽略空格变更（git blame -w）"
+  ],
+  "related": ["git log", "git show", "git diff"]
+}

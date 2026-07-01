@@ -1,0 +1,16 @@
+{
+  "name": "git init",
+  "aliases": [],
+  "domain": "git",
+  "category": "config",
+  "tags": ["init", "setup", "repository"],
+  "description": "在当前目录初始化一个新的 Git 仓库，创建 .git 子目录用于存储版本历史。",
+  "syntax": "git init [目录名]",
+  "example": "git init my-project",
+  "scenarios": [
+    "新建项目时初始化 Git 仓库",
+    "将已有项目纳入版本管理",
+    "使用 --bare 创建裸仓库（用于服务器端）"
+  ],
+  "related": ["git clone", "git add"]
+}

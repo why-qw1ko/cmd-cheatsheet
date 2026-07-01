@@ -1,0 +1,17 @@
+{
+  "name": "git diff",
+  "aliases": [],
+  "domain": "git",
+  "category": "review",
+  "tags": ["diff", "compare", "changes"],
+  "description": "比较文件的差异，可对比工作区、暂存区和提交之间的变化。",
+  "syntax": "git diff [选项] [文件]",
+  "example": "git diff --staged",
+  "scenarios": [
+    "查看工作区与暂存区的差异（git diff）",
+    "查看暂存区与上次提交的差异（git diff --staged）",
+    "比较两个分支的差异（git diff main..dev）",
+    "只看哪些文件有变化（git diff --stat）"
+  ],
+  "related": ["git status", "git log", "git blame"]
+}
