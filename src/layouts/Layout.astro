@@ -1,4 +1,6 @@
 ---
+import Layout from '../layouts/Layout.astro';
+
 interface Props {
   title?: string;
   description?: string;
@@ -13,11 +15,11 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="icon" type="image/svg+xml" href="/cmd-cheatsheet/favicon.svg" />
-  <meta name="astro-view-transitions-enabled" content="true" />
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   <slot name="head" />
 </head>
 <body>
+  <div class="page-loading-bar" id="page-loading-bar"></div>
   <div class="app-shell">
     <slot />
   </div>
@@ -51,6 +53,40 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
     --text-muted: #94a3b8;
     --tag-bg: #1e1b4b;
     --tag-text: #a5b4fc;
+  }
+
+  /* ==================== Page Loading Bar ==================== */
+  .page-loading-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 9999;
+    background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #6366f1, #ff0080);
+    background-size: 200% 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.2s;
+  }
+
+  .page-loading-bar.loading {
+    opacity: 1;
+    transform: scaleX(0.7);
+    animation: loading-rainbow 1.2s linear infinite;
+  }
+
+  .page-loading-bar.done {
+    opacity: 1;
+    transform: scaleX(1);
+    animation: loading-rainbow 0.6s linear infinite;
+    transition: transform 0.2s ease;
+  }
+
+  @keyframes loading-rainbow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1476,6 +1512,42 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
   else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
     root.setAttribute('data-theme', 'dark');
   }
+
+  // Loading bar — intercept internal link clicks
+  function initLoadingBar() {
+    const bar = document.getElementById('page-loading-bar');
+    if (!bar) return;
+
+    function showBar() {
+      bar.classList.remove('done');
+      bar.classList.add('loading');
+    }
+
+    function hideBar() {
+      bar.classList.remove('loading');
+      bar.classList.add('done');
+      setTimeout(() => bar.classList.remove('done'), 500);
+    }
+
+    // Intercept clicks on internal links
+    document.addEventListener('click', (e) => {
+      const link = (e.target as HTMLElement).closest('a') as HTMLAnchorElement;
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto:') || link.target === '_blank') return;
+      // Same page — skip
+      if (href === window.location.pathname || href === window.location.pathname + '/') return;
+      e.preventDefault();
+      showBar();
+      setTimeout(() => { window.location.href = href; }, 300);
+    });
+
+    // Hide bar when page finishes loading
+    window.addEventListener('load', hideBar);
+    // If already loaded (cached)
+    if (document.readyState === 'complete') hideBar();
+  }
+  initLoadingBar();
 
   // Mobile menu
   const menuBtn = document.getElementById('mobile-menu-btn');
