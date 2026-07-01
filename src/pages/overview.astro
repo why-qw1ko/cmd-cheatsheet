@@ -1,0 +1,287 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const linuxModules = import.meta.glob('../data/commands/linux/*.json', { eager: true });
+const claudeModules = import.meta.glob('../data/commands/claudecode/*.json', { eager: true });
+const cmdModules = import.meta.glob('../data/commands/cmd/*.json', { eager: true });
+const psModules = import.meta.glob('../data/commands/powershell/*.json', { eager: true });
+const npmModules = import.meta.glob('../data/commands/npm/*.json', { eager: true });
+const gitModules = import.meta.glob('../data/commands/git/*.json', { eager: true });
+const redisModules = import.meta.glob('../data/commands/redis/*.json', { eager: true });
+const dockerModules = import.meta.glob('../data/commands/docker/*.json', { eager: true });
+
+function count(mods: Record<string, any>) {
+  return Object.entries(mods).filter(([p]) => !p.includes('_meta.json')).length;
+}
+
+const domains = [
+  { id: 'linux', label: 'Linux', desc: '系统命令 · 文件操作 · 进程管理 · 网络配置', icon: 'mdi:linux', count: count(linuxModules), color: '#f59e0b' },
+  { id: 'cmd', label: 'Windows CMD', desc: '命令提示符 · 系统管理 · 文件操作', icon: 'mdi:microsoft-windows', count: count(cmdModules), color: '#3b82f6' },
+  { id: 'powershell', label: 'PowerShell', desc: '脚本自动化 · 系统管理 · 对象管道', icon: 'mdi:powershell', count: count(psModules), color: '#6366f1' },
+  { id: 'claudecode', label: 'Claude Code', desc: 'AI 编程助手 · 交互命令 · 配置选项', icon: 'mdi:code-braces', count: count(claudeModules), color: '#d97706' },
+  { id: 'npm', label: 'npm', desc: 'Node.js 包管理 · 脚本执行 · 依赖管理', icon: 'mdi:npm', count: count(npmModules), color: '#ef4444' },
+  { id: 'git', label: 'Git', desc: '版本控制 · 分支管理 · 协作开发', icon: 'mdi:git', count: count(gitModules), color: '#f97316' },
+  { id: 'redis', label: 'Redis', desc: '内存数据库 · 缓存 · 消息队列 · 数据结构', icon: 'mdi:database', count: count(redisModules), color: '#dc2626' },
+  { id: 'docker', label: 'Docker', desc: '容器化 · 镜像管理 · Compose 编排', icon: 'mdi:docker', count: count(dockerModules), color: '#0ea5e9' },
+];
+
+const totalCommands = domains.reduce((sum, d) => sum + d.count, 0);
+---
+
+<Layout title="总览 — Cmd Cheatsheet" description="命令速查站 · 全平台命令分类总览">
+  {/* Header */}
+  <header class="site-header">
+    <div class="header-left">
+      <a href="/cmd-cheatsheet/" class="header-logo">
+        <span class="header-logo-icon">
+          <iconify-icon icon="mdi:console" width="24" height="24"></iconify-icon>
+        </span>
+        <span class="header-logo-text">Cmd Cheatsheet</span>
+      </a>
+    </div>
+
+    <div class="header-search">
+      <a class="header-search-btn" href="/cmd-cheatsheet/" style="text-decoration:none;color:var(--text-muted)">
+        <iconify-icon icon="mdi:magnify" width="16" height="16"></iconify-icon>
+        <span>搜索命令...</span>
+        <span class="header-search-kbd">Ctrl K</span>
+      </a>
+    </div>
+
+    <div class="header-right">
+      <a class="header-link active" href="/cmd-cheatsheet/overview" title="总览">
+        <iconify-icon icon="mdi:view-dashboard-outline" width="18" height="18"></iconify-icon>
+        <span>总览</span>
+      </a>
+      <span class="header-stat-badge">{totalCommands} 条命令</span>
+      <a class="header-link" href="https://github.com/why-qw1ko/cmd-cheatsheet" target="_blank" rel="noopener" title="GitHub">
+        <iconify-icon icon="mdi:github" width="18" height="18"></iconify-icon>
+        <span>GitHub</span>
+      </a>
+      <button class="header-btn" id="theme-toggle-header" title="切换主题">
+        <span class="theme-icon-light">
+          <iconify-icon icon="mdi:weather-sunny" width="20" height="20"></iconify-icon>
+        </span>
+        <span class="theme-icon-dark">
+          <iconify-icon icon="mdi:weather-night" width="20" height="20"></iconify-icon>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  {/* Mobile top bar */}
+  <div class="mobile-topbar" id="mobile-topbar">
+    <span></span>
+    <span class="mobile-topbar-title">总览</span>
+    <button class="mobile-btn" id="mobile-theme-btn" aria-label="主题">
+      <span class="theme-icon-light"><iconify-icon icon="mdi:weather-sunny" width="20" height="20"></iconify-icon></span>
+      <span class="theme-icon-dark"><iconify-icon icon="mdi:weather-night" width="20" height="20"></iconify-icon></span>
+    </button>
+  </div>
+
+  <div class="overview-body">
+    <div class="overview-hero">
+      <h1 class="overview-title">
+        <iconify-icon icon="mdi:view-dashboard" width="36" height="36" style="color:var(--accent)"></iconify-icon>
+        命令分类总览
+      </h1>
+      <p class="overview-subtitle">覆盖 {domains.length} 个平台 · 共 {totalCommands} 条命令 · 点击卡片进入对应分类</p>
+    </div>
+
+    <div class="overview-grid">
+      {domains.map((d) => (
+        <a class="overview-card" href={`/cmd-cheatsheet/?domain=${d.id}`} title={`${d.label} · ${d.count} 条命令`}>
+          <div class="overview-card-icon" style={`background: ${d.color}15; color: ${d.color}`}>
+            <iconify-icon icon={d.icon} width="32" height="32"></iconify-icon>
+          </div>
+          <div class="overview-card-info">
+            <div class="overview-card-header">
+              <span class="overview-card-label">{d.label}</span>
+              <span class="overview-card-count">{d.count}</span>
+            </div>
+            <p class="overview-card-desc">{d.desc}</p>
+          </div>
+          <iconify-icon class="overview-card-arrow" icon="mdi:arrow-right" width="18" height="18"></iconify-icon>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  {/* Footer */}
+  <footer class="site-footer overview-footer">
+    <span>© 2026 Cmd Cheatsheet · 命令速查站</span>
+    <div class="footer-links">
+      <a href="/cmd-cheatsheet/">首页</a>
+      <a href="https://github.com/why-qw1ko/cmd-cheatsheet" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </footer>
+</Layout>
+
+<script>
+  // Theme
+  const root = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    root.setAttribute('data-theme', 'dark');
+  }
+
+  document.getElementById('theme-toggle-header')?.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+
+  document.getElementById('mobile-theme-btn')?.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+</script>
+
+<style>
+  .overview-body {
+    margin-top: var(--header-h);
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 40px 24px 80px;
+  }
+
+  .overview-hero {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .overview-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .overview-subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+
+  .overview-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .overview-card:hover {
+    border-color: var(--accent-light);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+
+  .overview-card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .overview-card-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .overview-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+
+  .overview-card-label {
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .overview-card-count {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+  }
+
+  .overview-card-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .overview-card-arrow {
+    color: var(--text-muted);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .overview-card:hover .overview-card-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .header-link.active {
+    color: var(--accent);
+    background: var(--tag-bg);
+  }
+
+  .overview-footer {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 768px) {
+    .site-header { display: none; }
+    .mobile-topbar { display: flex; }
+
+    .overview-body {
+      padding: 20px 16px 80px;
+    }
+
+    .overview-title {
+      font-size: 1.4rem;
+    }
+
+    .overview-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .overview-card-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>

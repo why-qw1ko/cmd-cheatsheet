@@ -237,8 +237,12 @@ const { title = 'Cmd Cheatsheet', description = '命令速查站' } = Astro.prop
   }
 
   /* Theme toggle icons */
+  .theme-icon-light,
   .theme-icon-dark,
+  .sidebar-icon.theme-icon-light,
   .sidebar-icon.theme-icon-dark { display: none; }
+  .theme-icon-light,
+  .sidebar-icon.theme-icon-light { display: flex; }
   [data-theme="dark"] .theme-icon-light,
   [data-theme="dark"] .sidebar-icon.theme-icon-light { display: none; }
   [data-theme="dark"] .theme-icon-dark,
