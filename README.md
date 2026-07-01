@@ -1,6 +1,6 @@
 # 🖥️ Cmd Cheatsheet — 命令速查站
 
-一个现代化的命令速查工具，覆盖 **Linux**、**Windows CMD**、**PowerShell**、**Claude Code** 四大平台，共 **181 条**常用命令。
+一个现代化的命令速查工具，覆盖 **Linux**、**Windows CMD**、**PowerShell**、**Claude Code**、**npm**、**Git**、**Redis**、**Docker** 八大平台，共 **295 条**常用命令。
 
 🔗 **在线访问**：[https://why-qw1ko.github.io/cmd-cheatsheet](https://why-qw1ko.github.io/cmd-cheatsheet)
 
@@ -18,6 +18,7 @@
 - ⚠️ **危险标识** — 高危/中危命令醒目标注
 - 💾 **展开记忆** — localStorage 保存每个分类的展开状态
 - 🦴 **骨架屏** — 切换分类时平滑过渡
+- ⚡ **SPA 无刷新** — 页面间跳转无闪烁，自定义 fetch-based router
 
 ---
 
@@ -25,11 +26,15 @@
 
 | 平台 | 命令数 | 示例 |
 |------|--------|------|
-| 🐧 Linux | 82 | `ls` `grep` `ssh` `systemctl` `awk` `htop` |
-| 💻 Windows CMD | 30 | `dir` `ipconfig` `taskkill` `robocopy` `sfc` |
-| ⚡ PowerShell | 40 | `Get-ChildItem` `Invoke-WebRequest` `Select-Object` |
-| 🤖 Claude Code | 29 | `/clear` `/compact` `--print` `--model` `/mcp` |
-| **总计** | **181** | |
+| 🐧 Linux | 83 | `ls` `grep` `ssh` `systemctl` `awk` `htop` |
+| 💻 Windows CMD | 31 | `dir` `ipconfig` `taskkill` `robocopy` `sfc` |
+| ⚡ PowerShell | 41 | `Get-ChildItem` `Invoke-WebRequest` `Select-Object` |
+| 🤖 Claude Code | 30 | `/clear` `/compact` `--print` `--model` `/mcp` |
+| 📦 npm | 18 | `install` `run` `init` `publish` `audit` |
+| 🔀 Git | 25 | `commit` `branch` `rebase` `stash` `cherry-pick` |
+| 🔴 Redis | 34 | `GET` `SET` `HGETALL` `SUBSCRIBE` `CONFIG` |
+| 🐳 Docker | 33 | `run` `build` `compose` `exec` `logs` `network` |
+| **总计** | **295** | |
 
 ---
 
@@ -70,15 +75,20 @@ src/
 │   └── CommandNav.astro      # 右侧浮动命令导航（A-Z 索引 + 分组 + 滚动联动）
 ├── data/
 │   ├── commands/
-│   │   ├── linux/            # Linux 命令 JSON (82条)
-│   │   ├── cmd/              # Windows CMD 命令 JSON (30条)
-│   │   ├── powershell/       # PowerShell 命令 JSON (40条)
-│   │   └── claudecode/       # Claude Code 命令 JSON (29条)
+│   │   ├── linux/            # Linux 命令 JSON (83条)
+│   │   ├── cmd/              # Windows CMD 命令 JSON (31条)
+│   │   ├── powershell/       # PowerShell 命令 JSON (41条)
+│   │   ├── claudecode/       # Claude Code 命令 JSON (30条)
+│   │   ├── npm/              # npm 命令 JSON (18条)
+│   │   ├── git/              # Git 命令 JSON (25条)
+│   │   ├── redis/            # Redis 命令 JSON (34条)
+│   │   └── docker/           # Docker 命令 JSON (33条)
 │   └── cross-platform.json   # 跨平台命令对照数据 (28组)
 ├── layouts/
-│   └── Layout.astro          # 全局布局 + 样式 + 搜索弹窗
+│   └── Layout.astro          # 全局布局 + 样式 + 搜索弹窗 + SPA 路由
 └── pages/
-    └── index.astro           # 首页逻辑 + 渲染 + 交互
+    ├── index.astro           # 首页：命令列表 + 渲染 + 交互
+    └── overview.astro        # 总览页：全平台分类网格卡片
 ```
 
 ---
@@ -102,7 +112,7 @@ src/
 }
 ```
 
-**domain**：`linux` `cmd` `powershell` `claudecode`
+**domain**：`linux` `cmd` `powershell` `claudecode` `npm` `git` `redis` `docker`
 
 **category**：`file` `text` `system` `network` `process` `session` `config` `review` `cli` `package`
 

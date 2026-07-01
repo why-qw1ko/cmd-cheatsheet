@@ -1,6 +1,6 @@
 # 🖥️ Cmd Cheatsheet
 
-A modern command-line reference covering **Linux**, **Claude Code**, and **Windows** — **63 commands** in one place.
+A modern command-line reference covering **Linux**, **Windows CMD**, **PowerShell**, **Claude Code**, **npm**, **Git**, **Redis**, and **Docker** — **295 commands** in one place.
 
 🔗 **Live**: [https://why-qw1ko.github.io/cmd-cheatsheet](https://why-qw1ko.github.io/cmd-cheatsheet)
 
@@ -13,9 +13,12 @@ A modern command-line reference covering **Linux**, **Claude Code**, and **Windo
 - 🌙 **Dark Mode** — Manual toggle + system preference detection
 - 📱 **Responsive** — Mobile, tablet, and desktop layouts
 - 🎯 **Command Nav** — Floating right-side navigation with A-Z index + scroll spy
+- 🔄 **Cross-Platform** — Linux ↔ CMD ↔ PowerShell command equivalents
+- 🏷️ **Category Filter** — Click category tags to filter commands
 - ⚠️ **Danger Badges** — High-risk / mid-risk commands visually flagged
 - 💾 **Expand Memory** — localStorage persists expand/collapse state per domain
 - 🦴 **Skeleton Loading** — Smooth transition when switching categories
+- ⚡ **SPA Navigation** — Flicker-free page transitions with custom fetch-based router
 
 ---
 
@@ -23,9 +26,15 @@ A modern command-line reference covering **Linux**, **Claude Code**, and **Windo
 
 | Platform | Count | Examples |
 |----------|-------|---------|
-| 🐧 Linux | 29 | `ls` `grep` `find` `ssh` `curl` `systemctl` |
-| 🤖 Claude Code | 18 | `/clear` `/compact` `/review` `/model` `claude (CLI)` |
-| 🪟 Windows | 16 | `dir` `ipconfig` `netstat` `winget` `Get-Process` |
+| 🐧 Linux | 83 | `ls` `grep` `find` `ssh` `curl` `systemctl` |
+| 💻 Windows CMD | 31 | `dir` `ipconfig` `taskkill` `robocopy` `sfc` |
+| ⚡ PowerShell | 41 | `Get-ChildItem` `Invoke-WebRequest` `Select-Object` |
+| 🤖 Claude Code | 30 | `/clear` `/compact` `/review` `/model` `claude (CLI)` |
+| 📦 npm | 18 | `install` `run` `init` `publish` `audit` |
+| 🔀 Git | 25 | `commit` `branch` `rebase` `stash` `cherry-pick` |
+| 🔴 Redis | 34 | `GET` `SET` `HGETALL` `SUBSCRIBE` `CONFIG` |
+| 🐳 Docker | 33 | `run` `build` `compose` `exec` `logs` `network` |
+| **Total** | **295** | |
 
 ---
 
@@ -65,13 +74,19 @@ src/
 │   ├── DomainSidebar.astro   # Left sidebar (icons + names + counts)
 │   └── CommandNav.astro      # Floating right nav (A-Z index + scroll spy)
 ├── data/commands/
-│   ├── linux/                # Linux command JSON files
-│   ├── claudecode/           # Claude Code command JSON files
-│   └── windows/              # Windows command JSON files
+│   ├── linux/                # Linux command JSON files (83)
+│   ├── cmd/                  # Windows CMD command JSON files (31)
+│   ├── powershell/           # PowerShell command JSON files (41)
+│   ├── claudecode/           # Claude Code command JSON files (30)
+│   ├── npm/                  # npm command JSON files (18)
+│   ├── git/                  # Git command JSON files (25)
+│   ├── redis/                # Redis command JSON files (34)
+│   └── docker/               # Docker command JSON files (33)
 ├── layouts/
-│   └── Layout.astro          # Global layout + styles + search modal
+│   └── Layout.astro          # Global layout + styles + search modal + SPA router
 └── pages/
-    └── index.astro           # Page logic + rendering + interactions
+    ├── index.astro           # Home page: command list + rendering + interactions
+    └── overview.astro        # Overview page: all-platform category grid
 ```
 
 ---
@@ -94,6 +109,8 @@ Create a JSON file in the appropriate directory:
   "related": ["related-command"]
 }
 ```
+
+**Domains**: `linux` `cmd` `powershell` `claudecode` `npm` `git` `redis` `docker`
 
 **Categories**: `file` `text` `system` `network` `process` `session` `config` `review` `cli` `package`
 
@@ -146,6 +163,6 @@ MIT License
 
 ## 🙏 Acknowledgments
 
-- Icons from [Lucide](https://lucide.dev/)
+- Icons from [Iconify](https://iconify.design/)
 - Color palette inspired by [Tailwind CSS](https://tailwindcss.com/docs/colors)
 - Inspired by [Devhints](https://devhints.io/) and [OverAPI](https://overapi.com/)
