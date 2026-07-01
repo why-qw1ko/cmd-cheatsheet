@@ -1,0 +1,17 @@
+{
+  "name": "npx",
+  "aliases": [],
+  "domain": "npm",
+  "category": "cli",
+  "tags": ["execute", "run", "packages"],
+  "description": "直接运行 npm 包中的可执行文件，无需全局安装。自动下载并执行指定命令。",
+  "syntax": "npx <命令>",
+  "example": "npx create-react-app my-app",
+  "scenarios": [
+    "运行一次性脚手架命令（npx create-react-app）",
+    "执行项目中的本地 CLI 工具",
+    "运行特定版本的包（npx cowsay hello）",
+    "无需安装直接使用 CLI 工具"
+  ],
+  "related": ["npm exec", "npm run"]
+}

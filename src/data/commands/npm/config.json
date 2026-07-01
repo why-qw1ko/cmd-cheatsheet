@@ -1,0 +1,17 @@
+{
+  "name": "npm config",
+  "aliases": [],
+  "domain": "npm",
+  "category": "config",
+  "tags": ["config", "settings", "registry"],
+  "description": "管理 npm 的配置项，包括 registry 地址、代理设置等。所有配置存储在 .npmrc 文件中。",
+  "syntax": "npm config set <key> <value>",
+  "example": "npm config set registry https://registry.npmmirror.com",
+  "scenarios": [
+    "切换到淘宝镜像源加速下载",
+    "查看当前所有配置（npm config list）",
+    "设置代理（npm config set proxy http://...）",
+    "获取某个配置值（npm config get registry）"
+  ],
+  "related": ["npm cache", "npm login"]
+}

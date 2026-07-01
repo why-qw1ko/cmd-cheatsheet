@@ -1,0 +1,16 @@
+{
+  "name": "npm test",
+  "aliases": ["npm t"],
+  "domain": "npm",
+  "category": "cli",
+  "tags": ["test", "testing", "scripts"],
+  "description": "执行 package.json 中定义的 test 脚本。是 npm run test 的简写形式。",
+  "syntax": "npm test [-- 参数]",
+  "example": "npm test -- --coverage",
+  "scenarios": [
+    "运行项目的单元测试",
+    "配合 Jest/Mocha/Vitest 等测试框架",
+    "传参给测试运行器（如 --watch、--coverage）"
+  ],
+  "related": ["npm run", "npm start"]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "npm list",
+  "aliases": ["npm ls"],
+  "domain": "npm",
+  "category": "package",
+  "tags": ["list", "dependencies", "info"],
+  "description": "列出当前项目已安装的所有依赖包及其版本树。",
+  "syntax": "npm list [--depth=0]",
+  "example": "npm list --depth=0",
+  "scenarios": [
+    "查看当前项目的直接依赖（npm list --depth=0）",
+    "查看全局安装的包（npm list -g --depth=0）",
+    "检查某个包是否已安装及版本",
+    "查看完整的依赖树（npm list）"
+  ],
+  "related": ["npm outdated", "npm view"]
+}

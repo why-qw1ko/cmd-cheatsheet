@@ -1,0 +1,16 @@
+{
+  "name": "npm init",
+  "aliases": [],
+  "domain": "npm",
+  "category": "config",
+  "tags": ["init", "project", "setup"],
+  "description": "初始化一个新的 package.json 文件，交互式引导填写项目信息。使用 -y 标志可跳过交互直接生成默认配置。",
+  "syntax": "npm init [-y]",
+  "example": "npm init -y",
+  "scenarios": [
+    "新建 Node.js 项目时生成 package.json",
+    "使用 -y 快速生成默认配置",
+    "配合 create-react-app 等脚手架使用"
+  ],
+  "related": ["npm install", "npx"]
+}

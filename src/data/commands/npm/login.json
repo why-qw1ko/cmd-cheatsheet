@@ -1,0 +1,17 @@
+{
+  "name": "npm login",
+  "aliases": ["npm adduser"],
+  "domain": "npm",
+  "category": "session",
+  "tags": ["login", "auth", "registry"],
+  "description": "登录 npm registry 账户，认证后可发布和管理自己的包。",
+  "syntax": "npm login",
+  "example": "npm login",
+  "scenarios": [
+    "发布包之前先登录 npm 账户",
+    "切换 npm 账户",
+    "登录私有 registry",
+    "使用 npm whoami 验证登录状态"
+  ],
+  "related": ["npm publish", "npm whoami", "npm logout"]
+}

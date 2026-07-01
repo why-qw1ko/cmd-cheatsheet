@@ -1,0 +1,17 @@
+{
+  "name": "npm install",
+  "aliases": ["npm i"],
+  "domain": "npm",
+  "category": "package",
+  "tags": ["install", "dependencies", "packages"],
+  "description": "安装项目依赖包。读取 package.json 并将依赖安装到 node_modules 目录。",
+  "syntax": "npm install [包名]",
+  "example": "npm install express",
+  "scenarios": [
+    "初始化项目后安装所有依赖（npm install）",
+    "安装指定包并保存到 dependencies（npm install express）",
+    "安装指定包并保存到 devDependencies（npm install -D typescript）",
+    "全局安装工具包（npm install -g nodemon）"
+  ],
+  "related": ["npm uninstall", "npm update", "npm ci"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "npm outdated",
+  "aliases": [],
+  "domain": "npm",
+  "category": "package",
+  "tags": ["outdated", "check", "dependencies"],
+  "description": "检查当前项目中哪些依赖包有可用的新版本更新。",
+  "syntax": "npm outdated [包名]",
+  "example": "npm outdated",
+  "scenarios": [
+    "定期检查依赖是否有更新",
+    "在升级前了解哪些包需要更新",
+    "查看全局包的更新状态（npm outdated -g）"
+  ],
+  "related": ["npm update", "npm list"]
+}

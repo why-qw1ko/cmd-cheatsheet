@@ -1,0 +1,16 @@
+{
+  "name": "npm update",
+  "aliases": [],
+  "domain": "npm",
+  "category": "package",
+  "tags": ["update", "upgrade", "dependencies"],
+  "description": "更新项目中的所有包到符合 package.json 版本约束的最新版本。",
+  "syntax": "npm update [包名]",
+  "example": "npm update",
+  "scenarios": [
+    "批量更新所有依赖到兼容的最新版本",
+    "更新指定包（npm update express）",
+    "全局更新已安装的全局包（npm update -g）"
+  ],
+  "related": ["npm outdated", "npm install", "npm ci"]
+}

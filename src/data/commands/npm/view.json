@@ -1,0 +1,17 @@
+{
+  "name": "npm view",
+  "aliases": ["npm info", "npm show"],
+  "domain": "npm",
+  "category": "package",
+  "tags": ["info", "registry", "details"],
+  "description": "查看 npm registry 上某个包的详细信息，包括版本、依赖、描述等。",
+  "syntax": "npm view <包名> [字段]",
+  "example": "npm view express version",
+  "scenarios": [
+    "查看包的最新版本（npm view express version）",
+    "查看包的所有版本历史（npm view express versions）",
+    "查看包的依赖关系（npm view express dependencies）",
+    "查看包的详细元信息（npm view express）"
+  ],
+  "related": ["npm list", "npm outdated"]
+}

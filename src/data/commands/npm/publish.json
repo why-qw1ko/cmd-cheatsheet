@@ -1,0 +1,16 @@
+{
+  "name": "npm publish",
+  "aliases": [],
+  "domain": "npm",
+  "category": "package",
+  "tags": ["publish", "registry", "package"],
+  "description": "将当前包发布到 npm registry，使其可供他人安装使用。",
+  "syntax": "npm publish [--access public]",
+  "example": "npm publish --access public",
+  "scenarios": [
+    "发布公共包到 npm registry",
+    "发布 scoped 包时需要 --access public",
+    "发布前需先 npm login 登录"
+  ],
+  "related": ["npm login", "npm version", "npm pack"]
+}

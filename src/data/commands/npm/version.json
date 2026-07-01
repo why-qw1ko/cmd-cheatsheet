@@ -1,0 +1,17 @@
+{
+  "name": "npm version",
+  "aliases": [],
+  "domain": "npm",
+  "category": "config",
+  "tags": ["version", "release", "semver"],
+  "description": "管理 package.json 中的版本号，支持自动 bump 主版本/次版本/补丁版本并创建 git tag。",
+  "syntax": "npm version <major|minor|patch>",
+  "example": "npm version patch",
+  "scenarios": [
+    "发布前自动升版（npm version patch）",
+    "重大更新升主版本（npm version major）",
+    "新功能升次版本（npm version minor）",
+    "自动创建 git commit 和 tag"
+  ],
+  "related": ["npm publish", "npm pack"]
+}

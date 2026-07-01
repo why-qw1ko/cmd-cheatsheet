@@ -1,0 +1,17 @@
+{
+  "name": "npm run",
+  "aliases": [],
+  "domain": "npm",
+  "category": "cli",
+  "tags": ["scripts", "build", "start"],
+  "description": "执行 package.json 中 scripts 字段定义的自定义脚本命令。",
+  "syntax": "npm run <脚本名>",
+  "example": "npm run build",
+  "scenarios": [
+    "运行项目构建脚本（npm run build）",
+    "启动开发服务器（npm run dev）",
+    "运行测试套件（npm run test）",
+    "执行代码格式化（npm run lint）"
+  ],
+  "related": ["npm start", "npm test", "npx"]
+}

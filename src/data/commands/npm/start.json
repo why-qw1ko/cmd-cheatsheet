@@ -1,0 +1,16 @@
+{
+  "name": "npm start",
+  "aliases": [],
+  "domain": "npm",
+  "category": "cli",
+  "tags": ["start", "server", "run"],
+  "description": "执行 package.json 中定义的 start 脚本。是 npm run start 的简写形式。",
+  "syntax": "npm start [-- 参数]",
+  "example": "npm start",
+  "scenarios": [
+    "启动 Node.js 应用",
+    "启动开发服务器",
+    "配合 React/Vue 等框架启动项目"
+  ],
+  "related": ["npm run", "npm test"]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "npm ci",
+  "aliases": [],
+  "domain": "npm",
+  "category": "package",
+  "tags": ["ci", "install", "clean"],
+  "description": "根据 package-lock.json 进行干净安装，删除现有 node_modules 后精确安装锁定版本。适合 CI/CD 环境。",
+  "syntax": "npm ci",
+  "example": "npm ci",
+  "scenarios": [
+    "CI/CD 流水线中安装依赖",
+    "需要完全复现锁定版本的依赖树",
+    "团队协作时确保依赖一致性",
+    "比 npm install 更快、更可靠"
+  ],
+  "related": ["npm install", "package-lock.json"]
+}

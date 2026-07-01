@@ -1,0 +1,16 @@
+{
+  "name": "npm uninstall",
+  "aliases": ["npm rm", "npm remove"],
+  "domain": "npm",
+  "category": "package",
+  "tags": ["uninstall", "remove", "dependencies"],
+  "description": "卸载已安装的包，并从 package.json 的依赖字段中移除。",
+  "syntax": "npm uninstall <包名>",
+  "example": "npm uninstall lodash",
+  "scenarios": [
+    "移除不再需要的依赖包",
+    "清理 node_modules 中的多余包",
+    "卸载全局安装的工具（npm uninstall -g 包名）"
+  ],
+  "related": ["npm install", "npm list"]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "npm pack",
+  "aliases": [],
+  "domain": "npm",
+  "category": "package",
+  "tags": ["pack", "tarball", "publish"],
+  "description": "将当前包打包为 .tgz 压缩文件，可本地测试安装效果或手动分发。",
+  "syntax": "npm pack",
+  "example": "npm pack",
+  "scenarios": [
+    "发布前预览包内容（npm pack --dry-run）",
+    "打包为 .tgz 文件供本地测试",
+    "手动分发包时生成压缩文件",
+    "检查哪些文件会被包含在发布的包中"
+  ],
+  "related": ["npm publish", "npm version"]
+}

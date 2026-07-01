@@ -1,0 +1,17 @@
+{
+  "name": "npm cache",
+  "aliases": [],
+  "domain": "npm",
+  "category": "config",
+  "tags": ["cache", "clean", "maintenance"],
+  "description": "管理 npm 的本地缓存。可以查看缓存路径、清理缓存以释放磁盘空间。",
+  "syntax": "npm cache clean --force",
+  "example": "npm cache clean --force",
+  "scenarios": [
+    "安装出错时清理缓存重试",
+    "释放磁盘空间（npm cache clean --force）",
+    "查看缓存目录位置（npm cache ls）",
+    "排查安装问题时清理缓存"
+  ],
+  "related": ["npm install", "npm config"]
+}
